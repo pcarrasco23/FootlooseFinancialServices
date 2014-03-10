@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+@if (Request.IsAuthenticated)
+{
+    <div style="margin:10px;">
+        <div style="float:left;">
+            <table>
+                <tr>
+                    <td>
+                        <img src="~/Content/images/footloosefinancial_small.png" />
+                    </td>
+                    <td style="vertical-align: top;">
+                        <span style="font-family: Impact; font-size: 16pt; color: #EB0CAC; margin-left: 10px;">
+                            Footloose
+                        </span>
+                        <span style="font-size: 12pt; color: #18A7EA; line-height: 60%; ">
+                            Financial Services
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>        
+        <div style="float: right;">
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+}
+    <div class="container body-content" style="clear:both;">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Footloose Financial Services</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

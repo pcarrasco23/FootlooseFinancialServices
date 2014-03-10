@@ -1,0 +1,103 @@
+﻿@model FootlooseFS.Models.PageOfList<FootlooseFS.Models.Person>
+
+<script>
+    totalPages = @Model.TotalPageCount
+</script>
+
+<div class="row">
+    <div class="col-lg-2">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default" onclick="newPerson()">
+                <span class="glyphicon glyphicon-file"></span> New
+            </button>
+
+            <button type="button" class="btn btn-primary" onclick="newSearch()">
+                <span class="glyphicon glyphicon-search"></span> Search
+            </button>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary" onclick="firstPage()">
+                <span class="glyphicon glyphicon-step-backward"></span> First
+            </button>
+            <button type="button" class="btn btn-primary" onclick="previousPage()">
+                <span class="glyphicon glyphicon-chevron-left"></span> Previous
+            </button>
+            <button type="button" class="btn btn-primary" onclick="nextPage()">
+                <span class="glyphicon glyphicon-chevron-right"></span> Next
+            </button>
+            <button type="button" class="btn btn-primary" onclick="lastPage()">
+                <span class="glyphicon glyphicon-step-forward"></span> Last
+            </button>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="btn-group">
+            Displaying @(Model.PageIndex * Model.PageSize - Model.PageSize + 1) -
+            @(Model.PageIndex == Model.TotalPageCount ? Model.TotalItemCount : Model.PageIndex * Model.PageSize) of @Model.TotalItemCount
+        </div>
+    </div>
+
+    <div class="col-lg-2">
+        <div class="input-group">
+            <span class="input-group-addon">Page</span>
+            <input type="text" id="pageNumber" class="form-control" value="@Model.PageIndex">
+            <span class="input-group-addon">of @Model.TotalPageCount</span>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top: 5px;">
+    <table class="table table-striped table-bordered table-condensed" style="table-layout: fixed; font-size: 12px; word-wrap: break-word;">
+        <thead>
+            <tr>
+                <th id="sort_PersonID" style="width: 100px; cursor: pointer;" onclick="sort('PersonID')">ID</th>
+                <th id="sort_FirstName" style="width: 100px; cursor: pointer;" onclick="sort('FirstName')">First Name</th>
+                <th id="sort_LastName" style="width: 100px; cursor: pointer;" onclick="sort('LastName')">Last Name</th>
+                <th id="sort_EmailAddress" style="width: 150px; cursor: pointer;" onclick="sort('EmailAddress')">Email Address</th>
+                <th id="sort_Phone1" style="width: 100px; cursor: pointer;" onclick="sort('Phone1')">Phone</th>
+                <th id="sort_StreetAddress" style="width: 200px; cursor: pointer;" onclick="sort('StreetAddress')">Street Address</th>
+                <th id="sort_City" style="width: 100px; cursor: pointer;" onclick="sort('City')">City</th>
+                <th id="sort_County" style="width: 100px; cursor: pointer;" onclick="sort('County')">County</th>
+                <th id="sort_State" style="width: 75px; cursor: pointer;" onclick="sort('State')">State</th>
+                <th id="sort_Zip" style="width: 100px; cursor: pointer;" onclick="sort('Zip')">Zip</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" id="personID" class="form-control" style="font-size: 12px;" value="@Model.SearchCriteria["PersonID"]"></td>
+                <td><input type="text" id="firstName" class="form-control" style="font-size: 12px;" value="@Model.SearchCriteria["FirstName"]"></td>
+                <td><input type="text" id="lastName" class="form-control" style="font-size: 12px;" value="@Model.SearchCriteria["LastName"]"></td>
+                <td><input type="text" id="emailAddress" class="form-control" style="font-size: 12px;" value="@Model.SearchCriteria["EmailAddress"]"></td>
+                <td><input type="text" id="phone" class="form-control" style="font-size: 12px;" value="@Model.SearchCriteria["Phone1"]"></td>
+                <td><input type="text" id="streetAddress" class="form-control" style="font-size: 12px;" value="@Model.SearchCriteria["StreetAddress"]"></td>
+                <td><input type="text" id="city" class="form-control" style="font-size: 12px;" value="@Model.SearchCriteria["City"]"></td>
+                <td><input type="text" id="county" class="form-control" style="font-size: 12px;" value="@Model.SearchCriteria["County"]"></td>
+                <td><input type="text" id="state" class="form-control" style="font-size: 12px;" value="@Model.SearchCriteria["State"]"></td>
+                <td><input type="text" id="zip" class="form-control" style="font-size: 12px;" value="@Model.SearchCriteria["Zip"]"></td>
+            </tr>
+            @foreach (var item in Model.Data)
+            {
+                <tr>
+                    <td>
+                        <a onclick="editPerson(@item.PersonID)" style="cursor:pointer;">
+                            @Html.DisplayFor(modelItem => item.PersonID)
+                        </a>
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.EmailAddress)</td>
+                    <td>@(item.Phones.Any() ? item.Phones.First().Number : string.Empty)</td>
+                    <td>@(item.Addresses.Any() ? item.Addresses.First().Address.StreetAddress : string.Empty)</td>
+                    <td>@(item.Addresses.Any() ? item.Addresses.First().Address.City : string.Empty)</td>
+                    <td>@(item.Addresses.Any() ? item.Addresses.First().Address.County : string.Empty)</td>
+                    <td>@(item.Addresses.Any() ? item.Addresses.First().Address.State : string.Empty)</td>
+                    <td>@(item.Addresses.Any() ? item.Addresses.First().Address.Zip : string.Empty)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

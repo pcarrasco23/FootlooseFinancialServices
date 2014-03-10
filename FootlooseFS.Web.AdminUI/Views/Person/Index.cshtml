@@ -1,0 +1,249 @@
+﻿<script>
+    var sortColumn = "LastName";    // Default sort column
+    var sortDirection = "Ascending";    // Default sort direction
+    var recordsPerPage = 20;    // Default records per page
+    var pageNumber = 1; // Default page number
+    var totalPages = 0;
+    var reloadRequired = false;
+
+    $(document).ready(function () {
+        setupPersonInput();
+    });
+    
+    function search() {
+        var searchParameters = new Object();
+        searchParameters.PageNumber = pageNumber;
+        searchParameters.NumberRecordsPerPage = recordsPerPage;
+        searchParameters.SortColumn = sortColumn;
+        searchParameters.SortDirection = sortDirection;
+
+        var searchCriteria = new Array();
+        addToSearchCriteria('PersonID', $('#personID').val(), searchCriteria);
+        addToSearchCriteria('FirstName', $('#firstName').val(), searchCriteria);
+        addToSearchCriteria('LastName', $('#lastName').val(), searchCriteria);
+        addToSearchCriteria('EmailAddress', $('#emailAddress').val(), searchCriteria);
+        addToSearchCriteria('Phone1', $('#phone').val(), searchCriteria);
+        addToSearchCriteria('StreetAddress', $('#streetAddress').val(), searchCriteria);
+        addToSearchCriteria('City', $('#city').val(), searchCriteria);
+        addToSearchCriteria('County', $('#county').val(), searchCriteria);
+        addToSearchCriteria('State', $('#state').val(), searchCriteria);
+        addToSearchCriteria('Zip', $('#zip').val(), searchCriteria);
+
+        searchParameters.SearchCriteria = searchCriteria;
+
+        $('#search').block({
+            message: 'Searching',
+            css: { padding: '10px', border: '3px solid #a00' },   
+            overlayCSS:  { 
+                    backgroundColor: '#000', 
+                    opacity:         0.3, 
+                    cursor:          'wait' 
+            }
+        });
+
+        $.ajax({
+            url: "Person/Search",
+            type: "POST",
+            data: JSON.stringify(searchParameters),
+            contentType: "application/json",
+            async: true,
+            success: function (data, textStatus, jqXHR) {
+                $('#search').html(data);
+
+                setupPersonInput();
+
+                $('#pageNumber').keypress(function (e) {
+                    if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+                        pageNumber = $(this).val();
+                        search();
+                        return false;
+                    }
+                });
+
+                var sortColumnElem = "sort_" + sortColumn;
+                var sortColumnValue = $('#' + sortColumnElem).html();
+
+                if (sortDirection == "Ascending")
+                    $('#' + sortColumnElem).html("<span class='glyphicon glyphicon-arrow-up'></span> " + sortColumnValue);
+                else
+                    $('#' + sortColumnElem).html("<span class='glyphicon glyphicon-arrow-down'></span> " + sortColumnValue);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            }
+        });
+    }
+
+    function addToSearchCriteria(name, value, searchCriteria) {
+        var searchCriterion = new Object();
+        searchCriterion.Key = name;
+        searchCriterion.Value = (value == null) ? '' : value;
+
+        searchCriteria.push(searchCriterion);
+    }
+
+    function setupPersonInput() {
+        setupFormSubmitInput($('#personID'));
+        setupFormSubmitInput($('#firstName'));
+        setupFormSubmitInput($('#lastName'));
+        setupFormSubmitInput($('#emailAddress'));
+        setupFormSubmitInput($('#phone'));
+        setupFormSubmitInput($('#streetAddress'));
+        setupFormSubmitInput($('#city'));
+        setupFormSubmitInput($('#county'));
+        setupFormSubmitInput($('#state'));
+        setupFormSubmitInput($('#zip'));
+    }
+
+    function setupFormSubmitInput(element) {
+        $(element).keypress(function (e) {
+            if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+                newSearch();
+                return false;
+            }
+        });
+    }
+
+    function newSearch() {
+        sortColumn = "LastName";
+        sortDirection = "Ascending";
+        pageNumber = 1;
+
+        search();
+    }
+
+    function firstPage() {
+        pageNumber = 1;
+        search();
+    }
+
+    function previousPage() {
+        if (pageNumber == 1) {
+            search();
+        }
+        else {
+            pageNumber--;
+            search();
+        }
+    }
+
+    function nextPage() {
+        if (pageNumber < totalPages) {
+            pageNumber++;
+            search();
+        }
+        else {
+            search();
+        }
+    }
+
+    function lastPage() {
+        pageNumber = totalPages;
+        search();
+    }
+
+    function sort(column) {
+        if (sortColumn == column) {
+            sortDirection = (sortDirection == 'Ascending') ? 'Descending' : 'Ascending';
+        }
+        else {
+            sortDirection = 'Ascending';
+        }
+
+        sortColumn = column;
+        
+        search();
+    }
+
+    function newPerson() {
+        $.ajax({
+            url: "Person/New",
+            type: "GET",
+            async: true,
+            success: function (data, textStatus, jqXHR) {
+                $('#editContainer').html(data);
+                $('#editContainer').show();
+                $('#search').hide();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            }
+        });
+    }
+
+    function editPerson(personID) {        
+        $.ajax({
+            url: "Person/Edit?personID=" + personID,
+            type: "GET",
+            async: true,
+            success: function (data, textStatus, jqXHR) {
+                $('#editContainer').html(data);
+                $('#editContainer').show();
+                $('#search').hide();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            }
+        });
+    }
+
+    function closeEdit() {
+        $('#editContainer').hide();
+        $('#search').show();
+
+        if (reloadRequired) {
+            search();
+            reloadRequired = false;
+        }
+    }
+
+    function setReloadRequired() {
+        reloadRequired = true;
+    }
+</script>
+
+<div id="search" style="margin: 5px; width: 100%; float: left; overflow:hidden;">
+    <div style="margin: 5px;">
+        <button type="button" class="btn btn-default" onclick="newPerson()">
+            <span class="glyphicon glyphicon-file"></span> New
+        </button>
+
+        <button type="button" class="btn btn-primary" onclick="newSearch()">
+            <span class="glyphicon glyphicon-search"></span> Search
+        </button>
+    </div>
+
+    <div style="margin: 5px; overflow: auto;">
+        <table class="table table-striped table-bordered table-condensed" style="table-layout: fixed; font-size: 12px;">
+            <thead>
+                <tr>
+                    <th style="width:100px;">ID</th>
+                    <th style="width:100px;">First Name</th>
+                    <th style="width:100px;">Last Name</th>
+                    <th style="width:150px;">Email Address</th>
+                    <th style="width:100px;">Phone</th>
+                    <th style="width:200px;">Street Address</th>
+                    <th style="width:100px;">City</th>
+                    <th style="width:100px;">County</th>
+                    <th style="width:75px;">State</th>
+                    <th style="width:100px;">Zip</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" id="personID" class="form-control" style="font-size: 12px;"></td>
+                    <td><input type="text" id="firstName" class="form-control" style="font-size: 12px;"></td>
+                    <td><input type="text" id="lastName" class="form-control" style="font-size: 12px;"></td>
+                    <td><input type="text" id="emailAddress" class="form-control" style="font-size: 12px;"></td>
+                    <td><input type="text" id="phone" class="form-control" style="font-size: 12px;"></td>
+                    <td><input type="text" id="streetAddress" class="form-control" style="font-size: 12px;"></td>
+                    <td><input type="text" id="city" class="form-control" style="font-size: 12px;"></td>
+                    <td><input type="text" id="county" class="form-control" style="font-size: 12px;"></td>
+                    <td><input type="text" id="state" class="form-control" style="font-size: 12px;"></td>
+                    <td><input type="text" id="zip" class="form-control" style="font-size: 12px;"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="editContainer" style="margin:5px;"/>
+
+

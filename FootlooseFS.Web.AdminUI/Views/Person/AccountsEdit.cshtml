@@ -1,0 +1,31 @@
+﻿@model IEnumerable<FootlooseFS.Models.PersonAccount>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <colgroup>
+            <col class=" col-xs-1">
+            <col class="col-xs-1">
+            <col class="col-xs-4">
+            <col class="col-xs-2">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Account.AccountID</td>
+                    <td>@item.Account.AccountType.Name</td>
+                    <td>@item.Account.AccountName</td>
+                    <td>$@item.Account.AccountBalance</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

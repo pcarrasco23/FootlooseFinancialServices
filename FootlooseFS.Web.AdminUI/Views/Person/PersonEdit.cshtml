@@ -1,0 +1,184 @@
+﻿@model FootlooseFS.Models.Person
+
+<script>
+    function save() {
+        $.ajax({
+            url: "Person/Save",
+            type: "POST",
+            data: $("form").serialize(),
+            contentType: "application/x-www-form-urlencoded",
+            async: true,
+            success: function (data, textStatus, jqXHR) {
+                // Display the success messsage
+                var html = "<div class='alert alert-success'>" + data.Message + "</div>";
+                $('#divSaveMessage').html(html);
+
+                // Update the record IDs
+                $('input[name=personID]').val(data.PersonID);
+                $('input[name=homeAddressID]').val(data.HomeAddressID);
+                $('input[name=workAddressID]').val(data.WorkAddressID);
+                $('input[name=altAddressID]').val(data.AlternateAddressID);
+
+                setReloadRequired();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            }
+        });
+    }
+</script>
+
+<button type="button" class="btn btn-primary" onclick="save()">Save changes</button>
+
+<form role="form">
+    @Html.AntiForgeryToken()
+
+    <div id="divSaveMessage" style="margin-top:5px;" />
+
+    <input type="hidden" id="personID" name="personID" value="@Model.PersonID" />
+    <input type="hidden" id="homeAddressID" name="homeAddressID" value="@Model.Addresses.Where(a => a.AddressTypeID == 1).First().Address.AddressID" />
+    <input type="hidden" id="workAddressID" name="workAddressID" value="@Model.Addresses.Where(a => a.AddressTypeID == 2).First().Address.AddressID" />
+    <input type="hidden" id="altAddressID" name="altAddressID" value="@Model.Addresses.Where(a => a.AddressTypeID == 3).First().Address.AddressID" />
+
+    <table style="width:900px;" cellpadding="10">
+        <tr>
+            <td style="vertical-align:top;">
+                <div class="form-group">
+                    <label for="firstName" class="control-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" value="@Model.FirstName">
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName" class="control-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" value="@Model.LastName">
+                </div>
+
+                <div class="form-group">
+                    <label for="emailAddress" class="control-label">Email Address</label>
+                    <input type="text" class="form-control" id="emailAddress" name="emailAddress" value="@Model.EmailAddress">
+                </div>
+
+                <div class="form-group">
+                    <label for="homePhone" class="control-label">Home Phone</label>
+                    <input type="text" class="form-control" id="homePhone" name="homePhone" value="@(Model.Phones.Where(p => p.PhoneTypeID == 1).FirstOrDefault().Number)">
+                </div>
+
+                <div class="form-group">
+                    <label for="cellPhone" class="control-label">Cell Phone</label>
+                    <input type="text" class="form-control" id="cellPhone" name="cellPhone" value="@(Model.Phones.Where(p => p.PhoneTypeID == 3).FirstOrDefault().Number)">
+                </div>
+
+                <div class="form-group">
+                    <label for="workPhone" class="control-label">Work Phone</label>
+                    <input type="text" class="form-control" id="workPhone" name="workPhone" value="@(Model.Phones.Where(p => p.PhoneTypeID == 2).FirstOrDefault().Number)">
+                </div>
+            </td>
+            <td style="vertical-align:top;">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Home Address</h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body" style="padding: 20px;">
+                            <div class="form-group">
+                                <label for="homeStreetAddress" class="control-label">Street Address</label>
+                                <input type="text" class="form-control" id="homeStreetAddress" name="homeStreetAddress" value="@(Model.Addresses.Where(a => a.AddressTypeID == 1).First().Address.StreetAddress)">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="homeCity" class="control-label">City</label>
+                                <input type="text" class="form-control" id="homeCity" name="homeCity" value="@(Model.Addresses.Where(a => a.AddressTypeID == 1).First().Address.City)">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="homeCounty" class="control-label">County</label>
+                                <input type="text" class="form-control" id="homeCounty" name="homeCounty" value="@(Model.Addresses.Where(a => a.AddressTypeID == 1).First().Address.County)">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="homeState" class="control-label">State</label>
+                                <input type="text" class="form-control" id="homeState" name="homeState" value="@(Model.Addresses.Where(a => a.AddressTypeID == 1).First().Address.State)">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="homeZip" class="control-label">Zip</label>
+                                <input type="text" class="form-control" id="homeZip" name="homeZip" value="@(Model.Addresses.Where(a => a.AddressTypeID == 1).First().Address.Zip)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Work Address</h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse in">
+                        <div class="panel-body" style="padding: 20px;">
+                            <div class="form-group">
+                                <label for="workStreetAddress" class="control-label">Street Address</label>
+                                <input type="text" class="form-control" id="workStreetAddress" name="workStreetAddress" value="@(Model.Addresses.Where(a => a.AddressTypeID == 2).First().Address.StreetAddress)">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="workCity" class="control-label">City</label>
+                                <input type="text" class="form-control" id="workCity" name="workCity" value="@(Model.Addresses.Where(a => a.AddressTypeID == 2).First().Address.City)">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="workCounty" class="control-label">County</label>
+                                <input type="text" class="form-control" id="workCounty" name="workCounty" value="@(Model.Addresses.Where(a => a.AddressTypeID == 2).First().Address.County)">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="workState" class="control-label">State</label>
+                                <input type="text" class="form-control" id="workState" name="workState" value="@(Model.Addresses.Where(a => a.AddressTypeID == 2).First().Address.State)">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="workZip" class="control-label">Zip</label>
+                                <input type="text" class="form-control" id="workZip" name="workZip" value="@(Model.Addresses.Where(a => a.AddressTypeID == 2).First().Address.Zip)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Alternate Address</h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse in">
+                        <div class="panel-body" style="padding: 20px;">
+                            <div class="form-group">
+                                <label for="altStreetAddress" class="control-label">Street Address</label>
+                                <input type="text" class="form-control" id="altStreetAddress" name="altStreetAddress" value="@(Model.Addresses.Where(a => a.AddressTypeID == 3).First().Address.StreetAddress)">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="altCity" class="control-label">City</label>
+                                <input type="text" class="form-control" id="altCity" name="altCity" value="@(Model.Addresses.Where(a => a.AddressTypeID == 3).First().Address.City)">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="altCounty" class="control-label">County</label>
+                                <input type="text" class="form-control" id="altCounty" name="altCounty" value="@(Model.Addresses.Where(a => a.AddressTypeID == 3).First().Address.County)">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="altState" class="control-label">State</label>
+                                <input type="text" class="form-control" id="altState" name="altState" value="@(Model.Addresses.Where(a => a.AddressTypeID == 3).First().Address.State)">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="altZip" class="control-label">Zip</label>
+                                <input type="text" class="form-control" id="altZip" name="altZip" value="@(Model.Addresses.Where(a => a.AddressTypeID == 3).First().Address.Zip)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+
+
