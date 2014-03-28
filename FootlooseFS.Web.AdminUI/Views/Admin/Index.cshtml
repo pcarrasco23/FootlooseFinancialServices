@@ -1,0 +1,25 @@
+﻿@model IEnumerable<FootlooseFS.Web.AdminUI.Models.User>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <colgroup>
+            <col class=" col-xs-1">            
+            <col class="col-xs-4">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Roles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>@item.Roles</td>                    
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

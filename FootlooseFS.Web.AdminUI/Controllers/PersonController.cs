@@ -65,8 +65,9 @@ namespace FootlooseFS.Web.AdminUI.Controllers
 
         //
         // GET: /Person/New
+        [Authorize(Roles = "Admin,Demographics")]
         public ActionResult New()
-        {
+        {           
             var person = new Person();
 
             person.PersonID = 0;
@@ -100,6 +101,7 @@ namespace FootlooseFS.Web.AdminUI.Controllers
 
         //
         // GET: /Person/Edit
+        [Authorize(Roles = "Admin,Demographics,Financial,OnlineAccess")]
         public ActionResult Edit(int personID)
         {
             // When editing persons from here only include the phones and addresses
@@ -150,6 +152,7 @@ namespace FootlooseFS.Web.AdminUI.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "Admin,Demographics")]
         public JsonResult Save(FormCollection formCollection)
         {
             var person = new Person();

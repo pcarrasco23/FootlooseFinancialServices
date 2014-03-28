@@ -60,4 +60,11 @@ namespace FootlooseFS.Web.AdminUI.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
+
+    public class User
+    {
+        public string UserId { get; set; }
+        public string UserName { get; set; }
+        public string Roles { get; set; }
+    }
 }

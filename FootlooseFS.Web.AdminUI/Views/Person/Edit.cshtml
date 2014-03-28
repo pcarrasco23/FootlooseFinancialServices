@@ -7,19 +7,41 @@
 </h4>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#person" data-toggle="tab">Person</a></li>
-    <li><a href="#account" data-toggle="tab">Account</a></li>
-    <li><a href="#login" data-toggle="tab">Login</a></li>
+    @if (User.IsInRole("Demographics") || User.IsInRole("Admin"))
+    {
+        <li><a href="#person" data-toggle="tab">Person</a></li>
+    }
+
+    @if (User.IsInRole("Financial") || User.IsInRole("Admin"))
+    {
+        <li><a href="#account" data-toggle="tab">Account</a></li>
+    }
+
+    @if (User.IsInRole("OnlineAccess") || User.IsInRole("Admin"))
+    {
+        <li><a href="#login" data-toggle="tab">Login</a></li>
+    }                
 </ul>
 
-<div class="tab-content">
-    <div class="tab-pane active" id="person" style="margin:5px;">
-        @Html.Partial("PersonEdit", Model)
-    </div>
-    <div class="tab-pane" id="account" style="margin:5px;">
-        @Html.Partial("AccountsEdit", Model.Accounts)
-    </div> 
-    <div class="tab-pane" id="login" style="margin:5px;">
-        @Html.Partial("LoginEdit", Model.Login)
-    </div>    
+<div class="tab-content">      
+    @if (User.IsInRole("Demographics") || User.IsInRole("Admin"))
+    {
+        <div class="tab-pane" id="person" style="margin:5px;">
+            @Html.Partial("PersonEdit", Model)
+        </div>    
+    }
+    
+    @if (User.IsInRole("Financial") || User.IsInRole("Admin"))
+    {
+        <div class="tab-pane" id="account" style="margin:5px;">
+            @Html.Partial("AccountsEdit", Model.Accounts)
+        </div>     
+    }
+    
+    @if (User.IsInRole("OnlineAccess") || User.IsInRole("Admin"))
+    {
+        <div class="tab-pane" id="login" style="margin:5px;">
+            @Html.Partial("LoginEdit", Model.Login)
+        </div>    
+    }
 </div>
