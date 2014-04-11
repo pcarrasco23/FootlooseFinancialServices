@@ -3,7 +3,7 @@
 <script>
     function save() {
         $.ajax({
-            url: "Person/Save",
+            url: serverRoot + "/Person/Save",
             type: "POST",
             data: $("form").serialize(),
             contentType: "application/x-www-form-urlencoded",

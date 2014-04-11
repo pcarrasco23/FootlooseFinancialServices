@@ -8,7 +8,7 @@ namespace FootlooseFS.Web.AdminUI
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            // TODP Bootstrap actions
         }
     }
 }
