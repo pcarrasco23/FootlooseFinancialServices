@@ -13,9 +13,10 @@ namespace FootlooseFS.Service
     {
         // Persons (Account Holders)
         PageOfList<Person> SearchPersons(int pageNumber, PersonSearchColumn personSearchColumn, SortDirection sortDirection, int numRecordsInPage, Dictionary<PersonSearchColumn, string> criteria);
+        PageOfList<PersonDocument> SearchPersonDocuments(int pageNumber, PersonSearchColumn personSearchColumn, SortDirection sortDirection, int numRecordsInPage, Dictionary<PersonSearchColumn, string> criteria);
         Person GetPerson(int personID, PersonIncludes personIncludes);
         OperationStatus InsertPerson(Person person);
         OperationStatus UpdatePerson(Person person);
-        OperationStatus DeletePerson(int personID);  
+        OperationStatus DeletePerson(int personID);
     }
 }

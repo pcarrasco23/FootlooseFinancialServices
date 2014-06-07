@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,12 +30,17 @@ namespace FootlooseFS.DataPersistence
             _dbContext.Set<T>().Add(entity);           
         }
 
+        public virtual void AddBatch(IEnumerable<T> entities)
+        {
+            _dbContext.Set<T>().AddRange(entities);
+        }
+
         public virtual void Delete(T entity)
         {
             _dbContext.Entry(entity).State = EntityState.Deleted;
         }
 
-        public virtual void Delete(int id)
+        public virtual void Delete(Expression<Func<T, int>> queryExpression, int id)
         {
             throw new NotImplementedException();
         }

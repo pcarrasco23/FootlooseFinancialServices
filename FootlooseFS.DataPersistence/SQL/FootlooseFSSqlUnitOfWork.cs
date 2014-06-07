@@ -26,8 +26,6 @@ namespace FootlooseFS.DataPersistence
         public FootlooseFSSqlUnitOfWork()
         {
             _dbContext = new FootlooseFSDBContext();
-
-            _dbContext.Database.Log = Console.Write;
         }
 
         public IRepository<Member> Members

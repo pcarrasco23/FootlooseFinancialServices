@@ -57,7 +57,7 @@ namespace FootlooseFS.Web.AdminUI.Controllers
                 }
             }
 
-            var personsPage = _FootlooseFSService.SearchPersons(searchParameters.PageNumber, personSearchColumn, sortDirection, searchParameters.NumberRecordsPerPage, searchCriteria);
+            var personsPage = _FootlooseFSService.SearchPersonDocuments(searchParameters.PageNumber, personSearchColumn, sortDirection, searchParameters.NumberRecordsPerPage, searchCriteria);
             personsPage.SearchCriteria = searchParameters.SearchCriteria;
 
             return PartialView(personsPage);            

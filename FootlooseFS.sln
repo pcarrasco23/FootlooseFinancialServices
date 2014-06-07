@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootlooseFS.Service", "Foot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootlooseFS.Web.AdminUI", "FootlooseFS.Web.AdminUI\FootlooseFS.Web.AdminUI.csproj", "{545B1888-B319-475B-AFD1-4E42F103963F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootlooseFSDocumentDBETL", "FootlooseFSDocumentDBETL\FootlooseFSDocumentDBETL\FootlooseFSDocumentDBETL.csproj", "{BC18C9EC-4CFD-4F90-8BB4-610068E3D1A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{545B1888-B319-475B-AFD1-4E42F103963F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{545B1888-B319-475B-AFD1-4E42F103963F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{545B1888-B319-475B-AFD1-4E42F103963F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC18C9EC-4CFD-4F90-8BB4-610068E3D1A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC18C9EC-4CFD-4F90-8BB4-610068E3D1A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC18C9EC-4CFD-4F90-8BB4-610068E3D1A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC18C9EC-4CFD-4F90-8BB4-610068E3D1A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

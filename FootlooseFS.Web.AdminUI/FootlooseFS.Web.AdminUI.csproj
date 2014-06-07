@@ -254,6 +254,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FootlooseFS.DataPersistence\FootlooseFS.DataPersistence.csproj">
+      <Project>{83fa9df5-b8df-4ce6-8e71-41236966be47}</Project>
+      <Name>FootlooseFS.DataPersistence</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FootlooseFS.Models\FootlooseFS.Models.csproj">
       <Project>{1c279c45-f22e-45f7-98d1-c9a22b699ef6}</Project>
       <Name>FootlooseFS.Models</Name>
