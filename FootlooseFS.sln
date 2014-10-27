@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootlooseFS.Web.AdminUI", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootlooseFSDocumentDBETL", "FootlooseFSDocumentDBETL\FootlooseFSDocumentDBETL\FootlooseFSDocumentDBETL.csproj", "{BC18C9EC-4CFD-4F90-8BB4-610068E3D1A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootlooseFS.Web.AdminUI.Tests", "FootlooseFS.Web.AdminUI.Tests\FootlooseFS.Web.AdminUI.Tests.csproj", "{7DE27578-E21E-498C-B3EE-B53EE23A1641}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootlooseFS.Service.Tests", "FootlooseFS.Service.Tests\FootlooseFS.Service.Tests.csproj", "{A5012CEB-C438-4C26-A298-FA5D550684D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{BC18C9EC-4CFD-4F90-8BB4-610068E3D1A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC18C9EC-4CFD-4F90-8BB4-610068E3D1A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC18C9EC-4CFD-4F90-8BB4-610068E3D1A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DE27578-E21E-498C-B3EE-B53EE23A1641}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DE27578-E21E-498C-B3EE-B53EE23A1641}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DE27578-E21E-498C-B3EE-B53EE23A1641}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DE27578-E21E-498C-B3EE-B53EE23A1641}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5012CEB-C438-4C26-A298-FA5D550684D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5012CEB-C438-4C26-A298-FA5D550684D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5012CEB-C438-4C26-A298-FA5D550684D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5012CEB-C438-4C26-A298-FA5D550684D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

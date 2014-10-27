@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Doc\DocRepository.cs" />
     <Compile Include="Doc\FootlooseFSDocUnitOfWork.cs" />
+    <Compile Include="SQL\FootlooseFSSqlUnitOfWorkFactory.cs" />
     <Compile Include="SQL\PersonAccountTypeConfiguration.cs" />
     <Compile Include="SQL\PersonAddressAssnTypeConfiguration.cs" />
     <Compile Include="SQL\PersonLoginTypeConfiguration.cs" />

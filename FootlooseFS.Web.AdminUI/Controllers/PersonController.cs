@@ -9,16 +9,19 @@ using System.Web.Mvc;
 
 using FootlooseFS.Models;
 using FootlooseFS.Service;
+using Ninject;
+using FootlooseFS.Web.AdminUI.Models;
 
 namespace FootlooseFS.Web.AdminUI.Controllers
 {
     public class PersonController : Controller
     {
-        readonly IFootlooseFSService _FootlooseFSService;
+        private readonly IFootlooseFSService _footlooseFSService;
 
-        public PersonController()
+        [Inject]
+        public PersonController(IFootlooseFSService footlooseFSService)
         {
-            _FootlooseFSService = new FootlooseFSService();
+            _footlooseFSService = footlooseFSService;
         }
 
         public ActionResult Index()
@@ -57,7 +60,7 @@ namespace FootlooseFS.Web.AdminUI.Controllers
                 }
             }
 
-            var personsPage = _FootlooseFSService.SearchPersonDocuments(searchParameters.PageNumber, personSearchColumn, sortDirection, searchParameters.NumberRecordsPerPage, searchCriteria);
+            var personsPage = _footlooseFSService.SearchPersonDocuments(searchParameters.PageNumber, personSearchColumn, sortDirection, searchParameters.NumberRecordsPerPage, searchCriteria);
             personsPage.SearchCriteria = searchParameters.SearchCriteria;
 
             return PartialView(personsPage);            
@@ -111,7 +114,7 @@ namespace FootlooseFS.Web.AdminUI.Controllers
             personIncludes.Accounts = true;
             personIncludes.Login = true;
 
-            var person = _FootlooseFSService.GetPerson(personID, personIncludes);
+            var person = _footlooseFSService.GetPerson(personID, personIncludes);
 
             // Add home phone if not in the person Object
             if (!person.Phones.Where(p => p.PhoneTypeID == 1).Any())
@@ -222,37 +225,38 @@ namespace FootlooseFS.Web.AdminUI.Controllers
 
                 person.Addresses.Add(new PersonAddressAssn { PersonID = personID, AddressID = altAddressID, Address = address, AddressTypeID = (int)AddressTypes.Alternate });
             }
-
-            
-            HttpResponseMessage response;
             
             if (person.PersonID == 0)
             {
-                var opStatus = _FootlooseFSService.InsertPerson(person);
+                var opStatus = _footlooseFSService.InsertPerson(person);
 
                 var newPerson = (Person)opStatus.Data;
 
-                return Json(new 
-                    { 
-                        Message = "The person has been created in the system.", 
-                        PersonID = newPerson.PersonID, 
+                var savePersonResult = new SavePersonResult
+                    {
+                        Message = "The person has been created in the system.",
+                        Person = newPerson,
+                        PersonID = newPerson.PersonID,
                         HomeAddressID = newPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Home).Any() ?
                                         newPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Home).First().AddressID : 0,
                         WorkAddressID = newPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Work).Any() ?
                                         newPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Work).First().AddressID : 0,
                         AlternateAddressID = newPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Alternate).Any() ?
                                         newPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Alternate).First().AddressID : 0,
-                    });
+                    };
+
+                return Json(savePersonResult);
             }                
             else
             {
-                var opStatus = _FootlooseFSService.UpdatePerson(person);
+                var opStatus = _footlooseFSService.UpdatePerson(person);
 
                 var updatedPerson = (Person)opStatus.Data;
 
-                return Json(new
+                var savePersonResult = new SavePersonResult
                 {
                     Message = "The person has been updated",
+                    Person = updatedPerson,
                     PersonID = updatedPerson.PersonID,
                     HomeAddressID = updatedPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Home).Any() ?
                                     updatedPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Home).First().AddressID : 0,
@@ -260,7 +264,9 @@ namespace FootlooseFS.Web.AdminUI.Controllers
                                     updatedPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Work).First().AddressID : 0,
                     AlternateAddressID = updatedPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Alternate).Any() ?
                                     updatedPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Alternate).First().AddressID : 0,
-                });                
+                };
+
+                return Json(savePersonResult);                
             }
         }
 

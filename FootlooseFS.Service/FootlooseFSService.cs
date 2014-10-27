@@ -14,6 +14,13 @@ namespace FootlooseFS.Service
 {
     public class FootlooseFSService : IFootlooseFSService
     {
+        private readonly IFootlooseFSUnitOfWorkFactory unitOfWorkFactory;
+
+        public FootlooseFSService(IFootlooseFSUnitOfWorkFactory unitOfWorkFactory)
+        {
+            this.unitOfWorkFactory = unitOfWorkFactory;
+        }
+
         public PageOfList<Person> SearchPersons(int pageNumber, PersonSearchColumn personSearchColumn, SortDirection sortDirection, int numRecordsInPage, Dictionary<PersonSearchColumn, string> searchCriteria)
         {
             // Search for persons using the SQL repository
@@ -28,7 +35,7 @@ namespace FootlooseFS.Service
 
             PageOfList<Person> searchResults = null;
 
-            using (var unitOfWork = new FootlooseFSSqlUnitOfWork())
+            using (var unitOfWork = unitOfWorkFactory.CreateUnitOfWork())
             {
                 IQueryable<Person> personsQueryable = unitOfWork.Persons.GetQueryable();
 
@@ -265,7 +272,7 @@ namespace FootlooseFS.Service
             // Get the person data from the SQL repository
             Person person = null;
 
-            using (var unitOfWork = new FootlooseFSSqlUnitOfWork())
+            using (var unitOfWork = unitOfWorkFactory.CreateUnitOfWork())
             {
                 var personQueryable = unitOfWork.Persons.GetQueryable().Where(p => p.PersonID == personID);
 
@@ -321,7 +328,7 @@ namespace FootlooseFS.Service
                 {
                     // Otherwise connect to the data source using the db context and save the 
                     // person to the database
-                    using (var unitOfWork = new FootlooseFSSqlUnitOfWork())
+                    using (var unitOfWork = unitOfWorkFactory.CreateUnitOfWork())
                     {                           
                         unitOfWork.Persons.Add(person);
                         unitOfWork.Commit();
@@ -366,7 +373,7 @@ namespace FootlooseFS.Service
                     // person to the database
                     Person person;
 
-                    using (var unitOfWork = new FootlooseFSSqlUnitOfWork())
+                    using (var unitOfWork = unitOfWorkFactory.CreateUnitOfWork())
                     {
                         person = unitOfWork.Persons.GetQueryable().Where(p => p.PersonID == updatedPerson.PersonID)  
                                             .Include("Addresses.Address")
@@ -402,7 +409,7 @@ namespace FootlooseFS.Service
         {
             try
             {
-                using (var unitOfWork = new FootlooseFSSqlUnitOfWork())
+                using (var unitOfWork = unitOfWorkFactory.CreateUnitOfWork())
                 {
                     unitOfWork.Persons.Delete((p => p.PersonID), personID);
                     unitOfWork.Commit();
@@ -434,7 +441,7 @@ namespace FootlooseFS.Service
             }
         }
 
-        private void updateAddress(Person person, Person updatedPerson, int addressType, FootlooseFSSqlUnitOfWork unitOfWork)
+        private void updateAddress(Person person, Person updatedPerson, int addressType, IFootlooseFSUnitOfWork unitOfWork)
         {
             var updatedAddressAssn = updatedPerson.Addresses.Where(a => a.AddressTypeID == addressType).FirstOrDefault();
             if (updatedAddressAssn == null)
