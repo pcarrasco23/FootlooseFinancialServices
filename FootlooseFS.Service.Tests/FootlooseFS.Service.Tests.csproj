@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -50,8 +53,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FootlooseFSServiceTests.cs" />
     <Compile Include="FootlooseFSTestUnitOfWork.cs" />
     <Compile Include="FootlooseFSTestUnitOfWorkFactory.cs" />
+    <Compile Include="TestDataStore.cs" />
     <Compile Include="TestRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -66,6 +71,10 @@
     <ProjectReference Include="..\FootlooseFS.Models\FootlooseFS.Models.csproj">
       <Project>{1c279c45-f22e-45f7-98d1-c9a22b699ef6}</Project>
       <Name>FootlooseFS.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FootlooseFS.Service\FootlooseFS.Service.csproj">
+      <Project>{73ec8f00-a9d3-4e79-b609-c5e2ae52326d}</Project>
+      <Name>FootlooseFS.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -20,6 +20,16 @@ namespace FootlooseFS.Service.Tests
         protected TestRepository<AccountTransaction> _accountTransactions;
         protected TestRepository<PersonLogin> _personLogins;
 
+        public FootlooseFSTestUnitOfWork()
+        {
+            List<Person> persons = TestDataStore.GetPersonTestData();
+
+            _persons = new TestRepository<Person>();
+
+            foreach (Person person in persons)
+                _persons.Add(person);
+        }
+
         public IRepository<Member> Members
         {
             get
