@@ -42,7 +42,7 @@
         });
 
         $.ajax({
-            url: serverRoot + "/Person/Search",
+            url: "Person/Search",
             type: "POST",
             data: JSON.stringify(searchParameters),
             contentType: "application/json",
@@ -156,7 +156,7 @@
 
     function newPerson() {
         $.ajax({
-            url: serverRoot + "/Person/New",
+            url: "Person/New",
             type: "GET",
             async: true,
             success: function (data, textStatus, jqXHR) {
@@ -171,7 +171,7 @@
 
     function editPerson(personID) {        
         $.ajax({
-            url: serverRoot + "/Person/Edit?personID=" + personID,
+            url: "Person/Edit?personID=" + personID,
             type: "GET",
             async: true,
             success: function (data, textStatus, jqXHR) {
