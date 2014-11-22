@@ -15,5 +15,6 @@ namespace FootlooseFS.Models
         void Update(T entity);
         void Delete(T entity);
         void Delete(Expression<Func<T, int>> queryExpression, int id);
+        void DeleteAll();
     }
 }

@@ -47,7 +47,12 @@ namespace FootlooseFS.DataPersistence
         public virtual void Delete(Expression<Func<T,int>> queryExpression, int id)
         {
             var query = Query<T>.EQ(queryExpression, id);
-            _collection.Remove(query);
+            _collection.Remove(query);          
+        }
+
+        public virtual void DeleteAll()
+        {
+            _collection.RemoveAll();
         }
 
         public virtual void Update(T entity)

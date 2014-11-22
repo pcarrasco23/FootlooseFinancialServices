@@ -45,6 +45,11 @@ namespace FootlooseFS.DataPersistence
             throw new NotImplementedException();
         }
 
+        public virtual void DeleteAll()
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual void Update(T entity)
         {
             _dbContext.Entry<T>(entity).State = EntityState.Modified;

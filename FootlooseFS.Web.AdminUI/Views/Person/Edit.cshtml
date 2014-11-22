@@ -9,7 +9,7 @@
 <ul class="nav nav-tabs">
     @if (User.IsInRole("Demographics") || User.IsInRole("Admin"))
     {
-        <li><a href="#person" data-toggle="tab">Person</a></li>
+        <li class="active"><a href="#person" data-toggle="tab">Person</a></li>
     }
 
     @if (User.IsInRole("Financial") || User.IsInRole("Admin"))
@@ -26,7 +26,7 @@
 <div class="tab-content">      
     @if (User.IsInRole("Demographics") || User.IsInRole("Admin"))
     {
-        <div class="tab-pane" id="person" style="margin:5px;">
+        <div class="tab-pane active" id="person" style="margin:5px;">
             @Html.Partial("PersonEdit", Model)
         </div>    
     }

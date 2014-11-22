@@ -21,6 +21,10 @@ namespace FootlooseFSDocumentDBETL
                 
             int startRow = 0;  
               
+            // Remove all record from the Person document
+            var docUnitOfWork = new FootlooseFSDocUnitOfWork();
+            docUnitOfWork.Persons.DeleteAll();
+
             while (true)
             {
                 using (var sqlUnitOfWork = new FootlooseFSSqlUnitOfWork())
@@ -53,7 +57,6 @@ namespace FootlooseFSDocumentDBETL
                                                                Zip = p.Addresses.First(pa => pa.AddressTypeID == 1).Address.Zip
                                                            };
 
-                    var docUnitOfWork = new FootlooseFSDocUnitOfWork();
                     docUnitOfWork.Persons.AddBatch(personDocuments);
 
                     Console.WriteLine(string.Format("Complete {0} - {1}", startRow, startRow + throttleRate));                
