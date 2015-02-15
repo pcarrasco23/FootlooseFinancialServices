@@ -48,7 +48,6 @@ namespace FootlooseFS.DataPersistence
                 cm.MapProperty(p => p.PhoneNumber);
                 cm.MapProperty(p => p.StreetAddress);
                 cm.MapProperty(p => p.City);
-                cm.MapProperty(p => p.County);
                 cm.MapProperty(p => p.State);
                 cm.MapProperty(p => p.Zip);
             });

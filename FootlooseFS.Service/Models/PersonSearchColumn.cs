@@ -16,7 +16,6 @@ namespace FootlooseFS.Service
         Phone,
         StreetAddress,
         City,
-        County,
         Zip,
         State
     }

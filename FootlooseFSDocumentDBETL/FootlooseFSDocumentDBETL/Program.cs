@@ -52,7 +52,6 @@ namespace FootlooseFSDocumentDBETL
                                                                PhoneNumber = p.Phones.First(h => h.PhoneTypeID == 1).Number,
                                                                StreetAddress = p.Addresses.First(pa => pa.AddressTypeID == 1).Address.StreetAddress,
                                                                City = p.Addresses.First(pa => pa.AddressTypeID == 1).Address.City,
-                                                               County = p.Addresses.First(pa => pa.AddressTypeID == 1).Address.County,
                                                                State = p.Addresses.First(pa => pa.AddressTypeID == 1).Address.State,
                                                                Zip = p.Addresses.First(pa => pa.AddressTypeID == 1).Address.Zip
                                                            };

@@ -59,7 +59,6 @@ namespace FootlooseFS.Web.AdminUI.Tests
                 EmailAddress = "pam@scicchitano.com",
                 PhoneNumber = "336-418-5159",
                 StreetAddress = "38 S Dunworth St #4185",
-                County = "Alamance",
                 State = "NC",
                 Zip = "27215"
             };
@@ -72,8 +71,6 @@ namespace FootlooseFS.Web.AdminUI.Tests
                 LastName = "Marantz",
                 EmailAddress = "dMarantz@Marantz.com",
                 PhoneNumber = "336-418-5159",
-                StreetAddress = "38 S Dunworth St #4185",
-                County = "Alamance",
                 State = "NC",
                 Zip = "27215"
             };
@@ -87,7 +84,6 @@ namespace FootlooseFS.Web.AdminUI.Tests
                 EmailAddress = "denese@cullars.com",
                 PhoneNumber = "336-418-5159",
                 StreetAddress = "38 S Dunworth St #4185",
-                County = "Alamance",
                 State = "NC",
                 Zip = "27215"
             };
@@ -101,7 +97,6 @@ namespace FootlooseFS.Web.AdminUI.Tests
                 EmailAddress = "gaynelle@yahoo.com",
                 PhoneNumber = "336-418-5159",
                 StreetAddress = "38 S Dunworth St #4185",
-                County = "Alamance",
                 State = "NC",
                 Zip = "27215"
             };
@@ -115,7 +110,6 @@ namespace FootlooseFS.Web.AdminUI.Tests
                 EmailAddress = "melynda_stockton@yahoo.com",
                 PhoneNumber = "336-418-5159",
                 StreetAddress = "38 S Dunworth St #4185",
-                County = "Alamance",
                 State = "NC",
                 Zip = "27215"
             };
@@ -129,7 +123,6 @@ namespace FootlooseFS.Web.AdminUI.Tests
                 EmailAddress = "rubye@hotmail.com",
                 PhoneNumber = "336-418-5159",
                 StreetAddress = "38 S Dunworth St #4185",
-                County = "Alamance",
                 State = "NC",
                 Zip = "27215"
             };
@@ -143,7 +136,6 @@ namespace FootlooseFS.Web.AdminUI.Tests
                 EmailAddress = "otto.uy@aol.com",
                 PhoneNumber = "336-418-5159",
                 StreetAddress = "38 S Dunworth St #4185",
-                County = "Alamance",
                 State = "NC",
                 Zip = "27215"
             };
@@ -157,7 +149,6 @@ namespace FootlooseFS.Web.AdminUI.Tests
                 EmailAddress = "carita_campain@cox.net",
                 PhoneNumber = "336-418-5159",
                 StreetAddress = "38 S Dunworth St #4185",
-                County = "Alamance",
                 State = "NC",
                 Zip = "27215"
             };
@@ -171,7 +162,6 @@ namespace FootlooseFS.Web.AdminUI.Tests
                 EmailAddress = "luvenia_safe@hotmail.com",
                 PhoneNumber = "336-418-5159",
                 StreetAddress = "38 S Dunworth St #4185",
-                County = "Alamance",
                 State = "NC",
                 Zip = "27215"
             };
@@ -185,7 +175,6 @@ namespace FootlooseFS.Web.AdminUI.Tests
                 EmailAddress = "david@mile.org",
                 PhoneNumber = "336-418-5159",
                 StreetAddress = "38 S Dunworth St #4185",
-                County = "Alamance",
                 State = "NC",
                 Zip = "27215"
             };
@@ -241,21 +230,18 @@ namespace FootlooseFS.Web.AdminUI.Tests
             formCollection.Add("homeAddressID", "1");
             formCollection.Add("homeStreetAddress", "38 S Dunworth St #4185");
             formCollection.Add("homeCity", "Raleigh");
-            formCollection.Add("homeCounty", "Alamance");
             formCollection.Add("homeState", "NC");
             formCollection.Add("homeZip", "27215");
 
             formCollection.Add("workAddressID", "2");
             formCollection.Add("workStreetAddress", "38 S Dunworth St #4185");
             formCollection.Add("workCity", "Raleigh");
-            formCollection.Add("workCounty", "Alamance");
             formCollection.Add("workState", "NC");
             formCollection.Add("workZip", "27215");
 
             formCollection.Add("altAddressID", "1");
             formCollection.Add("altStreetAddress", "38 S Dunworth St #4185");
             formCollection.Add("altCity", "Raleigh");
-            formCollection.Add("altCounty", "Alamance");
             formCollection.Add("altState", "NC");
             formCollection.Add("altZip", "27215");
 

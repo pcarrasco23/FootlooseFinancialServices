@@ -87,7 +87,6 @@ namespace FootlooseFS.Web.AdminUI.Controllers
             {
                 StreetAddress = string.Empty,
                 City = string.Empty,
-                County = string.Empty,
                 State = string.Empty,
                 Zip = string.Empty
             };
@@ -132,7 +131,6 @@ namespace FootlooseFS.Web.AdminUI.Controllers
             { 
                 StreetAddress = string.Empty,
                 City = string.Empty,
-                County = string.Empty,
                 State = string.Empty,
                 Zip = string.Empty
             };
@@ -185,7 +183,6 @@ namespace FootlooseFS.Web.AdminUI.Controllers
 
                 address.StreetAddress = formCollection["homeStreetAddress"];
                 address.City = formCollection["homeCity"];
-                address.County = formCollection["homeCounty"];
                 address.State = formCollection["homeState"];
                 address.Zip = formCollection["homeZip"];
 
@@ -202,7 +199,6 @@ namespace FootlooseFS.Web.AdminUI.Controllers
 
                 address.StreetAddress = formCollection["workStreetAddress"];
                 address.City = formCollection["workCity"];
-                address.County = formCollection["workCounty"];
                 address.State = formCollection["workState"];
                 address.Zip = formCollection["workZip"];
 
@@ -219,7 +215,6 @@ namespace FootlooseFS.Web.AdminUI.Controllers
 
                 address.StreetAddress = formCollection["altStreetAddress"];
                 address.City = formCollection["altCity"];
-                address.County = formCollection["altCounty"];
                 address.State = formCollection["altState"];
                 address.Zip = formCollection["altZip"];
 

@@ -50,7 +50,6 @@ namespace FootlooseFS.Service.Tests
                         Address = new Address
                         {
                             StreetAddress = "38 S Dunworth St #4185",
-                            County = "Wake",
                             State = "NC",
                             Zip = "27215",
                             AddressID = 1,
@@ -103,7 +102,6 @@ namespace FootlooseFS.Service.Tests
                         Address = new Address
                         {
                             StreetAddress = "94 Sunland Court",
-                            County = "Broward",
                             State = "FL",
                             Zip = "33997",
                             AddressID = 2,

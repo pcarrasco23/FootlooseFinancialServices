@@ -61,7 +61,6 @@
                 <th id="sort_Phone1" style="width: 100px; cursor: pointer;" onclick="sort('Phone1')">Phone</th>
                 <th id="sort_StreetAddress" style="width: 200px; cursor: pointer;" onclick="sort('StreetAddress')">Street Address</th>
                 <th id="sort_City" style="width: 100px; cursor: pointer;" onclick="sort('City')">City</th>
-                <th id="sort_County" style="width: 100px; cursor: pointer;" onclick="sort('County')">County</th>
                 <th id="sort_State" style="width: 75px; cursor: pointer;" onclick="sort('State')">State</th>
                 <th id="sort_Zip" style="width: 100px; cursor: pointer;" onclick="sort('Zip')">Zip</th>
             </tr>
@@ -75,7 +74,6 @@
                 <td><input type="text" id="phone" class="form-control" style="font-size: 12px;" value="@Model.SearchCriteria["Phone1"]"></td>
                 <td><input type="text" id="streetAddress" class="form-control" style="font-size: 12px;" value="@Model.SearchCriteria["StreetAddress"]"></td>
                 <td><input type="text" id="city" class="form-control" style="font-size: 12px;" value="@Model.SearchCriteria["City"]"></td>
-                <td><input type="text" id="county" class="form-control" style="font-size: 12px;" value="@Model.SearchCriteria["County"]"></td>
                 <td><input type="text" id="state" class="form-control" style="font-size: 12px;" value="@Model.SearchCriteria["State"]"></td>
                 <td><input type="text" id="zip" class="form-control" style="font-size: 12px;" value="@Model.SearchCriteria["Zip"]"></td>
             </tr>
@@ -93,7 +91,6 @@
                     <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
                     <td>@Html.DisplayFor(modelItem => item.StreetAddress)</td>
                     <td>@Html.DisplayFor(modelItem => item.City)</td>
-                    <td>@Html.DisplayFor(modelItem => item.County)</td>
                     <td>@Html.DisplayFor(modelItem => item.State)</td>
                     <td>@Html.DisplayFor(modelItem => item.Zip)</td>
                 </tr>

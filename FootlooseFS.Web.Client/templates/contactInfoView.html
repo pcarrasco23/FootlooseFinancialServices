@@ -1,0 +1,81 @@
+﻿<div class='alert alert-success' data-ng-show="isUpdated">Your contact information has been updated</div>
+
+<div class='alert alert-danger' data-ng-show="isError">{{ ErrorMessage }}</div>
+
+<div data-ng-hide="isBusy">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="contactinfo" data-ng-repeat="a in data.Addresses">
+                <form editable-form name="editableForm">                            
+                    <div>
+                        <span editable-text="a.StreetAddress" e-placeholder="Street Address" e-required>{{ a.StreetAddress }}</span><br />
+                        <span editable-text="a.City" e-placeholder="City" e-required>{{ a.City }}</span>
+                        <span editable-select="a.State" e-name="state" e-ng-options="s.value as s.text for s in states">
+                            {{ (states | filter:{value: a.State})[0].text || '' }}
+                        </span>
+                        <span editable-text="a.Zip" e-placeholder="Zip" e-required>{{ a.Zip}}</span>
+
+                        <div class="editablebuttons">
+                            <button type="button" class="btn btn-primary btn-xs" ng-click="editableForm.$show()" ng-show="!editableForm.$visible && !isConfirm && !isUpdated">Edit</button>
+                            <button type="submit" class="btn btn-success btn-xs" ng-show="editableForm.$visible" ng-disabled="editableForm.$waiting">Save</button>
+                            <button type="submit" class="btn btn-danger btn-xs" ng-show="editableForm.$visible && a.Type != 'Home'" ng-disabled="editableForm.$waiting" ng-click="clearAddress(a);">Remove</button>
+                            <button type="button" class="btn btn-default btn-xs" ng-show="editableForm.$visible" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="editableheader">
+                    {{ a.Type }} Address
+                </div>
+            </div>
+
+            <div class="contactinfo" data-ng-repeat="p in data.PhoneNumbers">
+                <form editable-form name="editableForm">                            
+                    <div>
+                        <span editable-text="p.Number">{{ p.Number }}</span><br/>
+
+                        <div class="editablebuttons">
+                            <button type="button" class="btn btn-primary btn-xs" ng-click="editableForm.$show()" ng-show="!editableForm.$visible && !isConfirm && !isUpdated">Edit</button>
+                            <button type="submit" class="btn btn-success btn-xs" ng-show="editableForm.$visible" ng-disabled="editableForm.$waiting">Save</button>
+                            <button type="submit" class="btn btn-danger btn-xs" ng-show="editableForm.$visible && p.PhoneType != 'Home'" ng-disabled="editableForm.$waiting" ng-click="clearPhone(p);">Remove</button>
+                            <button type="button" class="btn btn-default btn-xs" ng-show="editableForm.$visible" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+
+                <span class="editableheader">
+                    {{ p.PhoneType }} Phone
+                </span>
+            </div>
+
+            <div class="contactinfo">
+                <form editable-form name="editableForm">
+                    <div>
+                        <span editable-text="data.EmailAddress" e-required>{{ data.EmailAddress }}</span>
+
+                        <div class="editablebuttons">
+                            <button type="button" class="btn btn-primary btn-xs" ng-click="editableForm.$show()" ng-show="!editableForm.$visible && !isConfirm && !isUpdated">Edit</button>
+                            <button type="submit" class="btn btn-success btn-xs" ng-show="editableForm.$visible" ng-disabled="editableForm.$waiting">Save</button>
+                            <button type="button" class="btn btn-default btn-xs" ng-show="editableForm.$visible" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+
+                <span class="editableheader">
+                    Email Address
+                </span>
+            </div> 
+                
+            <button type="button" class="btn btn-primary" ng-hide="isConfirm || isUpdated" ng-click="confirm()">Continue</button>
+            <button type="button" class="btn btn-default" ng-hide="isConfirm || isUpdated" ng-click="cancel()">Cancel</button>                       
+
+            <button type="button" class="btn btn-default" ng-show="isConfirm || isUpdated" ng-click="back()">Back</button>
+            <button type="button" class="btn btn-primary" ng-show="isConfirm && !isUpdated " ng-click="submit()">Submit</button>                
+        </div>
+    </div>
+</div>
+
+<div class="progress" style="margin-top:50px;margin-left:auto;margin-right:auto;width:50%;" data-ng-show="isBusy">
+    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+    </div>
+</div>

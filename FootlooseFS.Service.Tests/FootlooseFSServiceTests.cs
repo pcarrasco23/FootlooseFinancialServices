@@ -62,7 +62,6 @@ namespace FootlooseFS.Service.Tests
                         Address = new Address
                         {
                             StreetAddress = "631 Glebe Road",   // Updated address
-                            County = "Arlington",
                             State = "VA",
                             Zip = "20178",
                             AddressID = 1,
@@ -105,7 +104,6 @@ namespace FootlooseFS.Service.Tests
             var address = updatedPersonFromUoW.Addresses.Where(a => a.AddressTypeID == 1).FirstOrDefault().Address;
 
             Assert.AreEqual(address.StreetAddress, "631 Glebe Road");
-            Assert.AreEqual(address.County, "Arlington");
             Assert.AreEqual(address.City, "Arlington");
             Assert.AreEqual(address.Zip, "20178");
             Assert.AreEqual(address.State, "VA");
@@ -147,7 +145,6 @@ namespace FootlooseFS.Service.Tests
                         Address = new Address
                         {
                             StreetAddress = "823 Newton Drive",   // Updated address
-                            County = "Pinellas",
                             State = "FL",
                             Zip = "33782",
                             AddressID = 5,
@@ -190,7 +187,6 @@ namespace FootlooseFS.Service.Tests
             var address = insertedPersonFromUoW.Addresses.Where(a => a.AddressTypeID == 1).FirstOrDefault().Address;
 
             Assert.AreEqual(address.StreetAddress, "823 Newton Drive");
-            Assert.AreEqual(address.County, "Pinellas");
             Assert.AreEqual(address.City, "Pinellas Park");
             Assert.AreEqual(address.Zip, "33782");
             Assert.AreEqual(address.State, "FL");

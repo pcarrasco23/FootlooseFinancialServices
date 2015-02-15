@@ -1,0 +1,72 @@
+﻿<div data-ng-hide="isBusy">
+    <div class="row">            
+        <div class="col-md-8">
+            <span class="accountheader">Accounts</span><br/><br/>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <colgroup>
+                        <col class="col-xs-1">
+                        <col class="col-xs-1">
+                        <col class="col-xs-4">
+                        <col class="col-xs-2">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Type</th>
+                            <th>Name</th>
+                            <th style="text-align:right;">Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="a in Accounts">
+                            <td>{{ a.AccountID }}</td>
+                            <td>{{ a.AccountType }}</td>
+                            <td>{{ a.AccountName }}</td>
+                            <td style="text-align:right;">${{ a.AccountBalance | number }}</td>
+                        </tr>
+                        <tr class="danger">
+                            <td colspan="3"><strong>Totals</strong></td>
+                            <td style="text-align:right;"><strong>${{ Total | number }}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <span class="accountheader">Transactions</span><br/><br/>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <colgroup>
+                        <col class="col-xs-1">
+                        <col class="col-xs-1">
+                        <col class="col-xs-4">
+                        <col class="col-xs-2">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Account</th>
+                            <th style="text-align:right;">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="t in Transactions">
+                            <td>{{ t.Date | date: 'MM/dd/yyyy' }}</td>
+                            <td>{{ t.TransactionType }}</td>
+                            <td>{{ t.AccountName }}</td>
+                            <td style="text-align:right;">${{ t.Amount | number }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="progress" style="margin-top:50px;margin-left:auto;margin-right:auto;width:50%;" data-ng-show="isBusy">
+    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+    </div>
+</div>

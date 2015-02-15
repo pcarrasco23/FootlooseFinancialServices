@@ -1,0 +1,39 @@
+﻿<table>
+    <tr>
+        <td>
+            <img src="/Content/images/footlosefinancial.png" />
+        </td>
+        <td style="vertical-align:middle;">
+            <p style="font-family: Impact; font-size: 72pt; color: #EB0CAC; line-height: 60%; margin-left: 10px;">
+                Footloose
+            </p>
+            <p style="font-size: 32pt; color: #18A7EA; line-height: 60%; margin-left: 10px; ">
+                <br />Financial Services
+            </p>
+        </td>
+    </tr>
+</table>
+
+<div style="margin-top:20px;margin-left:auto;margin-right:auto;width:50%;">
+    <div style="">
+        <form>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Username" ng-model="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" ng-model="password">
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="submit()">Submit</button>
+        </form>
+
+        <br/>
+        <div class='alert alert-danger' data-ng-show="isError">{{ ErrorMessage }}</div>
+
+        <div class="progress" style="margin-top:50px;margin-left:auto;margin-right:auto;width:50%;" data-ng-show="isBusy">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+            </div>
+        </div>  
+    </div>    
+</div>

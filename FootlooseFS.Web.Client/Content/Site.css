@@ -1,0 +1,62 @@
+﻿body {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.accountheader {
+    font-size:12px;
+    font-weight:700;
+    color:#959595;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.contactinfo {
+    position: relative;
+    padding: 15px 15px 15px 150px;
+    margin: 0 0 15px;
+    border-color: #ddd;
+    border-width: 1px;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+}
+
+.editableheader {
+    position:absolute;
+    top:15px;
+    left:15px;
+    font-size:12px;
+    font-weight:700;
+    color:#959595;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.editablebuttons {
+    position:absolute;
+    top:15px;    
+    right: 15px;
+}
+
+.span.heading {
+    position: relative;
+    padding: 45px 15px 0px;
+    margin: 0 0 15px;
+    border-color: #ddd;
+    border-width: 1px;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+}

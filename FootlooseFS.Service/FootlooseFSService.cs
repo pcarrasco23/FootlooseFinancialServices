@@ -62,9 +62,6 @@ namespace FootlooseFS.Service
                     if (entry.Key == PersonSearchColumn.City)
                         personsQueryable = personsQueryable.Where(p => p.Addresses.Any(pa => pa.AddressTypeID == 1 && pa.Address.City.StartsWith(entry.Value)));
 
-                    if (entry.Key == PersonSearchColumn.County)
-                        personsQueryable = personsQueryable.Where(p => p.Addresses.Any(pa => pa.AddressTypeID == 1 && pa.Address.County.StartsWith(entry.Value)));
-
                     if (entry.Key == PersonSearchColumn.State)
                         personsQueryable = personsQueryable.Where(p => p.Addresses.Any(pa => pa.AddressTypeID == 1 && pa.Address.State.StartsWith(entry.Value)));
 
@@ -95,8 +92,6 @@ namespace FootlooseFS.Service
                         personOrderedQueryable = personsQueryable.OrderBy(p => p.Phones.FirstOrDefault().Number);
                     else if (personSearchColumn == PersonSearchColumn.City)
                         personOrderedQueryable = personsQueryable.OrderBy(p => p.Addresses.FirstOrDefault().Address.City);
-                    else if (personSearchColumn == PersonSearchColumn.County)
-                        personOrderedQueryable = personsQueryable.OrderBy(p => p.Addresses.FirstOrDefault().Address.County);
                     else if (personSearchColumn == PersonSearchColumn.State)
                         personOrderedQueryable = personsQueryable.OrderBy(p => p.Addresses.FirstOrDefault().Address.State);
                     else if (personSearchColumn == PersonSearchColumn.StreetAddress)
@@ -118,8 +113,6 @@ namespace FootlooseFS.Service
                         personOrderedQueryable = personsQueryable.OrderByDescending(p => p.Phones.FirstOrDefault().Number);
                     else if (personSearchColumn == PersonSearchColumn.City)
                         personOrderedQueryable = personsQueryable.OrderByDescending(p => p.Addresses.FirstOrDefault().Address.City);
-                    else if (personSearchColumn == PersonSearchColumn.County)
-                        personOrderedQueryable = personsQueryable.OrderByDescending(p => p.Addresses.FirstOrDefault().Address.County);
                     else if (personSearchColumn == PersonSearchColumn.State)
                         personOrderedQueryable = personsQueryable.OrderByDescending(p => p.Addresses.FirstOrDefault().Address.State);
                     else if (personSearchColumn == PersonSearchColumn.StreetAddress)
@@ -189,9 +182,6 @@ namespace FootlooseFS.Service
                 if (entry.Key == PersonSearchColumn.City)
                     personsQueryable = personsQueryable.Where(p => p.City.ToLower().StartsWith(searchValue));
 
-                if (entry.Key == PersonSearchColumn.County)
-                    personsQueryable = personsQueryable.Where(p => p.County.ToLower().StartsWith(searchValue));
-
                 if (entry.Key == PersonSearchColumn.State)
                     personsQueryable = personsQueryable.Where(p => p.State.ToLower().StartsWith(searchValue));
 
@@ -219,8 +209,6 @@ namespace FootlooseFS.Service
                     personOrderedQueryable = personsQueryable.OrderBy(p => p.PhoneNumber);
                 else if (personSearchColumn == PersonSearchColumn.City)
                     personOrderedQueryable = personsQueryable.OrderBy(p => p.City);
-                else if (personSearchColumn == PersonSearchColumn.County)
-                    personOrderedQueryable = personsQueryable.OrderBy(p => p.County);
                 else if (personSearchColumn == PersonSearchColumn.State)
                     personOrderedQueryable = personsQueryable.OrderBy(p => p.State);
                 else if (personSearchColumn == PersonSearchColumn.StreetAddress)
@@ -242,8 +230,6 @@ namespace FootlooseFS.Service
                     personOrderedQueryable = personsQueryable.OrderByDescending(p => p.PhoneNumber);
                 else if (personSearchColumn == PersonSearchColumn.City)
                     personOrderedQueryable = personsQueryable.OrderByDescending(p => p.City);
-                else if (personSearchColumn == PersonSearchColumn.County)
-                    personOrderedQueryable = personsQueryable.OrderByDescending(p => p.County);
                 else if (personSearchColumn == PersonSearchColumn.State)
                     personOrderedQueryable = personsQueryable.OrderByDescending(p => p.State);
                 else if (personSearchColumn == PersonSearchColumn.StreetAddress)
@@ -267,6 +253,24 @@ namespace FootlooseFS.Service
             return new PageOfList<PersonDocument>(persons, pageNumber, numRecordsInPage, recordCount);
         }
 
+        public Person GetPerson(string userName, PersonIncludes personIncludes)
+        {
+            using (var unitOfWork = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var personLoginQueryable = unitOfWork.PersonLogins.GetQueryable().Where(p => p.LoginID == userName);
+                if (personLoginQueryable.Any())
+                {
+                    int personId = personLoginQueryable.First().PersonID;
+                    
+                    return GetPerson(personId, personIncludes);
+                }
+                else
+                {
+                    throw new Exception("Person with given username not found");
+                }
+            }
+        }
+
         public Person GetPerson(int personID, PersonIncludes personIncludes)
         {
             // Get the person data from the SQL repository
@@ -277,10 +281,16 @@ namespace FootlooseFS.Service
                 var personQueryable = unitOfWork.Persons.GetQueryable().Where(p => p.PersonID == personID);
 
                 if (personIncludes.Phones)
+                {
                     personQueryable = personQueryable.Include("Phones");
+                    personQueryable = personQueryable.Include("Phones.PhoneType");
+                }
 
                 if (personIncludes.Addressses)
+                {
                     personQueryable = personQueryable.Include("Addresses.Address");
+                    personQueryable = personQueryable.Include("Addresses.AddressType");
+                }
 
                 if (personIncludes.Accounts)
                 {
@@ -292,7 +302,10 @@ namespace FootlooseFS.Service
                     personQueryable = personQueryable.Include("Login");                
 
                 if (personIncludes.AccountTransactions)
+                {
                     personQueryable = personQueryable.Include("Accounts.Account.Transactions");
+                    personQueryable = personQueryable.Include("Accounts.Account.Transactions.TransactionType");
+                }
 
                 person = personQueryable.First();
             }
@@ -384,9 +397,9 @@ namespace FootlooseFS.Service
                         person.LastName = updatedPerson.LastName;
                         person.EmailAddress = updatedPerson.EmailAddress;
 
-                        updatePhone(person, updatedPerson, (int)PhoneTypes.Home);
-                        updatePhone(person, updatedPerson, (int)PhoneTypes.Work);
-                        updatePhone(person, updatedPerson, (int)PhoneTypes.Cell);
+                        updatePhone(person, updatedPerson, (int)PhoneTypes.Home, unitOfWork);
+                        updatePhone(person, updatedPerson, (int)PhoneTypes.Work, unitOfWork);
+                        updatePhone(person, updatedPerson, (int)PhoneTypes.Cell, unitOfWork);
 
                         updateAddress(person, updatedPerson, (int)AddressTypes.Home, unitOfWork);
                         updateAddress(person, updatedPerson, (int)AddressTypes.Work, unitOfWork);
@@ -423,10 +436,61 @@ namespace FootlooseFS.Service
             }
         }
 
-        private void updatePhone(Person person, Person updatedPerson, int phoneType)
+        public int GetPersonID(string userName, string password)
+        {
+            using (var unitOfWork = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var personLoginQueryable = unitOfWork.PersonLogins.GetQueryable().Where(p => p.LoginID == userName && p.Password == password);
+                if (personLoginQueryable.Any())
+                {
+                    return personLoginQueryable.First().PersonID;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public OperationStatus UpdatePassword(string user, string oldPassword, string newPassword)
+        {
+            try
+            {
+                using (var unitOfWork = unitOfWorkFactory.CreateUnitOfWork())
+                {
+                    var personLoginQueryable = unitOfWork.PersonLogins.GetQueryable().Where(p => p.LoginID == user && p.Password == oldPassword);
+                    if (personLoginQueryable.Any())
+                    {
+                        var personLogin = personLoginQueryable.First();
+                        personLogin.Password = newPassword;
+
+                        unitOfWork.PersonLogins.Update(personLogin);
+                        unitOfWork.Commit();
+
+                        return new OperationStatus { Success = true };
+                    }
+                    else
+                    {
+                        return new OperationStatus { Success = false, Messages = new List<string> { "The old password provided is not correct" } };
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return OperationStatus.CreateFromException("Error deleting person.", e);
+            }            
+        }
+
+        private void updatePhone(Person person, Person updatedPerson, int phoneType, IFootlooseFSUnitOfWork unitOfWork)
         {
             var updatePhone = updatedPerson.Phones.Where(p => p.PhoneTypeID == phoneType).FirstOrDefault();
-            if (updatePhone != null)
+            if (updatePhone == null)
+            {
+                var phone = person.Phones.Where(p => p.PhoneTypeID == phoneType).FirstOrDefault();
+                if (phone != null)                
+                    unitOfWork.Phones.Delete(phone);                
+            }
+            else
             {
                 var phone = person.Phones.Where(p => p.PhoneTypeID == phoneType).FirstOrDefault();
                 if (phone == null)
@@ -469,7 +533,6 @@ namespace FootlooseFS.Service
 
                 addressAssn.Address.StreetAddress = updatedAddressAssn.Address.StreetAddress;
                 addressAssn.Address.City = updatedAddressAssn.Address.City;
-                addressAssn.Address.County = updatedAddressAssn.Address.County;
                 addressAssn.Address.State = updatedAddressAssn.Address.State;
                 addressAssn.Address.Zip = updatedAddressAssn.Address.Zip;
             }

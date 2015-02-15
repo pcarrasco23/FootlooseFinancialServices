@@ -90,11 +90,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="homeCounty" class="control-label">County</label>
-                                <input type="text" class="form-control" id="homeCounty" name="homeCounty" value="@(Model.Addresses.Where(a => a.AddressTypeID == 1).First().Address.County)">
-                            </div>
-
-                            <div class="form-group">
                                 <label for="homeState" class="control-label">State</label>
                                 <input type="text" class="form-control" id="homeState" name="homeState" value="@(Model.Addresses.Where(a => a.AddressTypeID == 1).First().Address.State)">
                             </div>
@@ -125,11 +120,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="workCounty" class="control-label">County</label>
-                                <input type="text" class="form-control" id="workCounty" name="workCounty" value="@(Model.Addresses.Where(a => a.AddressTypeID == 2).First().Address.County)">
-                            </div>
-
-                            <div class="form-group">
                                 <label for="workState" class="control-label">State</label>
                                 <input type="text" class="form-control" id="workState" name="workState" value="@(Model.Addresses.Where(a => a.AddressTypeID == 2).First().Address.State)">
                             </div>
@@ -157,11 +147,6 @@
                             <div class="form-group">
                                 <label for="altCity" class="control-label">City</label>
                                 <input type="text" class="form-control" id="altCity" name="altCity" value="@(Model.Addresses.Where(a => a.AddressTypeID == 3).First().Address.City)">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="altCounty" class="control-label">County</label>
-                                <input type="text" class="form-control" id="altCounty" name="altCounty" value="@(Model.Addresses.Where(a => a.AddressTypeID == 3).First().Address.County)">
                             </div>
 
                             <div class="form-group">
