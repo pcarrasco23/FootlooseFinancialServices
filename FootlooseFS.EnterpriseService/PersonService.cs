@@ -31,5 +31,10 @@ namespace FootlooseFS.EnterpriseService
 
             return pageOfPersons;
         }
+
+        public Person GetPersonById(int personID, PersonIncludes personIncludes)
+        {
+            return footlooseService.GetPersonById(personID, personIncludes);
+        }
     }
 }

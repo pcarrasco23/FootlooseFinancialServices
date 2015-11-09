@@ -22,4 +22,14 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="SortDirection" nillable="true" type="tns:SortDirection" />
+  <xs:complexType name="PersonIncludes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountTransactions" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Accounts" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Addressses" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Login" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Phones" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersonIncludes" nillable="true" type="tns:PersonIncludes" />
 </xs:schema>

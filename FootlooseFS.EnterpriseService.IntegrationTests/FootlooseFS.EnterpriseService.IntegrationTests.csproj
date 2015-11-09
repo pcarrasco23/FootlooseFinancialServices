@@ -69,6 +69,9 @@
     <None Include="Service References\FootlooseFSEnterpriseService\FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PageOfPersonDocuments.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\FootlooseFSEnterpriseService\FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\FootlooseFSEnterpriseService\PersonService.wsdl" />
     <None Include="Service References\FootlooseFSEnterpriseService\PersonService.xsd">
       <SubType>Designer</SubType>

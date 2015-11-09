@@ -15,5 +15,8 @@ namespace FootlooseFS.EnterpriseService
     {
         [OperationContract]
         PageOfPersonDocuments SearchPersons(int pageNumber, PersonSearchColumn personSearchColumn, SortDirection sortDirection, int numRecordsInPage, Dictionary<PersonSearchColumn, string> criteria);
+
+        [OperationContract]
+        Person GetPersonById(int personID, PersonIncludes personIncludes);
     }
 }

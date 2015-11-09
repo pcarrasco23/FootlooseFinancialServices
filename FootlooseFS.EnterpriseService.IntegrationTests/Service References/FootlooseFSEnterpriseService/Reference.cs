@@ -69,7 +69,7 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonDocument[] DataField;
+        private System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonDocument> DataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int PageIndexField;
@@ -91,7 +91,7 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonDocument[] Data {
+        public System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonDocument> Data {
             get {
                 return this.DataField;
             }
@@ -165,6 +165,9 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
         private string CityField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CountyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string EmailAddressField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -207,6 +210,19 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
                 if ((object.ReferenceEquals(this.CityField, value) != true)) {
                     this.CityField = value;
                     this.RaisePropertyChanged("City");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string County {
+            get {
+                return this.CountyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CountyField, value) != true)) {
+                    this.CountyField = value;
+                    this.RaisePropertyChanged("County");
                 }
             }
         }
@@ -325,6 +341,1356 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PersonIncludes", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Service")]
+    [System.SerializableAttribute()]
+    public partial class PersonIncludes : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool AccountTransactionsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool AccountsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool AddresssesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool LoginField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool PhonesField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool AccountTransactions {
+            get {
+                return this.AccountTransactionsField;
+            }
+            set {
+                if ((this.AccountTransactionsField.Equals(value) != true)) {
+                    this.AccountTransactionsField = value;
+                    this.RaisePropertyChanged("AccountTransactions");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Accounts {
+            get {
+                return this.AccountsField;
+            }
+            set {
+                if ((this.AccountsField.Equals(value) != true)) {
+                    this.AccountsField = value;
+                    this.RaisePropertyChanged("Accounts");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Addressses {
+            get {
+                return this.AddresssesField;
+            }
+            set {
+                if ((this.AddresssesField.Equals(value) != true)) {
+                    this.AddresssesField = value;
+                    this.RaisePropertyChanged("Addressses");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Login {
+            get {
+                return this.LoginField;
+            }
+            set {
+                if ((this.LoginField.Equals(value) != true)) {
+                    this.LoginField = value;
+                    this.RaisePropertyChanged("Login");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Phones {
+            get {
+                return this.PhonesField;
+            }
+            set {
+                if ((this.PhonesField.Equals(value) != true)) {
+                    this.PhonesField = value;
+                    this.RaisePropertyChanged("Phones");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Person", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models")]
+    [System.SerializableAttribute()]
+    public partial class Person : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonAccount> AccountsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonAddressAssn> AddressesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailAddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FirstNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LastNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonLogin LoginField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PersonIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Phone> PhonesField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonAccount> Accounts {
+            get {
+                return this.AccountsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AccountsField, value) != true)) {
+                    this.AccountsField = value;
+                    this.RaisePropertyChanged("Accounts");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonAddressAssn> Addresses {
+            get {
+                return this.AddressesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressesField, value) != true)) {
+                    this.AddressesField = value;
+                    this.RaisePropertyChanged("Addresses");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EmailAddress {
+            get {
+                return this.EmailAddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailAddressField, value) != true)) {
+                    this.EmailAddressField = value;
+                    this.RaisePropertyChanged("EmailAddress");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FirstName {
+            get {
+                return this.FirstNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FirstNameField, value) != true)) {
+                    this.FirstNameField = value;
+                    this.RaisePropertyChanged("FirstName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LastName {
+            get {
+                return this.LastNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LastNameField, value) != true)) {
+                    this.LastNameField = value;
+                    this.RaisePropertyChanged("LastName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonLogin Login {
+            get {
+                return this.LoginField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LoginField, value) != true)) {
+                    this.LoginField = value;
+                    this.RaisePropertyChanged("Login");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PersonID {
+            get {
+                return this.PersonIDField;
+            }
+            set {
+                if ((this.PersonIDField.Equals(value) != true)) {
+                    this.PersonIDField = value;
+                    this.RaisePropertyChanged("PersonID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Phone> Phones {
+            get {
+                return this.PhonesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhonesField, value) != true)) {
+                    this.PhonesField = value;
+                    this.RaisePropertyChanged("Phones");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PersonLogin", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models")]
+    [System.SerializableAttribute()]
+    public partial class PersonLogin : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LoginIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person PersonField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PersonIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LoginID {
+            get {
+                return this.LoginIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LoginIDField, value) != true)) {
+                    this.LoginIDField = value;
+                    this.RaisePropertyChanged("LoginID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person Person {
+            get {
+                return this.PersonField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PersonField, value) != true)) {
+                    this.PersonField = value;
+                    this.RaisePropertyChanged("Person");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PersonID {
+            get {
+                return this.PersonIDField;
+            }
+            set {
+                if ((this.PersonIDField.Equals(value) != true)) {
+                    this.PersonIDField = value;
+                    this.RaisePropertyChanged("PersonID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PersonAccount", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models")]
+    [System.SerializableAttribute()]
+    public partial class PersonAccount : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Account AccountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AccountIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PersonIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.RelationshipType RelationshipTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RelationshipTypeIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Account Account {
+            get {
+                return this.AccountField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AccountField, value) != true)) {
+                    this.AccountField = value;
+                    this.RaisePropertyChanged("Account");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AccountID {
+            get {
+                return this.AccountIDField;
+            }
+            set {
+                if ((this.AccountIDField.Equals(value) != true)) {
+                    this.AccountIDField = value;
+                    this.RaisePropertyChanged("AccountID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PersonID {
+            get {
+                return this.PersonIDField;
+            }
+            set {
+                if ((this.PersonIDField.Equals(value) != true)) {
+                    this.PersonIDField = value;
+                    this.RaisePropertyChanged("PersonID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.RelationshipType RelationshipType {
+            get {
+                return this.RelationshipTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RelationshipTypeField, value) != true)) {
+                    this.RelationshipTypeField = value;
+                    this.RaisePropertyChanged("RelationshipType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RelationshipTypeID {
+            get {
+                return this.RelationshipTypeIDField;
+            }
+            set {
+                if ((this.RelationshipTypeIDField.Equals(value) != true)) {
+                    this.RelationshipTypeIDField = value;
+                    this.RaisePropertyChanged("RelationshipTypeID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PersonAddressAssn", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models")]
+    [System.SerializableAttribute()]
+    public partial class PersonAddressAssn : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Address AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AddressIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.AddressType AddressTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AddressTypeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PersonIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Address Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AddressID {
+            get {
+                return this.AddressIDField;
+            }
+            set {
+                if ((this.AddressIDField.Equals(value) != true)) {
+                    this.AddressIDField = value;
+                    this.RaisePropertyChanged("AddressID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.AddressType AddressType {
+            get {
+                return this.AddressTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressTypeField, value) != true)) {
+                    this.AddressTypeField = value;
+                    this.RaisePropertyChanged("AddressType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AddressTypeID {
+            get {
+                return this.AddressTypeIDField;
+            }
+            set {
+                if ((this.AddressTypeIDField.Equals(value) != true)) {
+                    this.AddressTypeIDField = value;
+                    this.RaisePropertyChanged("AddressTypeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PersonID {
+            get {
+                return this.PersonIDField;
+            }
+            set {
+                if ((this.PersonIDField.Equals(value) != true)) {
+                    this.PersonIDField = value;
+                    this.RaisePropertyChanged("PersonID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Phone", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models")]
+    [System.SerializableAttribute()]
+    public partial class Phone : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PersonIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PhoneType PhoneTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PhoneTypeIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Number {
+            get {
+                return this.NumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NumberField, value) != true)) {
+                    this.NumberField = value;
+                    this.RaisePropertyChanged("Number");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PersonID {
+            get {
+                return this.PersonIDField;
+            }
+            set {
+                if ((this.PersonIDField.Equals(value) != true)) {
+                    this.PersonIDField = value;
+                    this.RaisePropertyChanged("PersonID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PhoneType PhoneType {
+            get {
+                return this.PhoneTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhoneTypeField, value) != true)) {
+                    this.PhoneTypeField = value;
+                    this.RaisePropertyChanged("PhoneType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PhoneTypeID {
+            get {
+                return this.PhoneTypeIDField;
+            }
+            set {
+                if ((this.PhoneTypeIDField.Equals(value) != true)) {
+                    this.PhoneTypeIDField = value;
+                    this.RaisePropertyChanged("PhoneTypeID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Account", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models")]
+    [System.SerializableAttribute()]
+    public partial class Account : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal AccountBalanceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AccountIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AccountNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.AccountType AccountTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AccountTypeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.AccountTransaction> TransactionsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal AccountBalance {
+            get {
+                return this.AccountBalanceField;
+            }
+            set {
+                if ((this.AccountBalanceField.Equals(value) != true)) {
+                    this.AccountBalanceField = value;
+                    this.RaisePropertyChanged("AccountBalance");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AccountID {
+            get {
+                return this.AccountIDField;
+            }
+            set {
+                if ((this.AccountIDField.Equals(value) != true)) {
+                    this.AccountIDField = value;
+                    this.RaisePropertyChanged("AccountID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AccountName {
+            get {
+                return this.AccountNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AccountNameField, value) != true)) {
+                    this.AccountNameField = value;
+                    this.RaisePropertyChanged("AccountName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.AccountType AccountType {
+            get {
+                return this.AccountTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AccountTypeField, value) != true)) {
+                    this.AccountTypeField = value;
+                    this.RaisePropertyChanged("AccountType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AccountTypeID {
+            get {
+                return this.AccountTypeIDField;
+            }
+            set {
+                if ((this.AccountTypeIDField.Equals(value) != true)) {
+                    this.AccountTypeIDField = value;
+                    this.RaisePropertyChanged("AccountTypeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.AccountTransaction> Transactions {
+            get {
+                return this.TransactionsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TransactionsField, value) != true)) {
+                    this.TransactionsField = value;
+                    this.RaisePropertyChanged("Transactions");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RelationshipType", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models")]
+    [System.SerializableAttribute()]
+    public partial class RelationshipType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RelationshipTypeIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RelationshipTypeID {
+            get {
+                return this.RelationshipTypeIDField;
+            }
+            set {
+                if ((this.RelationshipTypeIDField.Equals(value) != true)) {
+                    this.RelationshipTypeIDField = value;
+                    this.RaisePropertyChanged("RelationshipTypeID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AccountType", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models")]
+    [System.SerializableAttribute()]
+    public partial class AccountType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AccountTypeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AccountTypeID {
+            get {
+                return this.AccountTypeIDField;
+            }
+            set {
+                if ((this.AccountTypeIDField.Equals(value) != true)) {
+                    this.AccountTypeIDField = value;
+                    this.RaisePropertyChanged("AccountTypeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AccountTransaction", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models")]
+    [System.SerializableAttribute()]
+    public partial class AccountTransaction : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AccountIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AccountTransactionIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal AmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NotesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.TransactionType TransactionTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TransactionTypeIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AccountID {
+            get {
+                return this.AccountIDField;
+            }
+            set {
+                if ((this.AccountIDField.Equals(value) != true)) {
+                    this.AccountIDField = value;
+                    this.RaisePropertyChanged("AccountID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AccountTransactionID {
+            get {
+                return this.AccountTransactionIDField;
+            }
+            set {
+                if ((this.AccountTransactionIDField.Equals(value) != true)) {
+                    this.AccountTransactionIDField = value;
+                    this.RaisePropertyChanged("AccountTransactionID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Amount {
+            get {
+                return this.AmountField;
+            }
+            set {
+                if ((this.AmountField.Equals(value) != true)) {
+                    this.AmountField = value;
+                    this.RaisePropertyChanged("Amount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Date {
+            get {
+                return this.DateField;
+            }
+            set {
+                if ((this.DateField.Equals(value) != true)) {
+                    this.DateField = value;
+                    this.RaisePropertyChanged("Date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Notes {
+            get {
+                return this.NotesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NotesField, value) != true)) {
+                    this.NotesField = value;
+                    this.RaisePropertyChanged("Notes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.TransactionType TransactionType {
+            get {
+                return this.TransactionTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TransactionTypeField, value) != true)) {
+                    this.TransactionTypeField = value;
+                    this.RaisePropertyChanged("TransactionType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TransactionTypeID {
+            get {
+                return this.TransactionTypeIDField;
+            }
+            set {
+                if ((this.TransactionTypeIDField.Equals(value) != true)) {
+                    this.TransactionTypeIDField = value;
+                    this.RaisePropertyChanged("TransactionTypeID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TransactionType", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models")]
+    [System.SerializableAttribute()]
+    public partial class TransactionType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TransactionTypeIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TransactionTypeID {
+            get {
+                return this.TransactionTypeIDField;
+            }
+            set {
+                if ((this.TransactionTypeIDField.Equals(value) != true)) {
+                    this.TransactionTypeIDField = value;
+                    this.RaisePropertyChanged("TransactionTypeID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Address", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models")]
+    [System.SerializableAttribute()]
+    public partial class Address : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AddressIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StreetAddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZipField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AddressID {
+            get {
+                return this.AddressIDField;
+            }
+            set {
+                if ((this.AddressIDField.Equals(value) != true)) {
+                    this.AddressIDField = value;
+                    this.RaisePropertyChanged("AddressID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string City {
+            get {
+                return this.CityField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CityField, value) != true)) {
+                    this.CityField = value;
+                    this.RaisePropertyChanged("City");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string State {
+            get {
+                return this.StateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StateField, value) != true)) {
+                    this.StateField = value;
+                    this.RaisePropertyChanged("State");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string StreetAddress {
+            get {
+                return this.StreetAddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StreetAddressField, value) != true)) {
+                    this.StreetAddressField = value;
+                    this.RaisePropertyChanged("StreetAddress");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Zip {
+            get {
+                return this.ZipField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZipField, value) != true)) {
+                    this.ZipField = value;
+                    this.RaisePropertyChanged("Zip");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AddressType", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models")]
+    [System.SerializableAttribute()]
+    public partial class AddressType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AddressTypeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AddressTypeID {
+            get {
+                return this.AddressTypeIDField;
+            }
+            set {
+                if ((this.AddressTypeIDField.Equals(value) != true)) {
+                    this.AddressTypeIDField = value;
+                    this.RaisePropertyChanged("AddressTypeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PhoneType", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models")]
+    [System.SerializableAttribute()]
+    public partial class PhoneType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PhoneTypeIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PhoneTypeID {
+            get {
+                return this.PhoneTypeIDField;
+            }
+            set {
+                if ((this.PhoneTypeIDField.Equals(value) != true)) {
+                    this.PhoneTypeIDField = value;
+                    this.RaisePropertyChanged("PhoneTypeID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="FootlooseFSEnterpriseService.IPersonService")]
     public interface IPersonService {
@@ -334,6 +1700,12 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/SearchPersons", ReplyAction="http://tempuri.org/IPersonService/SearchPersonsResponse")]
         System.Threading.Tasks.Task<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PageOfPersonDocuments> SearchPersonsAsync(int pageNumber, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonSearchColumn personSearchColumn, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.SortDirection sortDirection, int numRecordsInPage, System.Collections.Generic.Dictionary<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonSearchColumn, string> criteria);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/GetPersonById", ReplyAction="http://tempuri.org/IPersonService/GetPersonByIdResponse")]
+        FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person GetPersonById(int personID, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonIncludes personIncludes);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/GetPersonById", ReplyAction="http://tempuri.org/IPersonService/GetPersonByIdResponse")]
+        System.Threading.Tasks.Task<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person> GetPersonByIdAsync(int personID, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonIncludes personIncludes);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -369,6 +1741,14 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
         
         public System.Threading.Tasks.Task<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PageOfPersonDocuments> SearchPersonsAsync(int pageNumber, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonSearchColumn personSearchColumn, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.SortDirection sortDirection, int numRecordsInPage, System.Collections.Generic.Dictionary<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonSearchColumn, string> criteria) {
             return base.Channel.SearchPersonsAsync(pageNumber, personSearchColumn, sortDirection, numRecordsInPage, criteria);
+        }
+        
+        public FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person GetPersonById(int personID, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonIncludes personIncludes) {
+            return base.Channel.GetPersonById(personID, personIncludes);
+        }
+        
+        public System.Threading.Tasks.Task<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person> GetPersonByIdAsync(int personID, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonIncludes personIncludes) {
+            return base.Channel.GetPersonByIdAsync(personID, personIncludes);
         }
     }
 }

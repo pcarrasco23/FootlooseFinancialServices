@@ -3,6 +3,7 @@
   <xs:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" />
   <xs:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.EnterpriseService" />
+  <xs:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models" />
   <xs:element name="SearchPersons">
     <xs:complexType>
       <xs:sequence>
@@ -18,6 +19,21 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/FootlooseFS.EnterpriseService" minOccurs="0" name="SearchPersonsResult" nillable="true" type="q4:PageOfPersonDocuments" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPersonById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="personID" type="xs:int" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" minOccurs="0" name="personIncludes" nillable="true" type="q5:PersonIncludes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPersonByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/FootlooseFS.Models" minOccurs="0" name="GetPersonByIdResult" nillable="true" type="q6:Person" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

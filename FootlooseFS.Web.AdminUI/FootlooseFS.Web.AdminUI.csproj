@@ -274,7 +274,9 @@
     <Content Include="Views\Person\LoginEdit.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />

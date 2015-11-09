@@ -16,16 +16,35 @@
   <wsdl:message name="IPersonService_SearchPersons_OutputMessage">
     <wsdl:part name="parameters" element="tns:SearchPersonsResponse" />
   </wsdl:message>
+  <wsdl:message name="IPersonService_GetPersonById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonById" />
+  </wsdl:message>
+  <wsdl:message name="IPersonService_GetPersonById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonByIdResponse" />
+  </wsdl:message>
   <wsdl:portType name="IPersonService">
     <wsdl:operation name="SearchPersons">
       <wsdl:input wsaw:Action="http://tempuri.org/IPersonService/SearchPersons" message="tns:IPersonService_SearchPersons_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPersonService/SearchPersonsResponse" message="tns:IPersonService_SearchPersons_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPersonService/GetPersonById" message="tns:IPersonService_GetPersonById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPersonService/GetPersonByIdResponse" message="tns:IPersonService_GetPersonById_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IPersonService" type="tns:IPersonService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="SearchPersons">
       <soap:operation soapAction="http://tempuri.org/IPersonService/SearchPersons" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonById">
+      <soap:operation soapAction="http://tempuri.org/IPersonService/GetPersonById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
