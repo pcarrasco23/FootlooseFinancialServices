@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace FootlooseFS.Service.Tests
 {
     [TestClass]
-    public class FootlooseFSServiceTests
+    public class FootlooseFSServiceUnitTests
     {
         [TestMethod]
         public void TestUpdatePerson()

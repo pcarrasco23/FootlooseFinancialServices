@@ -36,21 +36,5 @@ namespace FootlooseFS.DataPersistence
                 return _persons;
             }
         }        
-
-        public static void Init()
-        {
-            BsonClassMap.RegisterClassMap<PersonDocument>(cm =>
-            {
-                cm.MapIdProperty(p => p.PersonID);
-                cm.MapProperty(p => p.FirstName);
-                cm.MapProperty(p => p.LastName);
-                cm.MapProperty(p => p.EmailAddress);
-                cm.MapProperty(p => p.PhoneNumber);
-                cm.MapProperty(p => p.StreetAddress);
-                cm.MapProperty(p => p.City);
-                cm.MapProperty(p => p.State);
-                cm.MapProperty(p => p.Zip);
-            });
-        }
     }
 }

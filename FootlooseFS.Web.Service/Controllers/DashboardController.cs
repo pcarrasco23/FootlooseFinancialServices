@@ -18,7 +18,7 @@ namespace FootlooseFS.Web.Service.Controllers
         {
             var dashboardViewModel = new DashboardViewModel();
 
-            var person = service.GetPerson(authenticatedUser, new PersonIncludes { Accounts = false, AccountTransactions = false, Addressses = false, Login = false, Phones = false });
+            var person = service.GetPersonByUsername(authenticatedUser, new PersonIncludes { Accounts = false, AccountTransactions = false, Addressses = false, Login = false, Phones = false });
 
             dashboardViewModel.FirstName = person.FirstName;
             dashboardViewModel.LastName = person.LastName;

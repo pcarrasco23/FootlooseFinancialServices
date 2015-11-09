@@ -16,9 +16,7 @@ namespace FootlooseFSDocumentDBETL
         const int throttleRate = 1000;
 
         static void Main(string[] args)
-        {            
-            FootlooseFSDocUnitOfWork.Init();
-                
+        {               
             int startRow = 0;  
               
             // Remove all record from the Person document

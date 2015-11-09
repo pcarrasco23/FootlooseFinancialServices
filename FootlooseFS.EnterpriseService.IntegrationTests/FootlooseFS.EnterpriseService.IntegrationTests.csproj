@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A5012CEB-C438-4C26-A298-FA5D550684D4}</ProjectGuid>
+    <ProjectGuid>{1AF214E7-AEB3-4EF1-B2EB-28C2DDCD334C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FootlooseFS.Service.Tests</RootNamespace>
-    <AssemblyName>FootlooseFS.Service.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>FootlooseFS.EnterpriseService.IntegrationTests</RootNamespace>
+    <AssemblyName>FootlooseFS.EnterpriseService.IntegrationTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -35,10 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Moq">
-      <HintPath>..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -48,36 +48,64 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
-          <Private>False</Private>
-        </Reference>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="FootlooseFSServiceUnitTests.cs" />
-    <Compile Include="FootlooseFSTestUnitOfWork.cs" />
-    <Compile Include="FootlooseFSTestUnitOfWorkFactory.cs" />
-    <Compile Include="TestDataStore.cs" />
-    <Compile Include="TestRepository.cs" />
+    <Compile Include="Service References\FootlooseFSEnterpriseService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="FootloosFSEnterpriseServiceIntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FootlooseFS.DataPersistence\FootlooseFS.DataPersistence.csproj">
-      <Project>{83fa9df5-b8df-4ce6-8e71-41236966be47}</Project>
-      <Name>FootlooseFS.DataPersistence</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FootlooseFS.Models\FootlooseFS.Models.csproj">
-      <Project>{1c279c45-f22e-45f7-98d1-c9a22b699ef6}</Project>
-      <Name>FootlooseFS.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FootlooseFS.Service\FootlooseFS.Service.csproj">
-      <Project>{73ec8f00-a9d3-4e79-b609-c5e2ae52326d}</Project>
-      <Name>FootlooseFS.Service</Name>
-    </ProjectReference>
+    <None Include="app.config" />
+    <None Include="Service References\FootlooseFSEnterpriseService\FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PageOfPersonDocuments.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FootlooseFSEnterpriseService\PersonService.wsdl" />
+    <None Include="Service References\FootlooseFSEnterpriseService\PersonService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FootlooseFSEnterpriseService\PersonService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FootlooseFSEnterpriseService\PersonService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FootlooseFSEnterpriseService\PersonService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FootlooseFSEnterpriseService\PersonService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FootlooseFSEnterpriseService\PersonService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\FootlooseFSEnterpriseService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FootlooseFSEnterpriseService\PersonService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FootlooseFSEnterpriseService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FootlooseFSEnterpriseService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FootlooseFSEnterpriseService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

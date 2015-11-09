@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="12bc2e8d-1680-44a7-9aba-ca3d4ec0ab98" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/FootlooseFSenterpriseService/PersonService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PersonService.xsd" MetadataType="Schema" ID="c37003b2-41c9-487a-858a-5682ed365fb7" SourceId="1" SourceUrl="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd1" />
+    <MetadataFile FileName="PersonService1.xsd" MetadataType="Schema" ID="218c4b89-7453-46be-b1f8-6e099042f09f" SourceId="1" SourceUrl="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd4" />
+    <MetadataFile FileName="PersonService2.xsd" MetadataType="Schema" ID="70960a27-44e7-4262-9d65-68abb8ef03c0" SourceId="1" SourceUrl="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd3" />
+    <MetadataFile FileName="PersonService.disco" MetadataType="Disco" ID="4f0f45b6-b1e6-44c3-bd18-a6556f78e5b5" SourceId="1" SourceUrl="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?disco" />
+    <MetadataFile FileName="PersonService3.xsd" MetadataType="Schema" ID="61f0db7c-f661-46a4-aa15-80f7bc213103" SourceId="1" SourceUrl="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd0" />
+    <MetadataFile FileName="PersonService.wsdl" MetadataType="Wsdl" ID="efa26b9f-62fa-4268-a745-7579ca02f522" SourceId="1" SourceUrl="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?wsdl" />
+    <MetadataFile FileName="PersonService4.xsd" MetadataType="Schema" ID="e341cd34-fcaa-4d4f-8269-369faad71589" SourceId="1" SourceUrl="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd5" />
+    <MetadataFile FileName="PersonService5.xsd" MetadataType="Schema" ID="60efdb6f-733a-498b-a96d-0b19a6b430ea" SourceId="1" SourceUrl="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

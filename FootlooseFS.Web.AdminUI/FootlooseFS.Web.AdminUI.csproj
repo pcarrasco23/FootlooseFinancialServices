@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -176,6 +177,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-WebApplication1-20140224105332.mdf" />
+    <Content Include="App_Data\aspnet-WebApplication1-20140224105332_log.ldf">
+      <DependentUpon>aspnet-WebApplication1-20140224105332.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\AspNetRoles_Populate.sql" />
     <Content Include="App_Data\AspNetUserRoles_Populate.sql" />
     <Content Include="Content\bootstrap-theme.css" />

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="PersonSearchColumn">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="PersonID" />
+      <xs:enumeration value="FirstName" />
+      <xs:enumeration value="LastName" />
+      <xs:enumeration value="EmailAddress" />
+      <xs:enumeration value="Phone" />
+      <xs:enumeration value="StreetAddress" />
+      <xs:enumeration value="City" />
+      <xs:enumeration value="Zip" />
+      <xs:enumeration value="State" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="PersonSearchColumn" nillable="true" type="tns:PersonSearchColumn" />
+  <xs:simpleType name="SortDirection">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Ascending" />
+      <xs:enumeration value="Descending" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SortDirection" nillable="true" type="tns:SortDirection" />
+</xs:schema>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" />
+  <xs:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.EnterpriseService" />
+  <xs:element name="SearchPersons">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pageNumber" type="xs:int" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" minOccurs="0" name="personSearchColumn" type="q1:PersonSearchColumn" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" minOccurs="0" name="sortDirection" type="q2:SortDirection" />
+        <xs:element minOccurs="0" name="numRecordsInPage" type="xs:int" />
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="criteria" nillable="true" type="q3:ArrayOfKeyValueOfPersonSearchColumnstringItFsHSOy" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchPersonsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/FootlooseFS.EnterpriseService" minOccurs="0" name="SearchPersonsResult" nillable="true" type="q4:PageOfPersonDocuments" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

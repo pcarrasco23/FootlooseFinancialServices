@@ -18,131 +18,14 @@ namespace FootlooseFS.Service
 
         public FootlooseFSService(IFootlooseFSUnitOfWorkFactory unitOfWorkFactory)
         {
+            // The unit of work factory will determine which datastore will be used (SQL, MongoDB, Test)
             this.unitOfWorkFactory = unitOfWorkFactory;
-        }
-
-        public PageOfList<Person> SearchPersons(int pageNumber, PersonSearchColumn personSearchColumn, SortDirection sortDirection, int numRecordsInPage, Dictionary<PersonSearchColumn, string> searchCriteria)
-        {
-            // Search for persons using the SQL repository
-            // Determine the starting row
-            int startRow;
-            int totalItemCount = 0;
-
-            if (numRecordsInPage == -1)
-                startRow = 0;
-            else
-                startRow = (pageNumber - 1) * numRecordsInPage;
-
-            PageOfList<Person> searchResults = null;
-
-            using (var unitOfWork = unitOfWorkFactory.CreateUnitOfWork())
-            {
-                IQueryable<Person> personsQueryable = unitOfWork.Persons.GetQueryable();
-
-                foreach (KeyValuePair<PersonSearchColumn, string> entry in searchCriteria)
-                {
-                    if (entry.Key == PersonSearchColumn.PersonID)
-                    {
-                        var personID = Int32.Parse(entry.Value);
-                        personsQueryable = personsQueryable.Where(p => p.PersonID == personID);
-                    }
-
-                    if (entry.Key == PersonSearchColumn.FirstName)
-                        personsQueryable = personsQueryable.Where(p => p.FirstName.StartsWith(entry.Value));
-
-                    if (entry.Key == PersonSearchColumn.LastName)
-                        personsQueryable = personsQueryable.Where(p => p.LastName.StartsWith(entry.Value));
-
-                    if (entry.Key == PersonSearchColumn.EmailAddress)
-                        personsQueryable = personsQueryable.Where(p => p.EmailAddress.StartsWith(entry.Value));
-
-                    if (entry.Key == PersonSearchColumn.Phone)
-                        personsQueryable = personsQueryable.Where(p => p.Phones.Any(h => h.PhoneTypeID == 1 && h.Number.StartsWith(entry.Value)));
-
-                    if (entry.Key == PersonSearchColumn.City)
-                        personsQueryable = personsQueryable.Where(p => p.Addresses.Any(pa => pa.AddressTypeID == 1 && pa.Address.City.StartsWith(entry.Value)));
-
-                    if (entry.Key == PersonSearchColumn.State)
-                        personsQueryable = personsQueryable.Where(p => p.Addresses.Any(pa => pa.AddressTypeID == 1 && pa.Address.State.StartsWith(entry.Value)));
-
-                    if (entry.Key == PersonSearchColumn.StreetAddress)
-                        personsQueryable = personsQueryable.Where(p => p.Addresses.Any(pa => pa.AddressTypeID == 1 && pa.Address.StreetAddress.StartsWith(entry.Value)));
-
-                    if (entry.Key == PersonSearchColumn.Zip)
-                        personsQueryable = personsQueryable.Where(p => p.Addresses.Any(pa => pa.AddressTypeID == 1 && pa.Address.Zip.StartsWith(entry.Value)));
-                }
-
-                // Include the related phones and addresses in the search query
-                personsQueryable = personsQueryable.Include("Addresses.Address").Include("Phones");
-
-                IOrderedQueryable<Person> personOrderedQueryable = null;
-
-                // Apply the sorting using the requested sort column and direction
-                if (sortDirection == SortDirection.Ascending)
-                {
-                    if (personSearchColumn == PersonSearchColumn.PersonID)
-                        personOrderedQueryable = personsQueryable.OrderBy(p => p.PersonID);
-                    else if (personSearchColumn == PersonSearchColumn.FirstName)
-                        personOrderedQueryable = personsQueryable.OrderBy(p => p.FirstName);
-                    else if (personSearchColumn == PersonSearchColumn.LastName)
-                        personOrderedQueryable = personsQueryable.OrderBy(p => p.LastName);
-                    else if (personSearchColumn == PersonSearchColumn.EmailAddress)
-                        personOrderedQueryable = personsQueryable.OrderBy(p => p.EmailAddress);
-                    else if (personSearchColumn == PersonSearchColumn.Phone)
-                        personOrderedQueryable = personsQueryable.OrderBy(p => p.Phones.FirstOrDefault().Number);
-                    else if (personSearchColumn == PersonSearchColumn.City)
-                        personOrderedQueryable = personsQueryable.OrderBy(p => p.Addresses.FirstOrDefault().Address.City);
-                    else if (personSearchColumn == PersonSearchColumn.State)
-                        personOrderedQueryable = personsQueryable.OrderBy(p => p.Addresses.FirstOrDefault().Address.State);
-                    else if (personSearchColumn == PersonSearchColumn.StreetAddress)
-                        personOrderedQueryable = personsQueryable.OrderBy(p => p.Addresses.FirstOrDefault().Address.StreetAddress);
-                    else if (personSearchColumn == PersonSearchColumn.Zip)
-                        personOrderedQueryable = personsQueryable.OrderBy(p => p.Addresses.FirstOrDefault().Address.Zip);
-                }
-                else
-                {
-                    if (personSearchColumn == PersonSearchColumn.PersonID)
-                        personOrderedQueryable = personsQueryable.OrderByDescending(p => p.PersonID);
-                    else if (personSearchColumn == PersonSearchColumn.FirstName)
-                        personOrderedQueryable = personsQueryable.OrderByDescending(p => p.FirstName);
-                    else if (personSearchColumn == PersonSearchColumn.LastName)
-                        personOrderedQueryable = personsQueryable.OrderByDescending(p => p.LastName);
-                    else if (personSearchColumn == PersonSearchColumn.EmailAddress)
-                        personOrderedQueryable = personsQueryable.OrderByDescending(p => p.EmailAddress);
-                    else if (personSearchColumn == PersonSearchColumn.Phone)
-                        personOrderedQueryable = personsQueryable.OrderByDescending(p => p.Phones.FirstOrDefault().Number);
-                    else if (personSearchColumn == PersonSearchColumn.City)
-                        personOrderedQueryable = personsQueryable.OrderByDescending(p => p.Addresses.FirstOrDefault().Address.City);
-                    else if (personSearchColumn == PersonSearchColumn.State)
-                        personOrderedQueryable = personsQueryable.OrderByDescending(p => p.Addresses.FirstOrDefault().Address.State);
-                    else if (personSearchColumn == PersonSearchColumn.StreetAddress)
-                        personOrderedQueryable = personsQueryable.OrderByDescending(p => p.Addresses.FirstOrDefault().Address.StreetAddress);
-                    else if (personSearchColumn == PersonSearchColumn.Zip)
-                        personOrderedQueryable = personsQueryable.OrderByDescending(p => p.Addresses.FirstOrDefault().Address.Zip);
-                }
-
-                // Get the number of records
-                int recordCount = personOrderedQueryable.Count();
-
-                // Apply the paging and make the SQL call
-                List<Person> persons;
-                if (numRecordsInPage != -1)
-                    persons = personOrderedQueryable.Skip(startRow)
-                                                    .Take(numRecordsInPage)
-                                                    .ToList();
-                else
-                    persons = personOrderedQueryable.ToList();
-
-                searchResults = new PageOfList<Person>(persons, pageNumber, numRecordsInPage, recordCount);
-            }
-
-            return searchResults;
         }
 
         public PageOfList<PersonDocument> SearchPersonDocuments(int pageNumber, PersonSearchColumn personSearchColumn, SortDirection sortDirection, int numRecordsInPage, Dictionary<PersonSearchColumn, string> searchCriteria)
         {
             // Search for persons using the Document DB repository
-            // Determine the starting row
+            // Determine the starting row from the pageNumber and numRecordsInPage
             int startRow;
             int totalItemCount = 0;
 
@@ -152,11 +35,13 @@ namespace FootlooseFS.Service
                 startRow = (pageNumber - 1) * numRecordsInPage;
 
             PageOfList<PersonDocument> searchResults = null;
-
+         
+            // Note the Document Unit of Work will be disposed when out of scope (does not require using statement)
             var unitOfWork = new FootlooseFSDocUnitOfWork();
             
             IQueryable<PersonDocument> personsQueryable = unitOfWork.Persons.GetQueryable();
 
+            // For each search criteria given add an appropriate filter to the Person Queryable
             foreach (KeyValuePair<PersonSearchColumn, string> entry in searchCriteria)
             {
                 if (entry.Key == PersonSearchColumn.PersonID)
@@ -253,7 +138,7 @@ namespace FootlooseFS.Service
             return new PageOfList<PersonDocument>(persons, pageNumber, numRecordsInPage, recordCount);
         }
 
-        public Person GetPerson(string userName, PersonIncludes personIncludes)
+        public Person GetPersonByUsername(string userName, PersonIncludes personIncludes)
         {
             using (var unitOfWork = unitOfWorkFactory.CreateUnitOfWork())
             {
@@ -262,7 +147,7 @@ namespace FootlooseFS.Service
                 {
                     int personId = personLoginQueryable.First().PersonID;
                     
-                    return GetPerson(personId, personIncludes);
+                    return GetPersonById(personId, personIncludes);
                 }
                 else
                 {
@@ -271,7 +156,7 @@ namespace FootlooseFS.Service
             }
         }
 
-        public Person GetPerson(int personID, PersonIncludes personIncludes)
+        public Person GetPersonById(int personID, PersonIncludes personIncludes)
         {
             // Get the person data from the SQL repository
             Person person = null;
@@ -306,8 +191,9 @@ namespace FootlooseFS.Service
                     personQueryable = personQueryable.Include("Accounts.Account.Transactions");
                     personQueryable = personQueryable.Include("Accounts.Account.Transactions.TransactionType");
                 }
-
-                person = personQueryable.First();
+                
+                if (personQueryable.Any())
+                    person = personQueryable.First();
             }
 
             return person;
@@ -418,13 +304,29 @@ namespace FootlooseFS.Service
             }
         }
 
-        public OperationStatus DeletePerson(int personID)
+        public OperationStatus DeletePerson(Person person)
         {
             try
             {
                 using (var unitOfWork = unitOfWorkFactory.CreateUnitOfWork())
                 {
-                    unitOfWork.Persons.Delete((p => p.PersonID), personID);
+                    if (person.Phones != null)
+                    {
+                        foreach (Phone phone in person.Phones)
+                            unitOfWork.Phones.Delete(phone);
+
+                        person.Phones = null;
+                    }
+
+                    if (person.Addresses != null)
+                    {
+                        foreach (PersonAddressAssn addressAssn in person.Addresses)
+                            unitOfWork.PersonAddressAssns.Delete(addressAssn);
+
+                        person.Addresses = null;
+                    }
+
+                    unitOfWork.Persons.Delete(person);
                     unitOfWork.Commit();
                 }
 

@@ -113,7 +113,7 @@ namespace FootlooseFS.Web.AdminUI.Controllers
             personIncludes.Accounts = true;
             personIncludes.Login = true;
 
-            var person = _footlooseFSService.GetPerson(personID, personIncludes);
+            var person = _footlooseFSService.GetPersonById(personID, personIncludes);
 
             // Add home phone if not in the person Object
             if (!person.Phones.Where(p => p.PhoneTypeID == 1).Any())

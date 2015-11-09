@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootlooseFS.Models", "FootlooseFS.Models\FootlooseFS.Models.csproj", "{1C279C45-F22E-45F7-98D1-C9A22B699EF6}"
 EndProject
@@ -24,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{747C77
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootlooseFS.Web.Service", "FootlooseFS.Web.Service\FootlooseFS.Web.Service.csproj", "{C9DEACC5-B718-4169-A70D-FFA758C67187}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "FootlooseFS.Web.Client(1)", "http://localhost:52389", "{5F8EF47E-4272-4EB6-B2D3-F88696C13512}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "FootlooseFS.Web.Client", "http://localhost:52389", "{5F8EF47E-4272-4EB6-B2D3-F88696C13512}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
@@ -45,6 +45,12 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "FootlooseFS.Web.Client(1)",
 		SlnRelativePath = "FootlooseFS.Web.Client\"
 		DefaultWebSiteLanguage = "Visual Basic"
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootlooseFS.EnterpriseService", "FootlooseFS.EnterpriseService\FootlooseFS.EnterpriseService.csproj", "{77E9E1C2-3A23-4BEA-A64F-89C0CC9CCDFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootlooseFS.Service.IntegrationTests", "FootlooseFS.Service.IntegrationTests\FootlooseFS.Service.IntegrationTests.csproj", "{55C2BC2C-FCD6-4716-9FA0-D60DE164DBD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootlooseFS.EnterpriseService.IntegrationTests", "FootlooseFS.EnterpriseService.IntegrationTests\FootlooseFS.EnterpriseService.IntegrationTests.csproj", "{1AF214E7-AEB3-4EF1-B2EB-28C2DDCD334C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -88,6 +94,18 @@ Global
 		{5F8EF47E-4272-4EB6-B2D3-F88696C13512}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F8EF47E-4272-4EB6-B2D3-F88696C13512}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{5F8EF47E-4272-4EB6-B2D3-F88696C13512}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{77E9E1C2-3A23-4BEA-A64F-89C0CC9CCDFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77E9E1C2-3A23-4BEA-A64F-89C0CC9CCDFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77E9E1C2-3A23-4BEA-A64F-89C0CC9CCDFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77E9E1C2-3A23-4BEA-A64F-89C0CC9CCDFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55C2BC2C-FCD6-4716-9FA0-D60DE164DBD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55C2BC2C-FCD6-4716-9FA0-D60DE164DBD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55C2BC2C-FCD6-4716-9FA0-D60DE164DBD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55C2BC2C-FCD6-4716-9FA0-D60DE164DBD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AF214E7-AEB3-4EF1-B2EB-28C2DDCD334C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AF214E7-AEB3-4EF1-B2EB-28C2DDCD334C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AF214E7-AEB3-4EF1-B2EB-28C2DDCD334C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AF214E7-AEB3-4EF1-B2EB-28C2DDCD334C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

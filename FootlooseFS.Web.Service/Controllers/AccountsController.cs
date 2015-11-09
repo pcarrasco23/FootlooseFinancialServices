@@ -20,7 +20,7 @@ namespace FootlooseFS.Web.Service.Controllers
         public HolderAccountsViewModel Get()
         {
             // Get Person data model from the data service
-            var person = service.GetPerson(authenticatedUser, new PersonIncludes { Accounts = true, Addressses = false, Phones = false, AccountTransactions = true });
+            var person = service.GetPersonByUsername(authenticatedUser, new PersonIncludes { Accounts = true, Addressses = false, Phones = false, AccountTransactions = true });
 
             // Create a Holder view model and populate data from Person data model
             var holderAccounts = new HolderAccountsViewModel();

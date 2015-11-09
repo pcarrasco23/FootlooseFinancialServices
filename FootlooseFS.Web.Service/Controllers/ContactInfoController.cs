@@ -19,7 +19,7 @@ namespace FootlooseFS.Web.Service.Controllers
         public ContactInfoViewModel Get()
         {
             // Get Person data model from the data service
-            var person = service.GetPerson(authenticatedUser, new PersonIncludes { Accounts = false, Addressses = true, Phones = true, AccountTransactions = false });
+            var person = service.GetPersonByUsername(authenticatedUser, new PersonIncludes { Accounts = false, Addressses = true, Phones = true, AccountTransactions = false });
 
             // Create a Holder view model and populate data from Person data model
             var contactInfo = new ContactInfoViewModel();           
@@ -83,7 +83,7 @@ namespace FootlooseFS.Web.Service.Controllers
         {
             // Get Person data model from the data service
             // we do not need account nor transactions
-            var person = service.GetPerson(authenticatedUser, new PersonIncludes { Accounts = false, Addressses = false, Phones = false, AccountTransactions = false });
+            var person = service.GetPersonByUsername(authenticatedUser, new PersonIncludes { Accounts = false, Addressses = false, Phones = false, AccountTransactions = false });
 
             // Update the Email Address in the person model
             person.EmailAddress = contactInfoViewModel.EmailAddress;
