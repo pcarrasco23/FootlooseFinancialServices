@@ -18,5 +18,14 @@ namespace FootlooseFS.EnterpriseService
 
         [OperationContract]
         Person GetPersonById(int personID, PersonIncludes personIncludes);
+
+        [OperationContract]
+        OperationStatus InsertPerson(Person person);
+
+        [OperationContract]
+        OperationStatus UpdatePerson(Person person);
+
+        [OperationContract]
+        OperationStatus DeletePerson(Person person);
     }
 }

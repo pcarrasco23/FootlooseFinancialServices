@@ -10,6 +10,7 @@ namespace FootlooseFS.Service
     {
         public bool Success { get; set; }
         public List<string> Messages { get; set; }
+        public string StackTrace { get; set; }
         public object Data { get; set; }
 
         public OperationStatus()
@@ -28,6 +29,7 @@ namespace FootlooseFS.Service
             if (ex != null)
             {
                 opStatus.Messages.Add(ex.Message);
+                opStatus.StackTrace = ex.StackTrace;
                 opStatus.Success = false;
             }
             return opStatus;

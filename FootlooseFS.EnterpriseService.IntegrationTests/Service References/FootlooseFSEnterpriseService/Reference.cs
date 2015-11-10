@@ -1691,6 +1691,124 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OperationStatus", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Service")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PageOfPersonDocuments))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonSearchColumn, string>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonDocument>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonDocument))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonAccount>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonAccount))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Account))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.AccountType))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.AccountTransaction>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.AccountTransaction))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.TransactionType))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.RelationshipType))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonAddressAssn>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonAddressAssn))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Address))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.AddressType))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonLogin))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Phone>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Phone))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PhoneType))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonSearchColumn))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.SortDirection))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonIncludes))]
+    public partial class OperationStatus : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object DataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<string> MessagesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StackTraceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool SuccessField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public object Data {
+            get {
+                return this.DataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DataField, value) != true)) {
+                    this.DataField = value;
+                    this.RaisePropertyChanged("Data");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<string> Messages {
+            get {
+                return this.MessagesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessagesField, value) != true)) {
+                    this.MessagesField = value;
+                    this.RaisePropertyChanged("Messages");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string StackTrace {
+            get {
+                return this.StackTraceField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StackTraceField, value) != true)) {
+                    this.StackTraceField = value;
+                    this.RaisePropertyChanged("StackTrace");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Success {
+            get {
+                return this.SuccessField;
+            }
+            set {
+                if ((this.SuccessField.Equals(value) != true)) {
+                    this.SuccessField = value;
+                    this.RaisePropertyChanged("Success");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="FootlooseFSEnterpriseService.IPersonService")]
     public interface IPersonService {
@@ -1706,6 +1824,24 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/GetPersonById", ReplyAction="http://tempuri.org/IPersonService/GetPersonByIdResponse")]
         System.Threading.Tasks.Task<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person> GetPersonByIdAsync(int personID, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonIncludes personIncludes);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/InsertPerson", ReplyAction="http://tempuri.org/IPersonService/InsertPersonResponse")]
+        FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.OperationStatus InsertPerson(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person person);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/InsertPerson", ReplyAction="http://tempuri.org/IPersonService/InsertPersonResponse")]
+        System.Threading.Tasks.Task<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.OperationStatus> InsertPersonAsync(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person person);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/UpdatePerson", ReplyAction="http://tempuri.org/IPersonService/UpdatePersonResponse")]
+        FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.OperationStatus UpdatePerson(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person person);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/UpdatePerson", ReplyAction="http://tempuri.org/IPersonService/UpdatePersonResponse")]
+        System.Threading.Tasks.Task<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.OperationStatus> UpdatePersonAsync(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person person);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/DeletePerson", ReplyAction="http://tempuri.org/IPersonService/DeletePersonResponse")]
+        FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.OperationStatus DeletePerson(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person person);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/DeletePerson", ReplyAction="http://tempuri.org/IPersonService/DeletePersonResponse")]
+        System.Threading.Tasks.Task<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.OperationStatus> DeletePersonAsync(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person person);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1749,6 +1885,30 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
         
         public System.Threading.Tasks.Task<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person> GetPersonByIdAsync(int personID, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonIncludes personIncludes) {
             return base.Channel.GetPersonByIdAsync(personID, personIncludes);
+        }
+        
+        public FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.OperationStatus InsertPerson(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person person) {
+            return base.Channel.InsertPerson(person);
+        }
+        
+        public System.Threading.Tasks.Task<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.OperationStatus> InsertPersonAsync(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person person) {
+            return base.Channel.InsertPersonAsync(person);
+        }
+        
+        public FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.OperationStatus UpdatePerson(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person person) {
+            return base.Channel.UpdatePerson(person);
+        }
+        
+        public System.Threading.Tasks.Task<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.OperationStatus> UpdatePersonAsync(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person person) {
+            return base.Channel.UpdatePersonAsync(person);
+        }
+        
+        public FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.OperationStatus DeletePerson(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person person) {
+            return base.Channel.DeletePerson(person);
+        }
+        
+        public System.Threading.Tasks.Task<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.OperationStatus> DeletePersonAsync(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person person) {
+            return base.Channel.DeletePersonAsync(person);
         }
     }
 }

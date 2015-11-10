@@ -36,5 +36,20 @@ namespace FootlooseFS.EnterpriseService
         {
             return footlooseService.GetPersonById(personID, personIncludes);
         }
+
+        public OperationStatus InsertPerson(Person person)
+        {
+            return footlooseService.InsertPerson(person);
+        }
+       
+        public OperationStatus UpdatePerson(Person person)
+        {
+            return footlooseService.UpdatePerson(person);
+        }
+        
+        public OperationStatus DeletePerson(Person person)
+        {
+            return footlooseService.DeletePerson(person);
+        }
     }
 }

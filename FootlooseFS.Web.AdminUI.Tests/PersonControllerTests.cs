@@ -2,6 +2,7 @@
 using FootlooseFS.Service;
 using FootlooseFS.Service.Tests;
 using FootlooseFS.Web.AdminUI.Controllers;
+using FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService;
 using FootlooseFS.Web.AdminUI.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -16,8 +17,7 @@ namespace FootlooseFS.Web.AdminUI.Tests
     [TestClass]
     public class PersonControllerTests
     {
-        private IFootlooseFSService footlooseFSService;
-        private Mock<IFootlooseFSService> mockFootlooseFSService;        
+        private Mock<IPersonService> mockPersonService;        
         private int pageIndex;
         private int pageSize;
         private int totalItemCount;
@@ -25,18 +25,22 @@ namespace FootlooseFS.Web.AdminUI.Tests
         [TestInitialize]
         public void SetupTests()
         {
-            mockFootlooseFSService = new Mock<IFootlooseFSService>();
+            mockPersonService = new Mock<IPersonService>();
 
             pageIndex = 0;
             pageSize = 10;
             totalItemCount = 100;
 
             // Create PersonDocument test data
-            PageOfList<PersonDocument> personDocuments = createTestData();            
+            PageOfList<PersonDocument> pageOfListPerson = createTestData();
+            var pageOfPersonDocuments = new PageOfPersonDocuments();
+            pageOfPersonDocuments.Data = pageOfListPerson.Data;
+            pageOfPersonDocuments.PageIndex = pageOfListPerson.PageIndex;
+            pageOfPersonDocuments.PageSize = pageOfListPerson.PageSize;
 
             // Mock SearchPersonDocument and UpdatePerson service methods
-            mockFootlooseFSService.Setup(m => m.SearchPersonDocuments(It.IsAny<int>(), It.IsAny<PersonSearchColumn>(), It.IsAny<SortDirection>(), It.IsAny<int>(), It.IsAny<Dictionary<PersonSearchColumn, string>>())).Returns(personDocuments);
-            mockFootlooseFSService.Setup(m => m.UpdatePerson(It.IsAny<Person>())).Returns((Person p) => { return SetupOperationStatus(p); });
+            mockPersonService.Setup(m => m.SearchPersons(It.IsAny<int>(), It.IsAny<PersonSearchColumn>(), It.IsAny<SortDirection>(), It.IsAny<int>(), It.IsAny<Dictionary<PersonSearchColumn, string>>())).Returns(pageOfPersonDocuments);
+            mockPersonService.Setup(m => m.UpdatePerson(It.IsAny<Person>())).Returns((Person p) => { return SetupOperationStatus(p); });
         }
 
         private OperationStatus SetupOperationStatus(Person p)
@@ -188,7 +192,7 @@ namespace FootlooseFS.Web.AdminUI.Tests
         [TestMethod]
         public void TestPersonSearch()
         {
-            PersonController personController = new PersonController(mockFootlooseFSService.Object);
+            PersonController personController = new PersonController(mockPersonService.Object);
 
             SearchParameters searchParameters = new SearchParameters();
             searchParameters.NumberRecordsPerPage = pageSize;
@@ -215,7 +219,7 @@ namespace FootlooseFS.Web.AdminUI.Tests
         [TestMethod]
         public void TestPersonSave()
         {
-            PersonController personController = new PersonController(mockFootlooseFSService.Object);
+            PersonController personController = new PersonController(mockPersonService.Object);
 
             FormCollection formCollection = new FormCollection();
             formCollection.Add("personID", "1");

@@ -395,15 +395,14 @@ namespace FootlooseFS.Service
             else
             {
                 var phone = person.Phones.Where(p => p.PhoneTypeID == phoneType).FirstOrDefault();
-                if (phone == null)
+                if (phone == null && !string.IsNullOrEmpty(updatePhone.Number))
                 {
                     phone = new Phone();
                     phone.PersonID = updatePhone.PersonID;
                     phone.PhoneTypeID = updatePhone.PhoneTypeID;
+                    phone.Number = updatePhone.Number;
                     person.Phones.Add(phone);
                 }
-
-                phone.Number = updatePhone.Number;
             }
         }
 

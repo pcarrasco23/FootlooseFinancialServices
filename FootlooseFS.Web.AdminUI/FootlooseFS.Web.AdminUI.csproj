@@ -48,6 +48,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -174,6 +176,11 @@
     <Compile Include="Models\SavePersonResult.cs" />
     <Compile Include="NinjectDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\FootlooseFSEnterpriseService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +235,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Properties\DataSources\FootlooseFS.Models.Person.datasource" />
+    <Content Include="Properties\DataSources\FootlooseFS.Service.OperationStatus.datasource" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -244,6 +253,16 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Service References\FootlooseFSEnterpriseService\FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService.PageOfPersonDocuments.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\FootlooseFSEnterpriseService\PersonService.disco" />
+    <None Include="Service References\FootlooseFSEnterpriseService\configuration91.svcinfo" />
+    <None Include="Service References\FootlooseFSEnterpriseService\configuration.svcinfo" />
+    <None Include="Service References\FootlooseFSEnterpriseService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -273,6 +292,25 @@
     <Content Include="Views\Person\PersonEdit.cshtml" />
     <Content Include="Views\Person\LoginEdit.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <None Include="Service References\FootlooseFSEnterpriseService\PersonService.wsdl" />
+    <None Include="Service References\FootlooseFSEnterpriseService\PersonService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FootlooseFSEnterpriseService\PersonService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FootlooseFSEnterpriseService\PersonService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FootlooseFSEnterpriseService\PersonService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FootlooseFSEnterpriseService\PersonService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FootlooseFSEnterpriseService\PersonService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -294,6 +332,9 @@
       <Project>{73ec8f00-a9d3-4e79-b609-c5e2ae52326d}</Project>
       <Name>FootlooseFS.Service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\FootlooseFSEnterpriseService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

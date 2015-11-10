@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService;
 
@@ -11,7 +12,7 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests
         [TestMethod]
         public void TestPersonDocumentSearch()
         {
-            PersonServiceClient client = new PersonServiceClient();
+            var client = new PersonServiceClient();
 
             var searchCriteria = new Dictionary<PersonSearchColumn, string>();
             searchCriteria.Add(PersonSearchColumn.State, "NY");
@@ -31,7 +32,7 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests
         [TestMethod]
         public void TestGetPersonById()
         {
-            PersonServiceClient client = new PersonServiceClient();
+            var client = new PersonServiceClient();
 
             var person = client.GetPersonById(5, new PersonIncludes { Phones = true, Addressses = true, Accounts = true });
 

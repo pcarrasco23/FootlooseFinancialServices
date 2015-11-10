@@ -11,17 +11,18 @@ using FootlooseFS.Models;
 using FootlooseFS.Service;
 using Ninject;
 using FootlooseFS.Web.AdminUI.Models;
+using FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService;
 
 namespace FootlooseFS.Web.AdminUI.Controllers
 {
     public class PersonController : Controller
     {
-        private readonly IFootlooseFSService _footlooseFSService;
+        private readonly IPersonService personService;
 
         [Inject]
-        public PersonController(IFootlooseFSService footlooseFSService)
+        public PersonController(IPersonService personService)
         {
-            _footlooseFSService = footlooseFSService;
+            this.personService = personService;
         }
 
         public ActionResult Index()
@@ -60,10 +61,13 @@ namespace FootlooseFS.Web.AdminUI.Controllers
                 }
             }
 
-            var personsPage = _footlooseFSService.SearchPersonDocuments(searchParameters.PageNumber, personSearchColumn, sortDirection, searchParameters.NumberRecordsPerPage, searchCriteria);
-            personsPage.SearchCriteria = searchParameters.SearchCriteria;
+            var personsPage = personService.SearchPersons(searchParameters.PageNumber, personSearchColumn, sortDirection, searchParameters.NumberRecordsPerPage, searchCriteria);
+            closePersonService();
 
-            return PartialView(personsPage);            
+            var pageOfListPersonDocuments = new PageOfList<PersonDocument>(personsPage.Data, searchParameters.PageNumber, searchParameters.NumberRecordsPerPage, personsPage.TotalItemCount);
+            pageOfListPersonDocuments.SearchCriteria = searchParameters.SearchCriteria;
+
+            return PartialView(pageOfListPersonDocuments);            
         }
 
         //
@@ -113,19 +117,30 @@ namespace FootlooseFS.Web.AdminUI.Controllers
             personIncludes.Accounts = true;
             personIncludes.Login = true;
 
-            var person = _footlooseFSService.GetPersonById(personID, personIncludes);
+            var person = personService.GetPersonById(personID, personIncludes);
+            closePersonService();
+
+            var phoneList = new List<Phone>();
 
             // Add home phone if not in the person Object
             if (!person.Phones.Where(p => p.PhoneTypeID == 1).Any())
-                person.Phones.Add(new Phone { PhoneTypeID = 1, Number = string.Empty });
+                phoneList.Add(new Phone { PhoneTypeID = 1, Number = string.Empty });
+            else
+                phoneList.Add(person.Phones.Where(p => p.PhoneTypeID == 1).First());
 
             // Add work phone if not in the person Object
             if (!person.Phones.Where(p => p.PhoneTypeID == 2).Any())
-                person.Phones.Add(new Phone { PhoneTypeID = 2, Number = string.Empty });
+                phoneList.Add(new Phone { PhoneTypeID = 2, Number = string.Empty });
+            else
+                phoneList.Add(person.Phones.Where(p => p.PhoneTypeID == 2).First());
 
             // Add cell phone if not in the person Object
             if (!person.Phones.Where(p => p.PhoneTypeID == 3).Any())
-                person.Phones.Add(new Phone { PhoneTypeID = 3, Number = string.Empty });
+                phoneList.Add(new Phone { PhoneTypeID = 3, Number = string.Empty });
+            else
+                phoneList.Add(person.Phones.Where(p => p.PhoneTypeID == 3).First());
+
+            person.Phones = phoneList;
 
             var emptyAddress = new Address 
             { 
@@ -135,14 +150,24 @@ namespace FootlooseFS.Web.AdminUI.Controllers
                 Zip = string.Empty
             };
 
+            var addressList = new List<PersonAddressAssn>();
+
             if (!person.Addresses.Where(a => a.AddressTypeID == 1).Any())
-                person.Addresses.Add(new PersonAddressAssn { AddressTypeID = 1, Address = emptyAddress });
+                addressList.Add(new PersonAddressAssn { AddressTypeID = 1, Address = emptyAddress });
+            else
+                addressList.Add(person.Addresses.Where(a => a.AddressTypeID == 1).First());
 
             if (!person.Addresses.Where(a => a.AddressTypeID == 2).Any())
-                person.Addresses.Add(new PersonAddressAssn { AddressTypeID = 2, Address = emptyAddress });
+                addressList.Add(new PersonAddressAssn { AddressTypeID = 2, Address = emptyAddress });
+            else
+                addressList.Add(person.Addresses.Where(a => a.AddressTypeID == 2).First());
 
             if (!person.Addresses.Where(a => a.AddressTypeID == 3).Any())
-                person.Addresses.Add(new PersonAddressAssn { AddressTypeID = 3, Address = emptyAddress });
+                addressList.Add(new PersonAddressAssn { AddressTypeID = 3, Address = emptyAddress });
+            else
+                addressList.Add(person.Addresses.Where(a => a.AddressTypeID == 3).First());
+
+            person.Addresses = addressList;
 
             if (person.Login == null)
                 person.Login = new PersonLogin();
@@ -223,7 +248,7 @@ namespace FootlooseFS.Web.AdminUI.Controllers
             
             if (person.PersonID == 0)
             {
-                var opStatus = _footlooseFSService.InsertPerson(person);
+                var opStatus = personService.InsertPerson(person);
 
                 var newPerson = (Person)opStatus.Data;
 
@@ -244,7 +269,8 @@ namespace FootlooseFS.Web.AdminUI.Controllers
             }                
             else
             {
-                var opStatus = _footlooseFSService.UpdatePerson(person);
+                var opStatus = personService.UpdatePerson(person);
+                closePersonService();
 
                 var updatedPerson = (Person)opStatus.Data;
 
@@ -321,6 +347,12 @@ namespace FootlooseFS.Web.AdminUI.Controllers
                 new SelectListItem() { Text="Wisconsin", Value="WI"},
                 new SelectListItem() { Text="Wyoming", Value="WY"}
             };          
+        }
+
+        private void closePersonService()
+        {
+            if (personService is PersonServiceClient)
+                ((PersonServiceClient)personService).Close();
         }
 	}
 }

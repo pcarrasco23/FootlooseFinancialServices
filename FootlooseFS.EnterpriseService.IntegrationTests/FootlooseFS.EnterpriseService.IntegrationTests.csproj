@@ -66,6 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Service References\FootlooseFSEnterpriseService\FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.OperationStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\FootlooseFSEnterpriseService\FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PageOfPersonDocuments.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
