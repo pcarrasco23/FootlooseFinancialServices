@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace FootlooseFS.Models
     public class PersonDocument
     {
         [BsonElement("_id")]
+        [JsonProperty(PropertyName = "_id")]
         public int PersonID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

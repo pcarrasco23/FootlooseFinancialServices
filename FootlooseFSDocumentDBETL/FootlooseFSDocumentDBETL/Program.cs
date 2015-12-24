@@ -30,7 +30,7 @@ namespace FootlooseFSDocumentDBETL
                     IQueryable<Person> personQueryable = sqlUnitOfWork.Persons.GetQueryable();
 
                     // For each person retreived from SQL include the related phones and addresses
-                    personQueryable = personQueryable.Include("Addresses.Address").Include("Phones");
+                    //personQueryable = personQueryable.Include("Addresses.Address").Include("Phones");
 
                     // Always order by person ID so that we can guarantee the order for the persons retrieved from SQL
                     personQueryable = personQueryable.OrderBy(p => p.PersonID);
@@ -40,27 +40,35 @@ namespace FootlooseFSDocumentDBETL
                                                     .Take(throttleRate)
                                                     .ToList();
 
-                    IEnumerable<PersonDocument> personDocuments = from p in persons
-                                                           select new PersonDocument
-                                                           {
-                                                               PersonID = p.PersonID,
-                                                               FirstName = p.FirstName,
-                                                               LastName = p.LastName,
-                                                               EmailAddress = p.EmailAddress,
-                                                               PhoneNumber = p.Phones.First(h => h.PhoneTypeID == 1).Number,
-                                                               StreetAddress = p.Addresses.First(pa => pa.AddressTypeID == 1).Address.StreetAddress,
-                                                               City = p.Addresses.First(pa => pa.AddressTypeID == 1).Address.City,
-                                                               State = p.Addresses.First(pa => pa.AddressTypeID == 1).Address.State,
-                                                               Zip = p.Addresses.First(pa => pa.AddressTypeID == 1).Address.Zip
-                                                           };
+                    if (persons.Count > 0)
+                    {
+                        IEnumerable<PersonDocument> personDocuments = from p in persons
+                                                                      select new PersonDocument
+                                                                      {
+                                                                          PersonID = p.PersonID,
+                                                                          FirstName = p.FirstName,
+                                                                          LastName = p.LastName,
+                                                                          EmailAddress = p.EmailAddress,
+                                                                          PhoneNumber = p.Phones.Any(h => h.PhoneTypeID == 1) ? p.Phones.First(h => h.PhoneTypeID == 1).Number : "",
+                                                                          StreetAddress = p.Addresses.Any(pa => pa.AddressTypeID == 1) ? p.Addresses.First(pa => pa.AddressTypeID == 1).Address.StreetAddress : "",
+                                                                          City = p.Addresses.Any(pa => pa.AddressTypeID == 1) ? p.Addresses.First(pa => pa.AddressTypeID == 1).Address.City : "",
+                                                                          State = p.Addresses.Any(pa => pa.AddressTypeID == 1) ? p.Addresses.First(pa => pa.AddressTypeID == 1).Address.State : "",
+                                                                          Zip = p.Addresses.Any(pa => pa.AddressTypeID == 1) ? p.Addresses.First(pa => pa.AddressTypeID == 1).Address.Zip : ""
+                                                                      };
 
-                    docUnitOfWork.Persons.AddBatch(personDocuments);
+                        docUnitOfWork.Persons.AddBatch(personDocuments);
 
-                    Console.WriteLine(string.Format("Complete {0} - {1}", startRow, startRow + throttleRate));                
+                        Console.WriteLine(string.Format("Complete {0} - {1}", startRow, startRow + throttleRate));
 
-                    // If the number of persons retrieved is less than throttleRate then we are finished
-                    if (personDocuments.Count() < throttleRate)
+                        // If the number of persons retrieved is less than throttleRate then we are finished
+                        if (personDocuments.Count() < throttleRate)
+                            break;
+                    }             
+                    else
+                    {
                         break;
+                    }
+                               
                 }
 
                 // Otherwise move the starting row by throttleRate number of persons

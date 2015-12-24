@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FootlooseFS.Models
 {
+    [KnownType(typeof(PersonAccount))]
+    [KnownType(typeof(Phone))]
+    [KnownType(typeof(PersonAddressAssn))]
+    [KnownType(typeof(PersonLogin))]
     public class Person
     {
         public int PersonID { get; set; }

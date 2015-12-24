@@ -1,5 +1,6 @@
 ﻿using FootlooseFS.DataPersistence;
 using FootlooseFS.Models;
+using FootlooseFS.QueueService;
 using FootlooseFS.Service;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace FootlooseFS.EnterpriseService
 
         public PersonService()
         {
-            footlooseService = new FootlooseFSService(new FootlooseFSSqlUnitOfWorkFactory());
+            footlooseService = new FootlooseFSService(new FootlooseFSSqlUnitOfWorkFactory(), new FootlooseFSNotificationService());
         }
 
         public PageOfPersonDocuments SearchPersons(int pageNumber, PersonSearchColumn personSearchColumn, SortDirection sortDirection, int numRecordsInPage, Dictionary<PersonSearchColumn, string> criteria)

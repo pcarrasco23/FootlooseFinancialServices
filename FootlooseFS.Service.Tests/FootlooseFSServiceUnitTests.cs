@@ -1,4 +1,5 @@
 ﻿using FootlooseFS.Models;
+using FootlooseFS.QueueService;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -17,13 +18,16 @@ namespace FootlooseFS.Service.Tests
         {
             var testUoW = new FootlooseFSTestUnitOfWork();            
             var mockUoWFactory = new Mock<IFootlooseFSUnitOfWorkFactory>();
+            var mockNotificationService = new Mock<IFootlooseFSNotificationService>();
 
             // Instead of instantiating a new UoW object in the factory we want to use the one we created so we can monitor
             // it's internal data and verify that the service did what is was supposed to do
             mockUoWFactory.Setup(m => m.CreateUnitOfWork()).Returns(testUoW);
 
+            mockNotificationService.Setup(m => m.SendPersonUpdatedNotification(It.IsAny<int>(), It.IsAny<string>())).Returns(true);
+
             var uowFactory = mockUoWFactory.Object;
-            var service = new FootlooseFSService(uowFactory);
+            var service = new FootlooseFSService(uowFactory, mockNotificationService.Object);
 
             var person = new Person
             {
@@ -114,13 +118,16 @@ namespace FootlooseFS.Service.Tests
         {
             var testUoW = new FootlooseFSTestUnitOfWork();
             var mockUoWFactory = new Mock<IFootlooseFSUnitOfWorkFactory>();
+            var mockNotificationService = new Mock<IFootlooseFSNotificationService>();
 
             // Instead of instantiating a new UoW object in the factory we want to use the one we created so we can monitor
             // it's internal data and verify that the service did what is was supposed to do
             mockUoWFactory.Setup(m => m.CreateUnitOfWork()).Returns(testUoW);
 
+            mockNotificationService.Setup(m => m.SendPersonUpdatedNotification(It.IsAny<int>(), It.IsAny<string>())).Returns(true);
+
             var uowFactory = mockUoWFactory.Object;
-            var service = new FootlooseFSService(uowFactory);
+            var service = new FootlooseFSService(uowFactory, mockNotificationService.Object);
 
             var person = new Person
             {

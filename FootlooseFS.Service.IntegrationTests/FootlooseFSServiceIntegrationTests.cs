@@ -5,6 +5,7 @@ using System.Data.Entity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FootlooseFS.DataPersistence;
 using FootlooseFS.Models;
+using FootlooseFS.QueueService;
 
 namespace FootlooseFS.Service.IntegrationTests
 {
@@ -15,7 +16,8 @@ namespace FootlooseFS.Service.IntegrationTests
         public void TestPersonDocumentSearch()
         {
             var uowFactory = new FootlooseFSSqlUnitOfWorkFactory();
-            var service = new FootlooseFSService(uowFactory);
+            var notificationService = new FootlooseFSNotificationService();
+            var service = new FootlooseFSService(uowFactory, notificationService);
 
             var searchCriteria = new Dictionary<PersonSearchColumn, string>();
             searchCriteria.Add(PersonSearchColumn.State, "NY");
@@ -33,7 +35,8 @@ namespace FootlooseFS.Service.IntegrationTests
         public void TestUpdatePerson()
         {
             var uowFactory = new FootlooseFSSqlUnitOfWorkFactory();
-            var service = new FootlooseFSService(uowFactory);
+            var notificationService = new FootlooseFSNotificationService();
+            var service = new FootlooseFSService(uowFactory, notificationService);
 
             // for this test lets get all of the linked tables and verify that we can properly query for all of the this information
             var person = service.GetPersonById(5, new PersonIncludes { Phones = true, Accounts = true, Addressses = true, AccountTransactions = true });
@@ -104,7 +107,8 @@ namespace FootlooseFS.Service.IntegrationTests
         public void TestInsertAndDeletePerson()
         {
             var uowFactory = new FootlooseFSSqlUnitOfWorkFactory();
-            var service = new FootlooseFSService(uowFactory);
+            var notificationService = new FootlooseFSNotificationService();
+            var service = new FootlooseFSService(uowFactory, notificationService);
 
             var person = new Person
             {

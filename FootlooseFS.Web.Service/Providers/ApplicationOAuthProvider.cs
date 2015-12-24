@@ -13,6 +13,7 @@ using FootlooseFS.Web.Service.Models;
 using FootlooseFS.Service;
 using FootlooseFS.DataPersistence;
 using FootlooseFS.Web.Service.Controllers;
+using FootlooseFS.QueueService;
 
 namespace FootlooseFS.Web.Service.Providers
 {
@@ -27,7 +28,7 @@ namespace FootlooseFS.Web.Service.Providers
         {
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
-            var service = new FootlooseFSService(new FootlooseFSSqlUnitOfWorkFactory());
+            var service = new FootlooseFSService(new FootlooseFSSqlUnitOfWorkFactory(), new FootlooseFSNotificationService());
 
             var personId = service.GetPersonID(context.UserName, context.Password);
             if (personId <= 0)

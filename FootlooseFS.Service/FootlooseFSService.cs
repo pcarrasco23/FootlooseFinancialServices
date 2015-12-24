@@ -9,17 +9,21 @@ using System.Threading.Tasks;
 using FootlooseFS.DataPersistence;
 using FootlooseFS.Models;
 using System.ComponentModel.DataAnnotations;
+using FootlooseFS.QueueService;
+using Newtonsoft.Json;
 
 namespace FootlooseFS.Service
 {
     public class FootlooseFSService : IFootlooseFSService
     {
         private readonly IFootlooseFSUnitOfWorkFactory unitOfWorkFactory;
+        private readonly IFootlooseFSNotificationService notificationService;
 
-        public FootlooseFSService(IFootlooseFSUnitOfWorkFactory unitOfWorkFactory)
+        public FootlooseFSService(IFootlooseFSUnitOfWorkFactory unitOfWorkFactory, IFootlooseFSNotificationService notificationService)
         {
             // The unit of work factory will determine which datastore will be used (SQL, MongoDB, Test)
             this.unitOfWorkFactory = unitOfWorkFactory;
+            this.notificationService = notificationService;
         }
 
         public PageOfList<PersonDocument> SearchPersonDocuments(int pageNumber, PersonSearchColumn personSearchColumn, SortDirection sortDirection, int numRecordsInPage, Dictionary<PersonSearchColumn, string> searchCriteria)
@@ -293,6 +297,10 @@ namespace FootlooseFS.Service
 
                         unitOfWork.Persons.Update(person);
                         unitOfWork.Commit();
+
+                        var json = serializePersonToPersonDocumentJson(person);
+
+                        notificationService.SendPersonUpdatedNotification(person.PersonID, json);
                     }                    
 
                     return new OperationStatus { Success = true, Data = person };
@@ -399,10 +407,13 @@ namespace FootlooseFS.Service
                 {
                     phone = new Phone();
                     phone.PersonID = updatePhone.PersonID;
-                    phone.PhoneTypeID = updatePhone.PhoneTypeID;
-                    phone.Number = updatePhone.Number;
+                    phone.PhoneTypeID = updatePhone.PhoneTypeID;                    
                     person.Phones.Add(phone);
                 }
+                else if (phone != null)
+                {
+                    phone.Number = updatePhone.Number;
+                }                         
             }
         }
 
@@ -438,5 +449,27 @@ namespace FootlooseFS.Service
                 addressAssn.Address.Zip = updatedAddressAssn.Address.Zip;
             }
         }        
+
+        private string serializePersonToPersonDocumentJson(Person person)
+        {
+            var personDocument = new PersonDocument();
+
+            personDocument.PersonID = person.PersonID;
+            personDocument.EmailAddress = person.EmailAddress;
+            personDocument.FirstName = person.FirstName;
+            personDocument.LastName = person.LastName;
+            personDocument.PhoneNumber = person.Phones.Any(p => p.PhoneTypeID == 1) ? person.Phones.First(p => p.PhoneTypeID == 1).Number : string.Empty;
+
+            var address = person.Addresses.Any(a => a.AddressTypeID == 1) ? person.Addresses.First(a => a.AddressTypeID == 1).Address : null;
+            if (address != null)
+            {
+                personDocument.StreetAddress = address.StreetAddress;
+                personDocument.City = address.City;
+                personDocument.State = address.State;
+                personDocument.Zip = address.Zip;
+            }
+
+            return JsonConvert.SerializeObject(personDocument);
+        }
     }
 }
