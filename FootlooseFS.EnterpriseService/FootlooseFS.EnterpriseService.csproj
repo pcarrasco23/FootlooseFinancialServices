@@ -63,6 +63,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="web.config.sample">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="web.config">
       <SubType>Designer</SubType>
     </None>

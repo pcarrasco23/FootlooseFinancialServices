@@ -5,7 +5,7 @@ import pymongo
 
 def lambda_handler(event, context):
     # Open a connection to the Mongo instance on EC2
-    client = pymongo.MongoClient("****************")
+    client = pymongo.MongoClient("*******")
 
     # Get a reference to the footloosefs Mongo database
     db = client.footloosefs
