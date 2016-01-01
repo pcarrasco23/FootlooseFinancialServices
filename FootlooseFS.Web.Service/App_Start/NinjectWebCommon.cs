@@ -13,6 +13,7 @@ namespace FootlooseFS.Web.Service.App_Start
     using FootlooseFS.Service;
     using FootlooseFS.Models;
     using FootlooseFS.DataPersistence;
+    using System.Web.Http;
 
     public static class NinjectWebCommon 
     {
@@ -46,12 +47,12 @@ namespace FootlooseFS.Web.Service.App_Start
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
-                kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
-
-                kernel.Bind<IFootlooseFSService>().To<FootlooseFSService>();
-                kernel.Bind<IFootlooseFSUnitOfWorkFactory>().To<FootlooseFSSqlUnitOfWorkFactory>();
+                kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();                
 
                 RegisterServices(kernel);
+
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
+
                 return kernel;
             }
             catch
@@ -67,6 +68,9 @@ namespace FootlooseFS.Web.Service.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<IFootlooseFSService>().To<FootlooseFSService>();
+            kernel.Bind<IFootlooseFSUnitOfWorkFactory>().To<FootlooseFSSqlUnitOfWorkFactory>();
+            kernel.Bind<IFootlooseFSNotificationService>().To<FootlooseFSNotificationService>();
         }        
     }
 }

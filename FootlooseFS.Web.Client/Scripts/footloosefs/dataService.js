@@ -1,6 +1,6 @@
 ﻿module.factory('dataService', function ($http, $q) {
     var service = {};
-    var url = "****";
+    var url = "http://peter-pc/FootlooseFSWebService";
 
     service.Login = function (username, password) {
         var loginRequest = "grant_type=password&username=" + username + "&password=" + password;

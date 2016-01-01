@@ -221,35 +221,13 @@ namespace FootlooseFS.Web.AdminUI.Tests
         {
             PersonController personController = new PersonController(mockPersonService.Object);
 
-            FormCollection formCollection = new FormCollection();
-            formCollection.Add("personID", "1");
-            formCollection.Add("firstName", "Pam");
-            formCollection.Add("lastName", "Scicchitano");
-            formCollection.Add("emailAddress", "pam@scicchitano.com");
+            var person = new Person();
+            person.PersonID = 1;            
+            person.FirstName = "Pam";
+            person.LastName = "Scicchitano";
+            person.EmailAddress = "pam@scicchitano.com";
 
-            formCollection.Add("homePhone", "336-418-5000");
-            formCollection.Add("workPhone", "336-418-4000");
-            formCollection.Add("cellPhone", "336-418-3000");
-
-            formCollection.Add("homeAddressID", "1");
-            formCollection.Add("homeStreetAddress", "38 S Dunworth St #4185");
-            formCollection.Add("homeCity", "Raleigh");
-            formCollection.Add("homeState", "NC");
-            formCollection.Add("homeZip", "27215");
-
-            formCollection.Add("workAddressID", "2");
-            formCollection.Add("workStreetAddress", "38 S Dunworth St #4185");
-            formCollection.Add("workCity", "Raleigh");
-            formCollection.Add("workState", "NC");
-            formCollection.Add("workZip", "27215");
-
-            formCollection.Add("altAddressID", "1");
-            formCollection.Add("altStreetAddress", "38 S Dunworth St #4185");
-            formCollection.Add("altCity", "Raleigh");
-            formCollection.Add("altState", "NC");
-            formCollection.Add("altZip", "27215");
-
-            ActionResult result = personController.Save(formCollection);
+            ActionResult result = personController.Save(person);
 
             // Verify that the result is of type JsonResult
             Assert.IsInstanceOfType(result, typeof(JsonResult));

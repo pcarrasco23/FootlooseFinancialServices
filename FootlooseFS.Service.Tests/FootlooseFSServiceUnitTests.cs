@@ -1,5 +1,4 @@
 ﻿using FootlooseFS.Models;
-using FootlooseFS.QueueService;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;

@@ -13,7 +13,6 @@ using FootlooseFS.Web.Service.Models;
 using FootlooseFS.Service;
 using FootlooseFS.DataPersistence;
 using FootlooseFS.Web.Service.Controllers;
-using FootlooseFS.QueueService;
 
 namespace FootlooseFS.Web.Service.Providers
 {

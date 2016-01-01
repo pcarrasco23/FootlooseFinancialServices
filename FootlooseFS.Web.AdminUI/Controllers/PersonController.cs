@@ -120,58 +120,6 @@ namespace FootlooseFS.Web.AdminUI.Controllers
             var person = personService.GetPersonById(personID, personIncludes);
             closePersonService();
 
-            var phoneList = new List<Phone>();
-
-            // Add home phone if not in the person Object
-            if (!person.Phones.Where(p => p.PhoneTypeID == 1).Any())
-                phoneList.Add(new Phone { PhoneTypeID = 1, Number = string.Empty });
-            else
-                phoneList.Add(person.Phones.Where(p => p.PhoneTypeID == 1).First());
-
-            // Add work phone if not in the person Object
-            if (!person.Phones.Where(p => p.PhoneTypeID == 2).Any())
-                phoneList.Add(new Phone { PhoneTypeID = 2, Number = string.Empty });
-            else
-                phoneList.Add(person.Phones.Where(p => p.PhoneTypeID == 2).First());
-
-            // Add cell phone if not in the person Object
-            if (!person.Phones.Where(p => p.PhoneTypeID == 3).Any())
-                phoneList.Add(new Phone { PhoneTypeID = 3, Number = string.Empty });
-            else
-                phoneList.Add(person.Phones.Where(p => p.PhoneTypeID == 3).First());
-
-            person.Phones = phoneList;
-
-            var emptyAddress = new Address 
-            { 
-                StreetAddress = string.Empty,
-                City = string.Empty,
-                State = string.Empty,
-                Zip = string.Empty
-            };
-
-            var addressList = new List<PersonAddressAssn>();
-
-            if (!person.Addresses.Where(a => a.AddressTypeID == 1).Any())
-                addressList.Add(new PersonAddressAssn { AddressTypeID = 1, Address = emptyAddress });
-            else
-                addressList.Add(person.Addresses.Where(a => a.AddressTypeID == 1).First());
-
-            if (!person.Addresses.Where(a => a.AddressTypeID == 2).Any())
-                addressList.Add(new PersonAddressAssn { AddressTypeID = 2, Address = emptyAddress });
-            else
-                addressList.Add(person.Addresses.Where(a => a.AddressTypeID == 2).First());
-
-            if (!person.Addresses.Where(a => a.AddressTypeID == 3).Any())
-                addressList.Add(new PersonAddressAssn { AddressTypeID = 3, Address = emptyAddress });
-            else
-                addressList.Add(person.Addresses.Where(a => a.AddressTypeID == 3).First());
-
-            person.Addresses = addressList;
-
-            if (person.Login == null)
-                person.Login = new PersonLogin();
-
             ViewBag.States = stateSelectList();
 
             return PartialView(person);            
@@ -179,115 +127,20 @@ namespace FootlooseFS.Web.AdminUI.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         [Authorize(Roles = "Admin,Demographics")]
-        public JsonResult Save(FormCollection formCollection)
-        {
-            var person = new Person();
-
-            int personID = 0;
-            Int32.TryParse(formCollection["personID"], out personID);
-
-            person.PersonID = personID;
-            person.FirstName = formCollection["firstName"];
-            person.LastName = formCollection["lastName"];
-            person.EmailAddress = formCollection["emailAddress"];
-
-            person.Phones = new List<Phone>();
-            person.Phones.Add(new Phone { PersonID = personID, PhoneTypeID = (int)PhoneTypes.Home, Number = formCollection["homePhone"] });
-            person.Phones.Add(new Phone { PersonID = personID, PhoneTypeID = (int)PhoneTypes.Work, Number = formCollection["workPhone"] });
-            person.Phones.Add(new Phone { PersonID = personID, PhoneTypeID = (int)PhoneTypes.Cell, Number = formCollection["cellPhone"] });
-
-            person.Addresses = new List<PersonAddressAssn>();
-
-            if (!string.IsNullOrEmpty(formCollection["homeStreetAddress"]))
-            {
-                var address = new Address();
-
-                int homeAddressID = 0;
-                Int32.TryParse(formCollection["homeAddressID"], out homeAddressID);
-                address.AddressID = homeAddressID;
-
-                address.StreetAddress = formCollection["homeStreetAddress"];
-                address.City = formCollection["homeCity"];
-                address.State = formCollection["homeState"];
-                address.Zip = formCollection["homeZip"];
-
-                person.Addresses.Add(new PersonAddressAssn { PersonID = personID, AddressID = homeAddressID, Address = address, AddressTypeID = (int)AddressTypes.Home });
-            }
-
-            if (!string.IsNullOrEmpty(formCollection["workStreetAddress"]))
-            {
-                var address = new Address();
-
-                int workAddressID = 0;
-                Int32.TryParse(formCollection["workAddressID"], out workAddressID);
-                address.AddressID = workAddressID;
-
-                address.StreetAddress = formCollection["workStreetAddress"];
-                address.City = formCollection["workCity"];
-                address.State = formCollection["workState"];
-                address.Zip = formCollection["workZip"];
-
-                person.Addresses.Add(new PersonAddressAssn { PersonID = personID, AddressID = workAddressID, Address = address, AddressTypeID = (int)AddressTypes.Work });
-            }
-
-            if (!string.IsNullOrEmpty(formCollection["altStreetAddress"]))
-            {
-                var address = new Address();
-
-                int altAddressID = 0;
-                Int32.TryParse(formCollection["altAddressID"], out altAddressID);
-                address.AddressID = altAddressID;
-
-                address.StreetAddress = formCollection["altStreetAddress"];
-                address.City = formCollection["altCity"];
-                address.State = formCollection["altState"];
-                address.Zip = formCollection["altZip"];
-
-                person.Addresses.Add(new PersonAddressAssn { PersonID = personID, AddressID = altAddressID, Address = address, AddressTypeID = (int)AddressTypes.Alternate });
-            }
-            
+        public ContentResult Save(Person person)
+        {            
             if (person.PersonID == 0)
             {
                 var opStatus = personService.InsertPerson(person);
 
-                var newPerson = (Person)opStatus.Data;
-
-                var savePersonResult = new SavePersonResult
-                    {
-                        Message = "The person has been created in the system.",
-                        Person = newPerson,
-                        PersonID = newPerson.PersonID,
-                        HomeAddressID = newPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Home).Any() ?
-                                        newPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Home).First().AddressID : 0,
-                        WorkAddressID = newPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Work).Any() ?
-                                        newPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Work).First().AddressID : 0,
-                        AlternateAddressID = newPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Alternate).Any() ?
-                                        newPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Alternate).First().AddressID : 0,
-                    };
-
-                return Json(savePersonResult);
+                return Content("The person has been created in the system.");
             }                
             else
             {
                 var opStatus = personService.UpdatePerson(person);
                 closePersonService();
 
-                var updatedPerson = (Person)opStatus.Data;
-
-                var savePersonResult = new SavePersonResult
-                {
-                    Message = "The person has been updated",
-                    Person = updatedPerson,
-                    PersonID = updatedPerson.PersonID,
-                    HomeAddressID = updatedPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Home).Any() ?
-                                    updatedPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Home).First().AddressID : 0,
-                    WorkAddressID = updatedPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Work).Any() ?
-                                    updatedPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Work).First().AddressID : 0,
-                    AlternateAddressID = updatedPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Alternate).Any() ?
-                                    updatedPerson.Addresses.Where(a => a.AddressTypeID == (int)AddressTypes.Alternate).First().AddressID : 0,
-                };
-
-                return Json(savePersonResult);                
+                return Content("The person has been updated");                
             }
         }
 

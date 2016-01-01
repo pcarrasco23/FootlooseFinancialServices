@@ -1,6 +1,5 @@
 ﻿using FootlooseFS.DataPersistence;
 using FootlooseFS.Models;
-using FootlooseFS.QueueService;
 using FootlooseFS.Service;
 using System;
 using System.Collections.Generic;

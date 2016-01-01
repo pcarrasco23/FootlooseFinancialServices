@@ -28,9 +28,9 @@ namespace FootlooseFS.Models
         [StringLength(100)]
         public string EmailAddress { get; set; }
 
-        public virtual ICollection<PersonAccount> Accounts { get; set; }
-        public virtual ICollection<Phone> Phones { get; set; }
-        public virtual ICollection<PersonAddressAssn> Addresses { get; set; }
+        public virtual List<PersonAccount> Accounts { get; set; }
+        public virtual List<Phone> Phones { get; set; }
+        public virtual List<PersonAddressAssn> Addresses { get; set; }
         public virtual PersonLogin Login { get; set; }
     }
 }

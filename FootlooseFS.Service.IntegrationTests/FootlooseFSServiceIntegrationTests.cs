@@ -5,7 +5,6 @@ using System.Data.Entity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FootlooseFS.DataPersistence;
 using FootlooseFS.Models;
-using FootlooseFS.QueueService;
 
 namespace FootlooseFS.Service.IntegrationTests
 {

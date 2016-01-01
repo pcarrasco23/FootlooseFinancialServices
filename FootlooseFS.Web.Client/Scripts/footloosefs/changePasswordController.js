@@ -2,7 +2,7 @@
     $scope.isBusy = false;
     $scope.isUpdated = false;
     $scope.isError = false;
-    $scope.ErrorMessage = false;
+    $scope.ErrorMessage = "";
 
     $scope.data = {
         OldPassword: '',

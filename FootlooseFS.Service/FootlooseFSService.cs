@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using FootlooseFS.DataPersistence;
 using FootlooseFS.Models;
 using System.ComponentModel.DataAnnotations;
-using FootlooseFS.QueueService;
 using Newtonsoft.Json;
 
 namespace FootlooseFS.Service
@@ -197,7 +196,48 @@ namespace FootlooseFS.Service
                 }
                 
                 if (personQueryable.Any())
+                {
                     person = personQueryable.First();
+
+                    if (personIncludes.Phones)
+                    {
+                        // Add home phone if not in the person Object
+                        if (!person.Phones.Where(p => p.PhoneTypeID == 1).Any())
+                            person.Phones.Add(new Phone { PhoneTypeID = 1, Number = string.Empty, PhoneType = new PhoneType { Name = "Home" } });
+
+                        // Add work phone if not in the person Object
+                        if (!person.Phones.Where(p => p.PhoneTypeID == 2).Any())
+                            person.Phones.Add(new Phone { PhoneTypeID = 2, Number = string.Empty, PhoneType = new PhoneType { Name = "Work" } });
+
+                        // Add cell phone if not in the person Object
+                        if (!person.Phones.Where(p => p.PhoneTypeID == 3).Any())
+                            person.Phones.Add(new Phone { PhoneTypeID = 3, Number = string.Empty, PhoneType = new PhoneType { Name = "Cell" } });
+
+                    }
+
+                    if (personIncludes.Addressses)
+                    {
+                        var emptyAddress = new Address
+                        {
+                            StreetAddress = string.Empty,
+                            City = string.Empty,
+                            State = string.Empty,
+                            Zip = string.Empty
+                        };
+
+                        if (!person.Addresses.Where(a => a.AddressTypeID == 1).Any())
+                            person.Addresses.Add(new PersonAddressAssn { AddressTypeID = 1, Address = emptyAddress, AddressType = new AddressType { Name = "Home" } });
+
+                        if (!person.Addresses.Where(a => a.AddressTypeID == 2).Any())
+                            person.Addresses.Add(new PersonAddressAssn { AddressTypeID = 2, Address = emptyAddress, AddressType = new AddressType { Name = "Work" } });
+
+                        if (!person.Addresses.Where(a => a.AddressTypeID == 3).Any())
+                            person.Addresses.Add(new PersonAddressAssn { AddressTypeID = 3, Address = emptyAddress, AddressType = new AddressType { Name = "Alternate" } });
+                    }
+
+                    if (personIncludes.Login && person.Login == null)
+                        person.Login = new PersonLogin();
+                }
             }
 
             return person;
@@ -432,7 +472,7 @@ namespace FootlooseFS.Service
             else
             {
                 var addressAssn = person.Addresses.Where(a => a.AddressTypeID == addressType).FirstOrDefault();
-                if (addressAssn == null)
+                if (addressAssn == null && !string.IsNullOrEmpty(updatedAddressAssn.Address.StreetAddress))
                 {
                     addressAssn = new PersonAddressAssn();
                     addressAssn.PersonID = updatedAddressAssn.PersonID;
@@ -442,11 +482,13 @@ namespace FootlooseFS.Service
                     person.Addresses.Add(addressAssn);
 
                 }
-
-                addressAssn.Address.StreetAddress = updatedAddressAssn.Address.StreetAddress;
-                addressAssn.Address.City = updatedAddressAssn.Address.City;
-                addressAssn.Address.State = updatedAddressAssn.Address.State;
-                addressAssn.Address.Zip = updatedAddressAssn.Address.Zip;
+                else if (addressAssn != null)
+                {
+                    addressAssn.Address.StreetAddress = updatedAddressAssn.Address.StreetAddress;
+                    addressAssn.Address.City = updatedAddressAssn.Address.City;
+                    addressAssn.Address.State = updatedAddressAssn.Address.State;
+                    addressAssn.Address.Zip = updatedAddressAssn.Address.Zip;
+                }                
             }
         }        
 

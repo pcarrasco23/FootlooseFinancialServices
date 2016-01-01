@@ -15,6 +15,7 @@ namespace FootlooseFS.Web.AdminUI
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+
             var kernel = new StandardKernel();
 
             kernel.Bind<IPersonService>().To<PersonServiceClient>();
