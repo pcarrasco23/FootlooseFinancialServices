@@ -161,5 +161,5 @@ $RECYCLE.BIN/
 # Web or App configs
 /FootlooseFS.EnterpriseService/web.config
 /FootlooseFS.Service.IntegrationTests/app.config
-/FootlooseFSDocumentDBETL/app.config
+/FootlooseFSDocumentDBETL/FootlooseFSDocumentDBETL/app.config
 
