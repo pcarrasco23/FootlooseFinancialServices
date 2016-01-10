@@ -14,7 +14,7 @@ namespace FootlooseFS.DataPersistence
         protected FootlooseFSDBContext _dbContext;
         protected SqlRepository<Member> _members;
         protected SqlRepository<MemberProfile> _memberProfiles;
-        protected SqlRepository<Person> _persons;
+        protected PersonRepository _persons;
         protected SqlRepository<Phone> _phones;
         protected SqlRepository<Address> _addresses;
         protected SqlRepository<PersonAddressAssn> _personAddressAssns;
@@ -50,12 +50,12 @@ namespace FootlooseFS.DataPersistence
             }
         }
 
-        public IRepository<Person> Persons
+        public IPersonRepository Persons
         {
             get
             {
                 if (_persons == null)
-                    _persons = new SqlRepository<Person>(_dbContext);
+                    _persons = new PersonRepository(_dbContext, this);
 
                 return _persons;
             }            

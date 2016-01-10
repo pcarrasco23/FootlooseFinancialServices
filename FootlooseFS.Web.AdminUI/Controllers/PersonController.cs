@@ -35,16 +35,11 @@ namespace FootlooseFS.Web.AdminUI.Controllers
         [HttpPost]
         public ActionResult Search(SearchParameters searchParameters)
         {
-            // Serialize sort column to an enum of PersonSearchColumn
-            PersonSearchColumn personSearchColumn = PersonSearchColumn.LastName;
-            Enum.TryParse<PersonSearchColumn>(searchParameters.SortColumn, out personSearchColumn);
-
             // Serialize sort direction to an enum of SortDirection
             SortDirection sortDirection = SortDirection.Ascending;
             Enum.TryParse<SortDirection>(searchParameters.SortDirection, out sortDirection);
 
-            // Serialize the search criteria array into a dictionary of person search column and value
-            Dictionary<PersonSearchColumn, string> searchCriteria = new Dictionary<PersonSearchColumn, string>();
+            var searchCriteria = new PersonDocument();
 
             if (searchParameters.SearchCriteria != null && searchParameters.SearchCriteria.Count() > 0)
             {
@@ -52,17 +47,29 @@ namespace FootlooseFS.Web.AdminUI.Controllers
                 {
                     if (!string.IsNullOrEmpty(searchCriterion.Value))
                     {
-                        PersonSearchColumn column = PersonSearchColumn.None;
-                        Enum.TryParse<PersonSearchColumn>(searchCriterion.Key, out column);
-
-                        if (column != PersonSearchColumn.None)
-                            searchCriteria.Add(column, searchCriterion.Value);
+                        if (searchCriterion.Key == "PersonID")
+                            searchCriteria.PersonID = Int32.Parse(searchCriterion.Value);
+                        else if (searchCriterion.Key == "FirstName")
+                            searchCriteria.FirstName = searchCriterion.Value;
+                        else if (searchCriterion.Key == "LastName")
+                            searchCriteria.LastName = searchCriterion.Value;
+                        else if (searchCriterion.Key == "PhoneNumber")
+                            searchCriteria.PhoneNumber = searchCriterion.Value;
+                        else if (searchCriterion.Key == "StreetAddress")
+                            searchCriteria.StreetAddress = searchCriterion.Value;
+                        else if (searchCriterion.Key == "City")
+                            searchCriteria.City = searchCriterion.Value;
+                        else if (searchCriterion.Key == "Zip")
+                            searchCriteria.Zip = searchCriterion.Value;
+                        else if (searchCriterion.Key == "State")
+                            searchCriteria.State = searchCriterion.Value;
+                        else if (searchCriterion.Key == "EmailAddress")
+                            searchCriteria.EmailAddress = searchCriterion.Value;
                     }
                 }
             }
 
-            var personsPage = personService.SearchPersons(searchParameters.PageNumber, personSearchColumn, sortDirection, searchParameters.NumberRecordsPerPage, searchCriteria);
-            closePersonService();
+            var personsPage = personService.SearchPersons(searchParameters.PageNumber, searchParameters.NumberRecordsPerPage, searchParameters.SortColumn, sortDirection, searchCriteria);
 
             var pageOfListPersonDocuments = new PageOfList<PersonDocument>(personsPage.Data, searchParameters.PageNumber, searchParameters.NumberRecordsPerPage, personsPage.TotalItemCount);
             pageOfListPersonDocuments.SearchCriteria = searchParameters.SearchCriteria;
@@ -118,7 +125,6 @@ namespace FootlooseFS.Web.AdminUI.Controllers
             personIncludes.Login = true;
 
             var person = personService.GetPersonById(personID, personIncludes);
-            closePersonService();
 
             ViewBag.States = stateSelectList();
 
@@ -138,7 +144,6 @@ namespace FootlooseFS.Web.AdminUI.Controllers
             else
             {
                 var opStatus = personService.UpdatePerson(person);
-                closePersonService();
 
                 return Content("The person has been updated");                
             }
@@ -200,12 +205,6 @@ namespace FootlooseFS.Web.AdminUI.Controllers
                 new SelectListItem() { Text="Wisconsin", Value="WI"},
                 new SelectListItem() { Text="Wyoming", Value="WY"}
             };          
-        }
-
-        private void closePersonService()
-        {
-            if (personService is PersonServiceClient)
-                ((PersonServiceClient)personService).Close();
         }
 	}
 }

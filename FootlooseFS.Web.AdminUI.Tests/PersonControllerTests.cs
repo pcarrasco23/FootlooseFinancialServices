@@ -39,7 +39,7 @@ namespace FootlooseFS.Web.AdminUI.Tests
             pageOfPersonDocuments.PageSize = pageOfListPerson.PageSize;
 
             // Mock SearchPersonDocument and UpdatePerson service methods
-            mockPersonService.Setup(m => m.SearchPersons(It.IsAny<int>(), It.IsAny<PersonSearchColumn>(), It.IsAny<SortDirection>(), It.IsAny<int>(), It.IsAny<Dictionary<PersonSearchColumn, string>>())).Returns(pageOfPersonDocuments);
+            mockPersonService.Setup(m => m.SearchPersons(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<SortDirection>(), It.IsAny<PersonDocument>())).Returns(pageOfPersonDocuments);
             mockPersonService.Setup(m => m.UpdatePerson(It.IsAny<Person>())).Returns((Person p) => { return SetupOperationStatus(p); });
         }
 

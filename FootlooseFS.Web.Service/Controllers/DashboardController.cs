@@ -1,4 +1,5 @@
-﻿using FootlooseFS.Service;
+﻿using FootlooseFS.Models;
+using FootlooseFS.Service;
 using FootlooseFS.Web.Service.Models;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace FootlooseFS.Web.Service.Controllers
         {
             var dashboardViewModel = new DashboardViewModel();
 
-            var person = service.GetPersonByUsername(authenticatedUser, new PersonIncludes { Accounts = false, AccountTransactions = false, Addressses = false, Login = false, Phones = false });
+            var person = service.GetPersonByUsername(authenticatedUser, new PersonIncludes());
 
             dashboardViewModel.FirstName = person.FirstName;
             dashboardViewModel.LastName = person.LastName;

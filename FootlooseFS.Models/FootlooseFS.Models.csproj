@@ -57,12 +57,14 @@
     <Compile Include="MemberProfile.cs" />
     <Compile Include="PageOfList.cs" />
     <Compile Include="PersistanceInterfaces\IFootlooseFSUnitOfWorkFactory.cs" />
+    <Compile Include="PersistanceInterfaces\IPersonRepository.cs" />
     <Compile Include="PersistanceInterfaces\IRepository.cs" />
     <Compile Include="PersistanceInterfaces\IFootlooseFSUnitOfWork.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="PersonAccount.cs" />
     <Compile Include="PersonAddressAssn.cs" />
     <Compile Include="PersonDocument.cs" />
+    <Compile Include="PersonIncludes.cs" />
     <Compile Include="PersonLogin.cs" />
     <Compile Include="Phone.cs" />
     <Compile Include="PhoneType.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="RelationshipType.cs" />
     <Compile Include="SearchCriterion.cs" />
     <Compile Include="SearchParameters.cs" />
+    <Compile Include="SortDirection.cs" />
     <Compile Include="TransactionType.cs" />
     <Compile Include="Member.cs" />
   </ItemGroup>

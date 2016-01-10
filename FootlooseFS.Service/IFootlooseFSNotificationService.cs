@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace FootlooseFS.Service
 {
-    public enum SortDirection
+    public interface IFootlooseFSNotificationService
     {
-        Ascending,
-        Descending
+        bool SendPersonUpdatedNotification(int personId, string message);
     }
 }

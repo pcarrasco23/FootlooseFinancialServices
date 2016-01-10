@@ -11,7 +11,7 @@ using FootlooseFS.Models;
 
 namespace FootlooseFS.DataPersistence
 {
-    public class SqlRepository<T> : IRepository<T> where T : class
+    public class SqlRepository<T> : BaseRepository<T>, IRepository<T> where T : class
     {
         protected DbContext _dbContext;
 
@@ -25,37 +25,39 @@ namespace FootlooseFS.DataPersistence
 
         #region IRepository<T> Members
 
-        public virtual void Add(T entity)
+        public override void Add(T entity)
         {
             _dbContext.Set<T>().Add(entity);           
         }
 
-        public virtual void AddBatch(IEnumerable<T> entities)
+        public override void AddBatch(IEnumerable<T> entities)
         {
             _dbContext.Set<T>().AddRange(entities);
         }
 
-        public virtual void Delete(T entity)
+        public override void Delete(T entity)
         {
             _dbContext.Entry(entity).State = EntityState.Deleted;
         }
 
-        public virtual void Delete(Expression<Func<T, int>> queryExpression, int id)
+        public override void Delete(Expression<Func<T, int>> queryExpression, int id)
         {
             throw new NotImplementedException();
         }
 
-        public virtual void DeleteAll()
+        public override void DeleteAll()
         {
             throw new NotImplementedException();
         }
 
-        public virtual void Update(T entity)
+        public override T Update(T entity)
         {
             _dbContext.Entry<T>(entity).State = EntityState.Modified;
+
+            return entity;
         }
 
-        public virtual IQueryable<T> GetQueryable()
+        public override IQueryable<T> GetQueryable()
         {
             return _dbContext.Set<T>();
         }

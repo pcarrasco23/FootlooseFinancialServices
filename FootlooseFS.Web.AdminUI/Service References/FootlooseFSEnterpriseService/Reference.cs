@@ -111,23 +111,24 @@ namespace FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService {
     public interface IPersonService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/SearchPersons", ReplyAction="http://tempuri.org/IPersonService/SearchPersonsResponse")]
-        FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService.PageOfPersonDocuments SearchPersons(int pageNumber, FootlooseFS.Service.PersonSearchColumn personSearchColumn, FootlooseFS.Service.SortDirection sortDirection, int numRecordsInPage, System.Collections.Generic.Dictionary<FootlooseFS.Service.PersonSearchColumn, string> criteria);
+        FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService.PageOfPersonDocuments SearchPersons(int pageNumber, int numRecordsInPage, string sort, FootlooseFS.Models.SortDirection sortDirection, FootlooseFS.Models.PersonDocument searchCriteria);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/SearchPersons", ReplyAction="http://tempuri.org/IPersonService/SearchPersonsResponse")]
-        System.Threading.Tasks.Task<FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService.PageOfPersonDocuments> SearchPersonsAsync(int pageNumber, FootlooseFS.Service.PersonSearchColumn personSearchColumn, FootlooseFS.Service.SortDirection sortDirection, int numRecordsInPage, System.Collections.Generic.Dictionary<FootlooseFS.Service.PersonSearchColumn, string> criteria);
+        System.Threading.Tasks.Task<FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService.PageOfPersonDocuments> SearchPersonsAsync(int pageNumber, int numRecordsInPage, string sort, FootlooseFS.Models.SortDirection sortDirection, FootlooseFS.Models.PersonDocument searchCriteria);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/GetPersonById", ReplyAction="http://tempuri.org/IPersonService/GetPersonByIdResponse")]
-        FootlooseFS.Models.Person GetPersonById(int personID, FootlooseFS.Service.PersonIncludes personIncludes);
+        FootlooseFS.Models.Person GetPersonById(int personID, FootlooseFS.Models.PersonIncludes personIncludes);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/GetPersonById", ReplyAction="http://tempuri.org/IPersonService/GetPersonByIdResponse")]
-        System.Threading.Tasks.Task<FootlooseFS.Models.Person> GetPersonByIdAsync(int personID, FootlooseFS.Service.PersonIncludes personIncludes);
+        System.Threading.Tasks.Task<FootlooseFS.Models.Person> GetPersonByIdAsync(int personID, FootlooseFS.Models.PersonIncludes personIncludes);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/InsertPerson", ReplyAction="http://tempuri.org/IPersonService/InsertPersonResponse")]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService.PageOfPersonDocuments))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<FootlooseFS.Service.PersonSearchColumn, string>))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.Models.PersonDocument>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.SortDirection))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.PersonDocument))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.Models.PersonDocument>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.PersonIncludes))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.Person))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.Models.PersonAccount>))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.PersonAccount))]
@@ -142,12 +143,9 @@ namespace FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.Address))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.AddressType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.PersonLogin))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.Models.Phone>))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.Phone))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.PhoneType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Service.PersonSearchColumn))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Service.SortDirection))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Service.PersonIncludes))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.Models.Phone>))]
         FootlooseFS.Service.OperationStatus InsertPerson(FootlooseFS.Models.Person person);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/InsertPerson", ReplyAction="http://tempuri.org/IPersonService/InsertPersonResponse")]
@@ -155,10 +153,11 @@ namespace FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/UpdatePerson", ReplyAction="http://tempuri.org/IPersonService/UpdatePersonResponse")]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService.PageOfPersonDocuments))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<FootlooseFS.Service.PersonSearchColumn, string>))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.Models.PersonDocument>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.SortDirection))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.PersonDocument))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.Models.PersonDocument>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.PersonIncludes))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.Person))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.Models.PersonAccount>))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.PersonAccount))]
@@ -173,12 +172,9 @@ namespace FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.Address))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.AddressType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.PersonLogin))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.Models.Phone>))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.Phone))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.PhoneType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Service.PersonSearchColumn))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Service.SortDirection))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Service.PersonIncludes))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.Models.Phone>))]
         FootlooseFS.Service.OperationStatus UpdatePerson(FootlooseFS.Models.Person person);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/UpdatePerson", ReplyAction="http://tempuri.org/IPersonService/UpdatePersonResponse")]
@@ -186,10 +182,11 @@ namespace FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/DeletePerson", ReplyAction="http://tempuri.org/IPersonService/DeletePersonResponse")]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService.PageOfPersonDocuments))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<FootlooseFS.Service.PersonSearchColumn, string>))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.Models.PersonDocument>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.SortDirection))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.PersonDocument))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.Models.PersonDocument>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.PersonIncludes))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.Person))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.Models.PersonAccount>))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.PersonAccount))]
@@ -204,12 +201,9 @@ namespace FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.Address))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.AddressType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.PersonLogin))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.Models.Phone>))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.Phone))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Models.PhoneType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Service.PersonSearchColumn))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Service.SortDirection))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(FootlooseFS.Service.PersonIncludes))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.Models.Phone>))]
         FootlooseFS.Service.OperationStatus DeletePerson(FootlooseFS.Models.Person person);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/DeletePerson", ReplyAction="http://tempuri.org/IPersonService/DeletePersonResponse")]
@@ -243,19 +237,19 @@ namespace FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService {
                 base(binding, remoteAddress) {
         }
         
-        public FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService.PageOfPersonDocuments SearchPersons(int pageNumber, FootlooseFS.Service.PersonSearchColumn personSearchColumn, FootlooseFS.Service.SortDirection sortDirection, int numRecordsInPage, System.Collections.Generic.Dictionary<FootlooseFS.Service.PersonSearchColumn, string> criteria) {
-            return base.Channel.SearchPersons(pageNumber, personSearchColumn, sortDirection, numRecordsInPage, criteria);
+        public FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService.PageOfPersonDocuments SearchPersons(int pageNumber, int numRecordsInPage, string sort, FootlooseFS.Models.SortDirection sortDirection, FootlooseFS.Models.PersonDocument searchCriteria) {
+            return base.Channel.SearchPersons(pageNumber, numRecordsInPage, sort, sortDirection, searchCriteria);
         }
         
-        public System.Threading.Tasks.Task<FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService.PageOfPersonDocuments> SearchPersonsAsync(int pageNumber, FootlooseFS.Service.PersonSearchColumn personSearchColumn, FootlooseFS.Service.SortDirection sortDirection, int numRecordsInPage, System.Collections.Generic.Dictionary<FootlooseFS.Service.PersonSearchColumn, string> criteria) {
-            return base.Channel.SearchPersonsAsync(pageNumber, personSearchColumn, sortDirection, numRecordsInPage, criteria);
+        public System.Threading.Tasks.Task<FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService.PageOfPersonDocuments> SearchPersonsAsync(int pageNumber, int numRecordsInPage, string sort, FootlooseFS.Models.SortDirection sortDirection, FootlooseFS.Models.PersonDocument searchCriteria) {
+            return base.Channel.SearchPersonsAsync(pageNumber, numRecordsInPage, sort, sortDirection, searchCriteria);
         }
         
-        public FootlooseFS.Models.Person GetPersonById(int personID, FootlooseFS.Service.PersonIncludes personIncludes) {
+        public FootlooseFS.Models.Person GetPersonById(int personID, FootlooseFS.Models.PersonIncludes personIncludes) {
             return base.Channel.GetPersonById(personID, personIncludes);
         }
         
-        public System.Threading.Tasks.Task<FootlooseFS.Models.Person> GetPersonByIdAsync(int personID, FootlooseFS.Service.PersonIncludes personIncludes) {
+        public System.Threading.Tasks.Task<FootlooseFS.Models.Person> GetPersonByIdAsync(int personID, FootlooseFS.Models.PersonIncludes personIncludes) {
             return base.Channel.GetPersonByIdAsync(personID, personIncludes);
         }
         

@@ -15,12 +15,12 @@ namespace FootlooseFS.Service
         /// SearchPersonDocuments - Return a collection of PersonDocument objects that uses paging   
         /// </summary>
         /// <param name="pageNumber"></param>
-        /// <param name="personSearchColumn"></param>
+        /// <param name="sort"></param>
         /// <param name="sortDirection"></param>
         /// <param name="numRecordsInPage"></param>
         /// <param name="criteria"></param>
         /// <returns></returns>
-        PageOfList<PersonDocument> SearchPersonDocuments(int pageNumber, PersonSearchColumn personSearchColumn, SortDirection sortDirection, int numRecordsInPage, Dictionary<PersonSearchColumn, string> criteria);
+        PageOfList<PersonDocument> SearchPersonDocuments(int pageNumber, int numRecordsInPage, string sort, SortDirection sortDirection, PersonDocument searchCriteria);
 
         /// <summary>
         /// GetPersonById - Return the Person entity indentified by the personID

@@ -10,7 +10,7 @@ namespace FootlooseFS.Service.Tests
 {
     public class TestRepository<T> : IRepository<T> where T : class
     {
-        private List<T> repository;
+        protected List<T> repository;
 
         public TestRepository()
         {
@@ -44,15 +44,19 @@ namespace FootlooseFS.Service.Tests
             repository.Clear();
         }
 
-        public virtual void Update(T entity)
+        public virtual T Update(T entity)
         {
-            repository.Remove(entity);
-            repository.Add(entity);
+            throw new NotImplementedException();
         }
 
         public virtual IQueryable<T> GetQueryable()
         {
             return repository.AsQueryable<T>();
+        }
+
+        public PageOfList<T> Search(int pageNumber, int numRecsPerPage, T searchCriteria, string sort, SortDirection sortDirection)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

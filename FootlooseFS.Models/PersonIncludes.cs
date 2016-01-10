@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FootlooseFS.Service
+namespace FootlooseFS.Models
 {
     public class PersonIncludes
     {

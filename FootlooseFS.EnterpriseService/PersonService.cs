@@ -19,9 +19,9 @@ namespace FootlooseFS.EnterpriseService
             footlooseService = new FootlooseFSService(new FootlooseFSSqlUnitOfWorkFactory(), new FootlooseFSNotificationService());
         }
 
-        public PageOfPersonDocuments SearchPersons(int pageNumber, PersonSearchColumn personSearchColumn, SortDirection sortDirection, int numRecordsInPage, Dictionary<PersonSearchColumn, string> criteria)
+        public PageOfPersonDocuments SearchPersons(int pageNumber, int numRecordsInPage, string sort, SortDirection sortDirection, PersonDocument searchCriteria)
         {
-            var pageOfListPerson = footlooseService.SearchPersonDocuments(pageNumber, personSearchColumn, sortDirection, numRecordsInPage, criteria);
+            var pageOfListPerson = footlooseService.SearchPersonDocuments(pageNumber, numRecordsInPage, sort, sortDirection, searchCriteria);
 
             var pageOfPersons = new PageOfPersonDocuments();
             pageOfPersons.Data = pageOfListPerson.Data;

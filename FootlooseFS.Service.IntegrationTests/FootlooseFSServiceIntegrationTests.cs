@@ -18,10 +18,10 @@ namespace FootlooseFS.Service.IntegrationTests
             var notificationService = new FootlooseFSNotificationService();
             var service = new FootlooseFSService(uowFactory, notificationService);
 
-            var searchCriteria = new Dictionary<PersonSearchColumn, string>();
-            searchCriteria.Add(PersonSearchColumn.State, "NY");
+            var searchCriteria = new PersonDocument();
+            searchCriteria.State = "NY";
 
-            var pageOfListPersonDocuments = service.SearchPersonDocuments(1, PersonSearchColumn.LastName, SortDirection.Ascending, 10, searchCriteria);
+            var pageOfListPersonDocuments = service.SearchPersonDocuments(1, 10, "LastName", SortDirection.Ascending, searchCriteria);
 
             // Verify that only 10 records or less are returned
             Assert.IsTrue(pageOfListPersonDocuments.Data.Count <= 10);
@@ -156,11 +156,11 @@ namespace FootlooseFS.Service.IntegrationTests
             Assert.AreEqual(homePhone.Number, "813-657-2222");
 
             // Verify that there is no work number
-            var workPhone = insertedPersonFromUoW.Phones.Where(p => p.PhoneTypeID == 2);
+            var workPhone = insertedPersonFromUoW.Phones.Where(p => p.PhoneTypeID == 2 && ! string.IsNullOrEmpty(p.Number));
             Assert.AreEqual(workPhone.Count(), 0);
 
             // Verify that there is no cell number
-            var cellPhone = insertedPersonFromUoW.Phones.Where(p => p.PhoneTypeID == 3);
+            var cellPhone = insertedPersonFromUoW.Phones.Where(p => p.PhoneTypeID == 3 && !string.IsNullOrEmpty(p.Number));
             Assert.AreEqual(cellPhone.Count(), 0);
 
             // Verify that the address was updated

@@ -10,7 +10,7 @@ namespace FootlooseFS.Models
     {
         IRepository<Member> Members { get; }
         IRepository<MemberProfile> MemberProfiles { get; }
-        IRepository<Person> Persons { get; }
+        IPersonRepository Persons { get; }
         IRepository<Phone> Phones { get; }
         IRepository<Address> Addresses { get; }
         IRepository<PersonAddressAssn> PersonAddressAssns { get; }

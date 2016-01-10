@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Bson.Serialization;
+using FootlooseFS.DataPersistence.Doc;
 
 namespace FootlooseFS.DataPersistence
 {
@@ -31,7 +32,7 @@ namespace FootlooseFS.DataPersistence
             get
             {
                 if (_persons == null)
-                    _persons = new DocRepository<PersonDocument>(_database, "persons");
+                    _persons = new PersonDocumentRepository(_database, "persons");
 
                 return _persons;
             }

@@ -11,7 +11,7 @@ namespace FootlooseFS.Service.Tests
     {
         protected TestRepository<Member> _members;
         protected TestRepository<MemberProfile> _memberProfiles;
-        protected TestRepository<Person> _persons;
+        protected PersonTestRepository _persons;
         protected TestRepository<Phone> _phones;
         protected TestRepository<Address> _addresses;
         protected TestRepository<PersonAddressAssn> _personAddressAssns;
@@ -24,7 +24,7 @@ namespace FootlooseFS.Service.Tests
         {
             List<Person> persons = TestDataStore.GetPersonTestData();
 
-            _persons = new TestRepository<Person>();
+            _persons = new PersonTestRepository();
 
             foreach (Person person in persons)
                 _persons.Add(person);
@@ -52,13 +52,10 @@ namespace FootlooseFS.Service.Tests
             }
         }
 
-        public IRepository<Person> Persons
+        public IPersonRepository Persons
         {
             get
             {
-                if (_persons == null)
-                    _persons = new TestRepository<Person>();
-
                 return _persons;
             }            
         }

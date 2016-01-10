@@ -63,12 +63,9 @@
     <Compile Include="FootlooseFSNotificationService.cs" />
     <Compile Include="IFootlooseFSNotificationService.cs" />
     <Compile Include="IFootlooseFSService.cs" />
-    <Compile Include="Models\OperationStatus.cs" />
-    <Compile Include="Models\PersonIncludes.cs" />
-    <Compile Include="Models\PersonSearchColumn.cs" />
+    <Compile Include="OperationStatus.cs" />
     <Compile Include="FootlooseFSService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\SortDirection.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FootlooseFS.DataPersistence\FootlooseFS.DataPersistence.csproj">

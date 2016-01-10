@@ -52,12 +52,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseRepository.cs" />
     <Compile Include="Doc\DocRepository.cs" />
     <Compile Include="Doc\FootlooseFSDocUnitOfWork.cs" />
+    <Compile Include="Doc\PersonDocumentRepository.cs" />
     <Compile Include="SQL\FootlooseFSSqlUnitOfWorkFactory.cs" />
     <Compile Include="SQL\PersonAccountTypeConfiguration.cs" />
     <Compile Include="SQL\PersonAddressAssnTypeConfiguration.cs" />
     <Compile Include="SQL\PersonLoginTypeConfiguration.cs" />
+    <Compile Include="SQL\PersonRepository.cs" />
     <Compile Include="SQL\PhoneTypeConfiguration.cs" />
     <Compile Include="SQL\SqlRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" />
-  <xs:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.EnterpriseService" />
-  <xs:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models" />
+  <xs:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models" />
+  <xs:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.EnterpriseService" />
+  <xs:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" />
   <xs:element name="SearchPersons">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="pageNumber" type="xs:int" />
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" minOccurs="0" name="personSearchColumn" type="q1:PersonSearchColumn" />
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" minOccurs="0" name="sortDirection" type="q2:SortDirection" />
         <xs:element minOccurs="0" name="numRecordsInPage" type="xs:int" />
-        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="criteria" nillable="true" type="q3:ArrayOfKeyValueOfPersonSearchColumnstringItFsHSOy" />
+        <xs:element minOccurs="0" name="sort" nillable="true" type="xs:string" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/FootlooseFS.Models" minOccurs="0" name="sortDirection" type="q1:SortDirection" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/FootlooseFS.Models" minOccurs="0" name="searchCriteria" nillable="true" type="q2:PersonDocument" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SearchPersonsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/FootlooseFS.EnterpriseService" minOccurs="0" name="SearchPersonsResult" nillable="true" type="q4:PageOfPersonDocuments" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/FootlooseFS.EnterpriseService" minOccurs="0" name="SearchPersonsResult" nillable="true" type="q3:PageOfPersonDocuments" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -26,56 +25,56 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="personID" type="xs:int" />
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" minOccurs="0" name="personIncludes" nillable="true" type="q5:PersonIncludes" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/FootlooseFS.Models" minOccurs="0" name="personIncludes" nillable="true" type="q4:PersonIncludes" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetPersonByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/FootlooseFS.Models" minOccurs="0" name="GetPersonByIdResult" nillable="true" type="q6:Person" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/FootlooseFS.Models" minOccurs="0" name="GetPersonByIdResult" nillable="true" type="q5:Person" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="InsertPerson">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/FootlooseFS.Models" minOccurs="0" name="person" nillable="true" type="q7:Person" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/FootlooseFS.Models" minOccurs="0" name="person" nillable="true" type="q6:Person" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="InsertPersonResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" minOccurs="0" name="InsertPersonResult" nillable="true" type="q8:OperationStatus" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" minOccurs="0" name="InsertPersonResult" nillable="true" type="q7:OperationStatus" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdatePerson">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/FootlooseFS.Models" minOccurs="0" name="person" nillable="true" type="q9:Person" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/FootlooseFS.Models" minOccurs="0" name="person" nillable="true" type="q8:Person" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdatePersonResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" minOccurs="0" name="UpdatePersonResult" nillable="true" type="q10:OperationStatus" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" minOccurs="0" name="UpdatePersonResult" nillable="true" type="q9:OperationStatus" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeletePerson">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/FootlooseFS.Models" minOccurs="0" name="person" nillable="true" type="q11:Person" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/FootlooseFS.Models" minOccurs="0" name="person" nillable="true" type="q10:Person" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeletePersonResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" minOccurs="0" name="DeletePersonResult" nillable="true" type="q12:OperationStatus" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" minOccurs="0" name="DeletePersonResult" nillable="true" type="q11:OperationStatus" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
