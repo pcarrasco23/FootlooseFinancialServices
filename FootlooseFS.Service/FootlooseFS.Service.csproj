@@ -65,6 +65,8 @@
     <Compile Include="IFootlooseFSService.cs" />
     <Compile Include="OperationStatus.cs" />
     <Compile Include="FootlooseFSService.cs" />
+    <Compile Include="EnrollmentRequest.cs" />
+    <Compile Include="PasswordUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

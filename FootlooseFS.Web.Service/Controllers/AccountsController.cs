@@ -29,7 +29,7 @@ namespace FootlooseFS.Web.Service.Controllers
             holderAccounts.Accounts = (from a in person.Accounts
                                select new AccountViewModel
                                {
-                                   AccountID = a.AccountID,
+                                   AccountNumber = a.Account.AccountNumber,
                                    AccountBalance = a.Account.AccountBalance,
                                    AccountName = a.Account.AccountName,
                                    AccountType = a.Account.AccountType.Name
@@ -44,7 +44,7 @@ namespace FootlooseFS.Web.Service.Controllers
                                    orderby t.Date descending
                                    select new TransactionViewModel
                                    {
-                                       AccountID = a.AccountID,
+                                       AccountNumber = a.Account.AccountNumber,
                                        AccountName = a.Account.AccountName,
                                        Date = t.Date,
                                        TransactionType = t.TransactionType.Name,

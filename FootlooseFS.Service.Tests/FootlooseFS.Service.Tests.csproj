@@ -58,6 +58,7 @@
     <Compile Include="FootlooseFSServiceUnitTests.cs" />
     <Compile Include="FootlooseFSTestUnitOfWork.cs" />
     <Compile Include="FootlooseFSTestUnitOfWorkFactory.cs" />
+    <Compile Include="PasswordUtilsTests.cs" />
     <Compile Include="PersonTestRepository.cs" />
     <Compile Include="TestDataStore.cs" />
     <Compile Include="TestRepository.cs" />

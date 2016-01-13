@@ -60,12 +60,12 @@ namespace FootlooseFS.Service
         OperationStatus DeletePerson(Person person);
 
         /// <summary>
-        /// GetPersonId - Return the personID that identifies the Person with the given username and password
+        /// Login - Return the personID that identifies the Person with the given username and password
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        int GetPersonID(string userName, string password);
+        OperationStatus Login(string userName, string password);
 
         /// <summary>
         /// UpdatePassword - Update the password
@@ -75,5 +75,12 @@ namespace FootlooseFS.Service
         /// <param name="newPassword"></param>
         /// <returns></returns>
         OperationStatus UpdatePassword(string user, string oldPassword, string newPassword);
+
+        /// <summary>
+        /// Process the enrollment request
+        /// </summary>
+        /// <param name="personLogin"></param>
+        /// <returns></returns>
+        OperationStatus Enroll(EnrollmentRequest enrollmentRequest);
     }
 }

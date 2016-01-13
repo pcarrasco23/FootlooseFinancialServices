@@ -195,6 +195,7 @@
     <Compile Include="Controllers\ContactInfoController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\FootloseFSApiController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\AddressViewModel.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="Models\DashboardViewModel.cs" />
     <Compile Include="Models\HolderAccountsViewModel.cs" />
     <Compile Include="Models\PhoneViewModel.cs" />
+    <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\TransactionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />

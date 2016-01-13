@@ -100,5 +100,19 @@
         return deferred.promise;
     }
 
+    service.Register = function (registerViewModel) {
+        var deferred = $q.defer();
+
+        $http.put(url + '/api/register/', registerViewModel, { headers: { 'Authorization': 'Bearer ' + sessionStorage.getItem("accessToken") } }).
+        success(function (data, status, headers, config) {
+            deferred.resolve(data);
+        }).
+        error(function (data, status, headers, config) {
+            deferred.reject(data.ExceptionMessage);
+        });
+
+        return deferred.promise;
+    }
+
     return service;
 });

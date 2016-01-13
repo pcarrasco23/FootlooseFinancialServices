@@ -15,6 +15,8 @@ namespace FootlooseFS.Service
 {
     public class FootlooseFSService : IFootlooseFSService
     {
+        private const int PASSWORD_SALT_SIZE = 10;
+
         private readonly IFootlooseFSUnitOfWorkFactory unitOfWorkFactory;
         private readonly IFootlooseFSNotificationService notificationService;
 
@@ -112,9 +114,12 @@ namespace FootlooseFS.Service
                 {                           
                     unitOfWork.Persons.Add(person);
                     unitOfWork.Commit();
-                }                    
 
-                return new OperationStatus { Success = true, Data = person };                
+                    var json = serializePersonToPersonDocumentJson(person);
+                    notificationService.SendPersonUpdatedNotification(person.PersonID, json);
+
+                    return new OperationStatus { Success = true, Data = person };
+                }                              
             }
             catch (Exception e)
             {
@@ -132,7 +137,6 @@ namespace FootlooseFS.Service
                     unitOfWork.Commit();
 
                     var json = serializePersonToPersonDocumentJson(person);
-
                     notificationService.SendPersonUpdatedNotification(person.PersonID, json);
 
                     return new OperationStatus { Success = true, Data = person };
@@ -162,18 +166,25 @@ namespace FootlooseFS.Service
             }
         }
 
-        public int GetPersonID(string userName, string password)
+        public OperationStatus Login(string userName, string password)
         {
             using (var unitOfWork = unitOfWorkFactory.CreateUnitOfWork())
             {
-                var personLoginQueryable = unitOfWork.PersonLogins.GetQueryable().Where(p => p.LoginID == userName && p.Password == password);
+                var personLoginQueryable = unitOfWork.PersonLogins.GetQueryable().Where(p => p.LoginID == userName);
                 if (personLoginQueryable.Any())
                 {
-                    return personLoginQueryable.First().PersonID;
+                    var personLogin = personLoginQueryable.First();
+
+                    var generatedHashedPassword = PasswordUtils.GenerateHashedPassword(password, personLogin.Salt);
+
+                    if (generatedHashedPassword == personLogin.HashedPassword)
+                        return new OperationStatus { Success = true, Data = personLoginQueryable.First().PersonID };
+                    else
+                        return new OperationStatus { Success = false, Messages = new List<string> { "The password provided is not correct." } };
                 }
                 else
                 {
-                    return -1;
+                    return new OperationStatus { Success = false, Messages = new List<string> { "The username provided is not correct." } };
                 }
             }
         }
@@ -184,20 +195,44 @@ namespace FootlooseFS.Service
             {
                 using (var unitOfWork = unitOfWorkFactory.CreateUnitOfWork())
                 {
-                    var personLoginQueryable = unitOfWork.PersonLogins.GetQueryable().Where(p => p.LoginID == user && p.Password == oldPassword);
+                    var personLoginQueryable = unitOfWork.PersonLogins.GetQueryable().Where(p => p.LoginID == user);
                     if (personLoginQueryable.Any())
                     {
+                        // Validate the old password
                         var personLogin = personLoginQueryable.First();
-                        personLogin.Password = newPassword;
 
-                        unitOfWork.PersonLogins.Update(personLogin);
-                        unitOfWork.Commit();
+                        var generatedHashedPassword = PasswordUtils.GenerateHashedPassword(newPassword, personLogin.Salt);
 
-                        return new OperationStatus { Success = true };
+                        if (generatedHashedPassword == personLogin.HashedPassword)
+                        {
+                            // Now verify that the new password meet the criteria for valid passwords
+                            var passwordValidationStatus = PasswordUtils.ValidatePassword(newPassword);
+
+                            if (passwordValidationStatus.Success)
+                            {
+                                // Now generate a salt and hash for the new password
+                                var salt = PasswordUtils.CreateSalt(PASSWORD_SALT_SIZE);
+                                personLogin.Salt = salt;
+                                personLogin.HashedPassword = PasswordUtils.GenerateHashedPassword(newPassword, salt);
+
+                                unitOfWork.PersonLogins.Update(personLogin);
+                                unitOfWork.Commit();
+
+                                return new OperationStatus { Success = true };
+                            }
+                            else
+                            {
+                                return passwordValidationStatus;
+                            }
+                        }    
+                        else
+                        {
+                            return new OperationStatus { Success = false, Messages = new List<string> { "The old password provided is not correct" } };
+                        }                    
                     }
                     else
                     {
-                        return new OperationStatus { Success = false, Messages = new List<string> { "The old password provided is not correct" } };
+                        return new OperationStatus { Success = false, Messages = new List<string> { "The username provided does not match a user in the system" } };
                     }
                 }
             }
@@ -206,7 +241,81 @@ namespace FootlooseFS.Service
                 return OperationStatus.CreateFromException("Error deleting person.", e);
             }            
         }
-             
+
+        public OperationStatus Enroll(EnrollmentRequest enrollmentRequest)
+        {
+            try
+            {
+                using (var unitOfWork = unitOfWorkFactory.CreateUnitOfWork())
+                {
+                    // Verify that the provided enrollment data matches a person in the system
+                    var personQueryable = unitOfWork.Persons.GetQueryable()
+                        .Where(p => 
+                            p.LastName == enrollmentRequest.LastName && 
+                            p.Accounts.Any(a => a.Account.AccountNumber == enrollmentRequest.AccountNumber));
+
+                    if (personQueryable.Any())
+                    {
+                        var person = personQueryable.First();
+
+                        // Verify that the person does not already have an account
+                        var personLoginQueryable = unitOfWork.PersonLogins.GetQueryable()
+                            .Where(p => p.PersonID == person.PersonID);
+
+                        if (personLoginQueryable.Any())                        
+                        {
+                            return new OperationStatus { Success = false, Messages = new List<string> { "The holder of this account is already registered in the system." } };
+                        }
+                        else
+                        {
+                            // Verify that the username is not already used
+                            personLoginQueryable = unitOfWork.PersonLogins.GetQueryable()
+                                .Where(p => p.LoginID.ToLower() == enrollmentRequest.Username.ToLower());
+
+                            if (personLoginQueryable.Any())
+                            {
+                                return new OperationStatus { Success = false, Messages = new List<string> { "The username is already in use." } };
+                            }
+                            else
+                            {
+                                var passwordValidationStatus = PasswordUtils.ValidatePassword(enrollmentRequest.Password);
+
+                                if (passwordValidationStatus.Success)
+                                {
+                                    var personLogin = new PersonLogin();
+
+                                    personLogin.PersonID = person.PersonID;
+                                    personLogin.LoginID = enrollmentRequest.Username;
+
+                                    // The stored password will be a hash based on a salt and the password provided
+                                    var salt = PasswordUtils.CreateSalt(PASSWORD_SALT_SIZE);
+                                    personLogin.Salt = salt;
+                                    personLogin.HashedPassword = PasswordUtils.GenerateHashedPassword(enrollmentRequest.Password, salt);
+
+                                    unitOfWork.PersonLogins.Add(personLogin);
+                                    unitOfWork.Commit();
+
+                                    return new OperationStatus { Success = true };
+                                }
+                                else
+                                {
+                                    return passwordValidationStatus;
+                                }
+                            }
+                        }                                        
+                    }
+                    else
+                    {
+                        return new OperationStatus { Success = false, Messages = new List<string> { "There is no one in the system that matches the information provided" } };
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return OperationStatus.CreateFromException("Error deleting person.", e);
+            }
+        }
+
         private string serializePersonToPersonDocumentJson(Person person)
         {
             var personDocument = new PersonDocument();

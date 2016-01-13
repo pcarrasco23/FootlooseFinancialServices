@@ -7,6 +7,10 @@ module.config(['$routeProvider', function ($routeProvider) {
             controller: "loginController",
             templateUrl: "/templates/login.html"
         })
+        .when("/register", {
+            controller: "registerController",
+            templateUrl: "/templates/register.html"
+        })
         .otherwise({ redirectTo: "/" });
 }]);
 
@@ -26,11 +30,12 @@ module.controller('loginController', ['$scope', '$http', 'dataService', function
                 // success
 
                 dataService.GetDashboard()
-                    .then(function (data) {
-                        // success
+                    .then(function (data) {                       
                         sessionStorage.setItem("firstName", data.FirstName);
                         sessionStorage.setItem("lastName", data.LastName);
 
+                        // Login and dashboard calls were successfull
+                        // Redirect to the main application page
                         location.href = "/";
                     },
                     function (errorMessage) {

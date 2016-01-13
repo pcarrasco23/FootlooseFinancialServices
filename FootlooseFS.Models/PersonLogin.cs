@@ -11,8 +11,9 @@ namespace FootlooseFS.Models
     public class PersonLogin
     {
         public int PersonID { get; set; }
-        public String LoginID { get; set; }
-        public String Password { get; set; }
+        public string LoginID { get; set; }
+        public string HashedPassword { get; set; }
+        public string Salt { get; set; }
 
         public virtual Person Person { get; set; }
     }

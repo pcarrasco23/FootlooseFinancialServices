@@ -1,0 +1,55 @@
+﻿<table>
+    <tr>
+        <td>
+            <img src="/Content/images/footlosefinancial.png" />
+        </td>
+        <td style="vertical-align:middle;">
+            <p style="font-family: Impact; font-size: 72pt; color: #EB0CAC; line-height: 60%; margin-left: 10px;">
+                Footloose
+            </p>
+            <p style="font-size: 32pt; color: #18A7EA; line-height: 60%; margin-left: 10px; ">
+                <br />Financial Services
+            </p>
+        </td>
+    </tr>
+</table>
+
+<div style="margin-top:20px;margin-left:auto;margin-right:auto;width:50%;">
+    <div style="">
+        <div class='alert alert-success' data-ng-show="isEnrolled">
+            You are now enrolled in the system. You may proceed to login
+            <a href="#/">Login</a>
+        </div>
+
+        <div class='alert alert-danger' data-ng-show="isError">{{ ErrorMessage }}</div>
+
+        <form ng-hide="isEnrolled">
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Last Name" ng-model="data.LastName">
+            </div>
+            <div class="form-group">
+                <label for="accountNumber">Account Number</label>
+                <input type="text" class="form-control" id="accountNumber" placeholder="Account Number" ng-model="data.AccountNumber">
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Username" ng-model="data.Username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" ng-model="data.Password">
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" ng-model="data.ConfirmPassword">
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="submit()">Submit</button>
+        </form>
+
+        <div class="progress" style="margin-top:50px;margin-left:auto;margin-right:auto;width:50%;" data-ng-show="isBusy">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+            </div>
+        </div>
+    </div>
+</div>
