@@ -15,7 +15,7 @@ namespace FootlooseFS.Service
 {
     public class FootlooseFSService : IFootlooseFSService
     {
-        private const int PASSWORD_SALT_SIZE = 10;
+        private const int PASSWORD_SALT_SIZE = 32;
 
         private readonly IFootlooseFSUnitOfWorkFactory unitOfWorkFactory;
         private readonly IFootlooseFSNotificationService notificationService;
@@ -201,7 +201,7 @@ namespace FootlooseFS.Service
                         // Validate the old password
                         var personLogin = personLoginQueryable.First();
 
-                        var generatedHashedPassword = PasswordUtils.GenerateHashedPassword(newPassword, personLogin.Salt);
+                        var generatedHashedPassword = PasswordUtils.GenerateHashedPassword(oldPassword, personLogin.Salt);
 
                         if (generatedHashedPassword == personLogin.HashedPassword)
                         {
