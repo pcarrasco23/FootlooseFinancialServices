@@ -162,4 +162,4 @@ $RECYCLE.BIN/
 /FootlooseFS.EnterpriseService/web.config
 /FootlooseFS.Service.IntegrationTests/app.config
 /FootlooseFSDocumentDBETL/FootlooseFSDocumentDBETL/app.config
-
+/FootlooseFS.Web.Service/web.config
