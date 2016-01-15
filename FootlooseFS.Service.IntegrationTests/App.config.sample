@@ -10,5 +10,8 @@
   <appSettings>
     <add key="MongoDBConectionString" value="" />
     <add key="MongoDBDatabaseName" value="footloosefs" />
+    <add key="AWSSNSTopicArn" value=""/>
+    <add key="AWSProfileName" value=""/>
+    <add key="AWSProfilesLocation" value="" />
   </appSettings>
 </configuration>

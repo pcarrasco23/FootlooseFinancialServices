@@ -75,7 +75,6 @@ namespace FootlooseFS.Service
                         // Add cell phone if not in the person Object
                         if (!person.Phones.Where(p => p.PhoneTypeID == 3).Any())
                             person.Phones.Add(new Phone { PhoneTypeID = 3, Number = string.Empty, PhoneType = new PhoneType { Name = "Cell" } });
-
                     }
 
                     if (personIncludes.Addressses)

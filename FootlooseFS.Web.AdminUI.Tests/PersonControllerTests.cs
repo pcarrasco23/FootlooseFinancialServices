@@ -40,10 +40,10 @@ namespace FootlooseFS.Web.AdminUI.Tests
 
             // Mock SearchPersonDocument and UpdatePerson service methods
             mockPersonService.Setup(m => m.SearchPersons(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<SortDirection>(), It.IsAny<PersonDocument>())).Returns(pageOfPersonDocuments);
-            mockPersonService.Setup(m => m.UpdatePerson(It.IsAny<Person>())).Returns((Person p) => { return SetupOperationStatus(p); });
+            mockPersonService.Setup(m => m.UpdatePerson(It.IsAny<Person>())).Returns((Person p) => { return setupOperationStatus(p); });
         }
 
-        private OperationStatus SetupOperationStatus(Person p)
+        private OperationStatus setupOperationStatus(Person p)
         {
             var opStatus = new OperationStatus();
             opStatus.Data = p;
@@ -229,21 +229,8 @@ namespace FootlooseFS.Web.AdminUI.Tests
 
             ActionResult result = personController.Save(person);
 
-            // Verify that the result is of type JsonResult
-            Assert.IsInstanceOfType(result, typeof(JsonResult));
-
-            var jsonResult = result as JsonResult;
-
-            // Verify that the model of the result is SavePersonResult
-            Assert.IsInstanceOfType(jsonResult.Data, typeof(SavePersonResult));
-
-            var savePersonResult = jsonResult.Data as SavePersonResult;
-
-            // Verify that Person object returned from the OperationStatus has the data provided from the form
-            Assert.AreEqual(savePersonResult.Person.PersonID, 1);
-            Assert.AreEqual(savePersonResult.Person.FirstName, "Pam");
-            Assert.AreEqual(savePersonResult.Person.LastName, "Scicchitano");
-            Assert.AreEqual(savePersonResult.Person.EmailAddress, "pam@scicchitano.com");
+            // Verify that the result is of type ContentResult
+            Assert.IsInstanceOfType(result, typeof(ContentResult));
         }
     }
 }

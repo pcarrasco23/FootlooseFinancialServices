@@ -14,42 +14,7 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PersonSearchColumn", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Service")]
-    public enum PersonSearchColumn : int {
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        None = 0,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        PersonID = 1,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        FirstName = 2,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        LastName = 3,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        EmailAddress = 4,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Phone = 5,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        StreetAddress = 6,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        City = 7,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Zip = 8,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        State = 9,
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SortDirection", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Service")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SortDirection", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models")]
     public enum SortDirection : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -57,99 +22,6 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Descending = 1,
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PageOfPersonDocuments", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.EnterpriseService")]
-    [System.SerializableAttribute()]
-    public partial class PageOfPersonDocuments : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonDocument> DataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int PageIndexField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int PageSizeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int TotalItemCountField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonDocument> Data {
-            get {
-                return this.DataField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DataField, value) != true)) {
-                    this.DataField = value;
-                    this.RaisePropertyChanged("Data");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int PageIndex {
-            get {
-                return this.PageIndexField;
-            }
-            set {
-                if ((this.PageIndexField.Equals(value) != true)) {
-                    this.PageIndexField = value;
-                    this.RaisePropertyChanged("PageIndex");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int PageSize {
-            get {
-                return this.PageSizeField;
-            }
-            set {
-                if ((this.PageSizeField.Equals(value) != true)) {
-                    this.PageSizeField = value;
-                    this.RaisePropertyChanged("PageSize");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int TotalItemCount {
-            get {
-                return this.TotalItemCountField;
-            }
-            set {
-                if ((this.TotalItemCountField.Equals(value) != true)) {
-                    this.TotalItemCountField = value;
-                    this.RaisePropertyChanged("TotalItemCount");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -343,7 +215,100 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PersonIncludes", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Service")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PageOfPersonDocuments", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.EnterpriseService")]
+    [System.SerializableAttribute()]
+    public partial class PageOfPersonDocuments : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonDocument> DataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PageIndexField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PageSizeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TotalItemCountField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonDocument> Data {
+            get {
+                return this.DataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DataField, value) != true)) {
+                    this.DataField = value;
+                    this.RaisePropertyChanged("Data");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PageIndex {
+            get {
+                return this.PageIndexField;
+            }
+            set {
+                if ((this.PageIndexField.Equals(value) != true)) {
+                    this.PageIndexField = value;
+                    this.RaisePropertyChanged("PageIndex");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PageSize {
+            get {
+                return this.PageSizeField;
+            }
+            set {
+                if ((this.PageSizeField.Equals(value) != true)) {
+                    this.PageSizeField = value;
+                    this.RaisePropertyChanged("PageSize");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TotalItemCount {
+            get {
+                return this.TotalItemCountField;
+            }
+            set {
+                if ((this.TotalItemCountField.Equals(value) != true)) {
+                    this.TotalItemCountField = value;
+                    this.RaisePropertyChanged("TotalItemCount");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PersonIncludes", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models")]
     [System.SerializableAttribute()]
     public partial class PersonIncludes : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -617,16 +582,19 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LoginIDField;
+        private string HashedPasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PasswordField;
+        private string LoginIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person PersonField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int PersonIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SaltField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -639,6 +607,19 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string HashedPassword {
+            get {
+                return this.HashedPasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HashedPasswordField, value) != true)) {
+                    this.HashedPasswordField = value;
+                    this.RaisePropertyChanged("HashedPassword");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string LoginID {
             get {
                 return this.LoginIDField;
@@ -647,19 +628,6 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
                 if ((object.ReferenceEquals(this.LoginIDField, value) != true)) {
                     this.LoginIDField = value;
                     this.RaisePropertyChanged("LoginID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Password {
-            get {
-                return this.PasswordField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
-                    this.PasswordField = value;
-                    this.RaisePropertyChanged("Password");
                 }
             }
         }
@@ -686,6 +654,19 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
                 if ((this.PersonIDField.Equals(value) != true)) {
                     this.PersonIDField = value;
                     this.RaisePropertyChanged("PersonID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Salt {
+            get {
+                return this.SaltField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SaltField, value) != true)) {
+                    this.SaltField = value;
+                    this.RaisePropertyChanged("Salt");
                 }
             }
         }
@@ -1030,6 +1011,9 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
         private string AccountNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AccountNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.AccountType AccountTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1083,6 +1067,19 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
                 if ((object.ReferenceEquals(this.AccountNameField, value) != true)) {
                     this.AccountNameField = value;
                     this.RaisePropertyChanged("AccountName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AccountNumber {
+            get {
+                return this.AccountNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AccountNumberField, value) != true)) {
+                    this.AccountNumberField = value;
+                    this.RaisePropertyChanged("AccountNumber");
                 }
             }
         }
@@ -1696,10 +1693,11 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
     [System.Runtime.Serialization.DataContractAttribute(Name="OperationStatus", Namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Service")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PageOfPersonDocuments))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonSearchColumn, string>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonDocument>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.SortDirection))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonDocument))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonDocument>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonIncludes))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonAccount>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonAccount))]
@@ -1714,12 +1712,9 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Address))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.AddressType))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonLogin))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Phone>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Phone))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PhoneType))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonSearchColumn))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.SortDirection))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonIncludes))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Phone>))]
     public partial class OperationStatus : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -1814,10 +1809,10 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
     public interface IPersonService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/SearchPersons", ReplyAction="http://tempuri.org/IPersonService/SearchPersonsResponse")]
-        FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PageOfPersonDocuments SearchPersons(int pageNumber, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonSearchColumn personSearchColumn, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.SortDirection sortDirection, int numRecordsInPage, System.Collections.Generic.Dictionary<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonSearchColumn, string> criteria);
+        FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PageOfPersonDocuments SearchPersons(int pageNumber, int numRecordsInPage, string sort, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.SortDirection sortDirection, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonDocument searchCriteria);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/SearchPersons", ReplyAction="http://tempuri.org/IPersonService/SearchPersonsResponse")]
-        System.Threading.Tasks.Task<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PageOfPersonDocuments> SearchPersonsAsync(int pageNumber, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonSearchColumn personSearchColumn, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.SortDirection sortDirection, int numRecordsInPage, System.Collections.Generic.Dictionary<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonSearchColumn, string> criteria);
+        System.Threading.Tasks.Task<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PageOfPersonDocuments> SearchPersonsAsync(int pageNumber, int numRecordsInPage, string sort, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.SortDirection sortDirection, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonDocument searchCriteria);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/GetPersonById", ReplyAction="http://tempuri.org/IPersonService/GetPersonByIdResponse")]
         FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person GetPersonById(int personID, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonIncludes personIncludes);
@@ -1871,12 +1866,12 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseSe
                 base(binding, remoteAddress) {
         }
         
-        public FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PageOfPersonDocuments SearchPersons(int pageNumber, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonSearchColumn personSearchColumn, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.SortDirection sortDirection, int numRecordsInPage, System.Collections.Generic.Dictionary<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonSearchColumn, string> criteria) {
-            return base.Channel.SearchPersons(pageNumber, personSearchColumn, sortDirection, numRecordsInPage, criteria);
+        public FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PageOfPersonDocuments SearchPersons(int pageNumber, int numRecordsInPage, string sort, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.SortDirection sortDirection, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonDocument searchCriteria) {
+            return base.Channel.SearchPersons(pageNumber, numRecordsInPage, sort, sortDirection, searchCriteria);
         }
         
-        public System.Threading.Tasks.Task<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PageOfPersonDocuments> SearchPersonsAsync(int pageNumber, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonSearchColumn personSearchColumn, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.SortDirection sortDirection, int numRecordsInPage, System.Collections.Generic.Dictionary<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonSearchColumn, string> criteria) {
-            return base.Channel.SearchPersonsAsync(pageNumber, personSearchColumn, sortDirection, numRecordsInPage, criteria);
+        public System.Threading.Tasks.Task<FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PageOfPersonDocuments> SearchPersonsAsync(int pageNumber, int numRecordsInPage, string sort, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.SortDirection sortDirection, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonDocument searchCriteria) {
+            return base.Channel.SearchPersonsAsync(pageNumber, numRecordsInPage, sort, sortDirection, searchCriteria);
         }
         
         public FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.Person GetPersonById(int personID, FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService.PersonIncludes personIncludes) {

@@ -17,15 +17,7 @@ namespace FootlooseFS.Service.Tests
         [TestMethod]
         public void TestPasswordMissingCapitalCaseFailsValidation()
         {
-            var status = PasswordUtils.ValidatePassword("test1");
-
-            Assert.IsFalse(status.Success);
-        }
-
-        [TestMethod]
-        public void TestPasswordMissingNonAlphanumericCharFailsValidation()
-        {
-            var status = PasswordUtils.ValidatePassword("Test4");
+            var status = PasswordUtils.ValidatePassword("tesssssst!1");
 
             Assert.IsFalse(status.Success);
         }
@@ -33,7 +25,15 @@ namespace FootlooseFS.Service.Tests
         [TestMethod]
         public void TestPasswordMissingNumberFailsValidation()
         {
-            var status = PasswordUtils.ValidatePassword("Test");
+            var status = PasswordUtils.ValidatePassword("Teserewt!@");
+
+            Assert.IsFalse(status.Success);
+        }
+
+        [TestMethod]
+        public void TestMissingSpecialCharacters()
+        {
+            var status = PasswordUtils.ValidatePassword("Tese2rewt");
 
             Assert.IsFalse(status.Success);
         }
@@ -47,11 +47,19 @@ namespace FootlooseFS.Service.Tests
         }
 
         [TestMethod]
-        public void TestValidPasswordPassesValidation()
+        public void TestPasswordNotMaximumLenghtFailsValidation()
         {
-            var status = PasswordUtils.ValidatePassword("Teserewt!@");
+            var status = PasswordUtils.ValidatePassword("Tesrrrrrrrrrrrrrrrrrrrrrrrrrrt1@");
 
             Assert.IsFalse(status.Success);
+        }
+
+        [TestMethod]
+        public void TestValidPasswordPassesValidation()
+        {
+            var status = PasswordUtils.ValidatePassword("1Teserewt!@");
+
+            Assert.IsTrue(status.Success);
         }
     }
 }

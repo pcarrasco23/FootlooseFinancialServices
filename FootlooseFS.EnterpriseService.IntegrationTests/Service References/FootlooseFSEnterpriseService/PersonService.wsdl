@@ -4,10 +4,10 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" />
-      <xsd:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.EnterpriseService" />
-      <xsd:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models" />
+      <xsd:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Models" />
+      <xsd:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.EnterpriseService" />
+      <xsd:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/FootlooseFS.Service" />
+      <xsd:import schemaLocation="http://peter-pc/FootlooseFSEnterpriseService/PersonService.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IPersonService_SearchPersons_InputMessage">

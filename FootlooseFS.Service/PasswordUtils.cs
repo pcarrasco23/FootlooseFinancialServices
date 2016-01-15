@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace FootlooseFS.Service
@@ -49,7 +50,53 @@ namespace FootlooseFS.Service
 
         public static OperationStatus ValidatePassword(string password)
         {
-            return new OperationStatus { Success = true, Messages = null };
+            if (string.IsNullOrEmpty(password))
+            {
+                return new OperationStatus { Success = false, Messages = new List<string> { "The password cannot be blank." } };
+            }
+            else if (password.IndexOf(" ") >= 0)
+            {
+                return new OperationStatus { Success = false, Messages = new List<string> { "The password cannot have any whitespace characters." } };
+            }
+            else if (password.Length < 8 || password.Length > 15)
+            {
+                return new OperationStatus { Success = false, Messages = new List<string> { "The password must be between 8 and 15 characters." } };
+            }
+            else
+            {
+                // The password must contain:
+                // 1. At least one lowercase character
+                // 2. At least one uppercaase character
+                // 3. At least one digit
+                // 4. At least one special character
+                // 5. Must be between 8 and 15 characters long            
+                Match lowercase = Regex.Match(password, @"^(?=.*[a-z])");
+                Match uppercase = Regex.Match(password, @"^(?=.*[A-Z])");
+                Match digit = Regex.Match(password, @"^(?=.*\d)");
+                Match specialCharacter = Regex.Match(password, @"^(?=.*[^\da-zA-Z])");
+
+                if (!lowercase.Success)
+                {
+                    return new OperationStatus { Success = false, Messages = new List<string> { "The password must contain atleast one lowercase character." } };
+                }
+
+                if (!uppercase.Success)
+                {
+                    return new OperationStatus { Success = false, Messages = new List<string> { "The password must contain atleast one upper character." } };
+                }
+
+                if (!digit.Success)
+                {
+                    return new OperationStatus { Success = false, Messages = new List<string> { "The password must contain atleast one digit." } };
+                }
+
+                if (!specialCharacter.Success)
+                {
+                    return new OperationStatus { Success = false, Messages = new List<string> { "The password must contain atleast one non-alphanumeric character." } };
+                }
+
+                return new OperationStatus { Success = true, Messages = null };                
+            }            
         }
     }
 }

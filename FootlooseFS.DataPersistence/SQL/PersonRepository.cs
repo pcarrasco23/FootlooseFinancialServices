@@ -161,10 +161,14 @@ namespace FootlooseFS.DataPersistence
                     addressAssn = new PersonAddressAssn();
                     addressAssn.PersonID = updatedAddressAssn.PersonID;
                     addressAssn.AddressTypeID = updatedAddressAssn.AddressTypeID;
+
                     addressAssn.Address = new Address();
+                    addressAssn.Address.StreetAddress = updatedAddressAssn.Address.StreetAddress;
+                    addressAssn.Address.City = updatedAddressAssn.Address.City;
+                    addressAssn.Address.State = updatedAddressAssn.Address.State;
+                    addressAssn.Address.Zip = updatedAddressAssn.Address.Zip;
 
                     person.Addresses.Add(addressAssn);
-
                 }
                 else if (addressAssn != null)
                 {
