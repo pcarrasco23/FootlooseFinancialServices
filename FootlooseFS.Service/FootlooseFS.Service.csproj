@@ -81,7 +81,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="AWSLambdaUpdatePerson\lambdadistribution.bat" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
