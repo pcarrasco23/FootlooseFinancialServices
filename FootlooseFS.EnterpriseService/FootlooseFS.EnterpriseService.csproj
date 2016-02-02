@@ -66,9 +66,6 @@
     <None Include="web.config.sample">
       <SubType>Designer</SubType>
     </None>
-    <None Include="web.config">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FootlooseFS.DataPersistence\FootlooseFS.DataPersistence.csproj">
