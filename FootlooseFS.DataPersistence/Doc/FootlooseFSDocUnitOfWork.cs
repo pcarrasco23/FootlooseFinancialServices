@@ -1,13 +1,6 @@
 ﻿using FootlooseFS.Models;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoDB.Bson.Serialization;
 using FootlooseFS.DataPersistence.Doc;
 
 namespace FootlooseFS.DataPersistence
