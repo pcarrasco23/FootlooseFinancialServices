@@ -1,18 +1,15 @@
 ﻿using FootlooseFS.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FootlooseFS.Service.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class FootlooseFSServiceUnitTests
     {
-        [TestMethod]
+        [Test]
         public void TestUpdatePerson()
         {
             var testUoW = new FootlooseFSTestUnitOfWork();            
@@ -83,7 +80,7 @@ namespace FootlooseFS.Service.Tests
             var updatedPerson = (Person)opStatus.Data;
 
             // Verify that the UpdatePerson method returns data of type Person
-            Assert.IsInstanceOfType(updatedPerson, typeof(Person));
+            Assert.IsInstanceOf<Person>(updatedPerson);
 
             // Get the updated person object from the UoW
             var updatedPersonFromUoW = testUoW.Persons.GetQueryable().Where(p => p.PersonID == 1).First();
@@ -112,7 +109,7 @@ namespace FootlooseFS.Service.Tests
             Assert.AreEqual(address.State, "VA");
         }
 
-        [TestMethod]
+        [Test]
         public void TestInsertPerson()
         {
             var testUoW = new FootlooseFSTestUnitOfWork();
@@ -169,7 +166,7 @@ namespace FootlooseFS.Service.Tests
             var insertedPerson = (Person)opStatus.Data;
 
             // Verify that the InsertPerson method returns data of type Person
-            Assert.IsInstanceOfType(insertedPerson, typeof(Person));
+            Assert.IsInstanceOf<Person>(insertedPerson);
 
             // Get the inserted person object from the UoW
             var insertedPersonFromUoW = testUoW.Persons.GetQueryable().Where(p => p.PersonID == 5).First();

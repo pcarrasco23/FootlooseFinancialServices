@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FootlooseFS.DataPersistence;
 using FootlooseFS.Models;
+using NUnit.Framework;
 
 namespace FootlooseFS.Service.IntegrationTests
 {
-    [TestClass]
+    [TestFixture]
     public class FootlooseFSServiceIntegrationTests
     {
-        [TestMethod]
+        [Test]
         public void TestPersonDocumentSearch()
         {
             var uowFactory = new FootlooseFSSqlUnitOfWorkFactory();
@@ -30,7 +30,7 @@ namespace FootlooseFS.Service.IntegrationTests
             Assert.IsFalse(pageOfListPersonDocuments.Data.Any(p => p.State != "NY"));
         }
 
-        [TestMethod]
+        [Test]
         public void TestUpdatePerson()
         {
             var uowFactory = new FootlooseFSSqlUnitOfWorkFactory();
@@ -66,7 +66,7 @@ namespace FootlooseFS.Service.IntegrationTests
             var updatedPerson = (Person)opStatus.Data;
 
             // Verify that the UpdatePerson method returns data of type Person
-            Assert.IsInstanceOfType(updatedPerson, typeof(Person));
+            Assert.IsInstanceOf<Person>(updatedPerson);
 
             var updatedPersonFromUoW = service.GetPersonById(updatedPerson.PersonID, new PersonIncludes { Phones = true, Addressses = true });
 
@@ -102,7 +102,7 @@ namespace FootlooseFS.Service.IntegrationTests
             Assert.IsTrue(opStatus.Success);            
         }
 
-        [TestMethod]
+        [Test]
         public void TestInsertAndDeletePerson()
         {
             var uowFactory = new FootlooseFSSqlUnitOfWorkFactory();
@@ -144,7 +144,7 @@ namespace FootlooseFS.Service.IntegrationTests
             var insertedPerson = (Person)opStatus.Data;
 
             // Verify that the InsertPerson method returns data of type Person
-            Assert.IsInstanceOfType(insertedPerson, typeof(Person));
+            Assert.IsInstanceOf<Person>(insertedPerson);
 
             var insertedPersonFromUoW = service.GetPersonById(insertedPerson.PersonID, new PersonIncludes { Phones = true, Addressses = true });
 

@@ -1,12 +1,13 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿
+
+using NUnit.Framework;
 
 namespace FootlooseFS.Service.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class PasswordUtilsTests
     {
-        [TestMethod]
+        [Test]
         public void TestBlankPasswordValidation()
         {
             var status = PasswordUtils.ValidatePassword(string.Empty);
@@ -14,7 +15,7 @@ namespace FootlooseFS.Service.Tests
             Assert.IsFalse(status.Success);
         }
 
-        [TestMethod]
+        [Test]
         public void TestPasswordMissingCapitalCaseFailsValidation()
         {
             var status = PasswordUtils.ValidatePassword("tesssssst!1");
@@ -22,7 +23,7 @@ namespace FootlooseFS.Service.Tests
             Assert.IsFalse(status.Success);
         }
 
-        [TestMethod]
+        [Test]
         public void TestPasswordMissingNumberFailsValidation()
         {
             var status = PasswordUtils.ValidatePassword("Teserewt!@");
@@ -30,7 +31,7 @@ namespace FootlooseFS.Service.Tests
             Assert.IsFalse(status.Success);
         }
 
-        [TestMethod]
+        [Test]
         public void TestMissingSpecialCharacters()
         {
             var status = PasswordUtils.ValidatePassword("Tese2rewt");
@@ -38,7 +39,7 @@ namespace FootlooseFS.Service.Tests
             Assert.IsFalse(status.Success);
         }
 
-        [TestMethod]
+        [Test]
         public void TestPasswordNotMinimumLenghtFailsValidation()
         {
             var status = PasswordUtils.ValidatePassword("Test1@");
@@ -46,7 +47,7 @@ namespace FootlooseFS.Service.Tests
             Assert.IsFalse(status.Success);
         }
 
-        [TestMethod]
+        [Test]
         public void TestPasswordNotMaximumLenghtFailsValidation()
         {
             var status = PasswordUtils.ValidatePassword("Tesrrrrrrrrrrrrrrrrrrrrrrrrrrt1@");
@@ -54,7 +55,7 @@ namespace FootlooseFS.Service.Tests
             Assert.IsFalse(status.Success);
         }
 
-        [TestMethod]
+        [Test]
         public void TestValidPasswordPassesValidation()
         {
             var status = PasswordUtils.ValidatePassword("1Teserewt!@");

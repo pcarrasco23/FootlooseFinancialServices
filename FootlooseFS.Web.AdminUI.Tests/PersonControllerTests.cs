@@ -1,20 +1,15 @@
 ﻿using FootlooseFS.Models;
 using FootlooseFS.Service;
-using FootlooseFS.Service.Tests;
 using FootlooseFS.Web.AdminUI.Controllers;
 using FootlooseFS.Web.AdminUI.FootlooseFSEnterpriseService;
-using FootlooseFS.Web.AdminUI.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Ninject;
-using System;
+using NUnit.Framework;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Web.Mvc;
 
 namespace FootlooseFS.Web.AdminUI.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class PersonControllerTests
     {
         private Mock<IPersonService> mockPersonService;        
@@ -22,7 +17,7 @@ namespace FootlooseFS.Web.AdminUI.Tests
         private int pageSize;
         private int totalItemCount;
 
-        [TestInitialize]
+        [TestFixtureSetUp]
         public void SetupTests()
         {
             mockPersonService = new Mock<IPersonService>();
@@ -189,7 +184,7 @@ namespace FootlooseFS.Web.AdminUI.Tests
             return personDocumentPage;
         }
 
-        [TestMethod]
+        [Test]
         public void TestPersonSearch()
         {
             PersonController personController = new PersonController(mockPersonService.Object);
@@ -203,12 +198,12 @@ namespace FootlooseFS.Web.AdminUI.Tests
             ActionResult result = personController.Search(searchParameters);
 
             // Verify that the result is of type PartialViewResult
-            Assert.IsInstanceOfType(result, typeof(PartialViewResult));
+            Assert.IsInstanceOf<PartialViewResult>(result);
 
             var partialViewResult = result as PartialViewResult;          
 
             // Verify that the model of the result is PageOfList<PersonDocument>
-            Assert.IsInstanceOfType(partialViewResult.Model, typeof(PageOfList<PersonDocument>));
+            Assert.IsInstanceOf<PageOfList<PersonDocument>>(partialViewResult.Model);
 
             var personPage = partialViewResult.Model as PageOfList<PersonDocument>;
 
@@ -216,7 +211,7 @@ namespace FootlooseFS.Web.AdminUI.Tests
             Assert.AreEqual(personPage.Data.Count, 10);
         }
 
-        [TestMethod]
+        [Test]
         public void TestPersonSave()
         {
             PersonController personController = new PersonController(mockPersonService.Object);
@@ -230,7 +225,7 @@ namespace FootlooseFS.Web.AdminUI.Tests
             ActionResult result = personController.Save(person);
 
             // Verify that the result is of type ContentResult
-            Assert.IsInstanceOfType(result, typeof(ContentResult));
+            Assert.IsInstanceOf<ContentResult>(result);
         }
     }
 }

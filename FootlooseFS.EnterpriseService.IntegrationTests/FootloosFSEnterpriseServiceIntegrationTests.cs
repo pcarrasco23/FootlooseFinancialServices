@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService;
+﻿using FootlooseFS.EnterpriseService.IntegrationTests.FootlooseFSEnterpriseService;
+using NUnit.Framework;
 
 namespace FootlooseFS.EnterpriseService.IntegrationTests
 {
-    [TestClass]
+    [TestFixture]
     public class FootloosFSEnterpriseServiceIntegrationTests
     {
-        [TestMethod]
+        [Test]
         public void TestPersonDocumentSearch()
         {
             var client = new PersonServiceClient();
@@ -28,7 +25,7 @@ namespace FootlooseFS.EnterpriseService.IntegrationTests
                 Assert.AreEqual(personDoc.State, "NY");            
         }
 
-        [TestMethod]
+        [Test]
         public void TestGetPersonById()
         {
             var client = new PersonServiceClient();
