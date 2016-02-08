@@ -17,10 +17,10 @@ namespace FootlooseFS.Service
         {
             var topicArn = ConfigurationManager.AppSettings["AWSSNSTopicArn"];
 
-            var snsClient = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
-          
             try
-            {                
+            {
+                var snsClient = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USEast1);
+
                 var publishRequest = new Amazon.SimpleNotificationService.Model.PublishRequest();
                 publishRequest.TopicArn = topicArn;
                 publishRequest.Message = message;
