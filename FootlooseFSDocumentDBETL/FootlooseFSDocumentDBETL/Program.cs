@@ -27,7 +27,7 @@ namespace FootlooseFSDocumentDBETL
                     IQueryable<Person> personQueryable = sqlUnitOfWork.Persons.GetQueryable();
 
                     // For each person retreived from SQL include the related phones and addresses
-                    //personQueryable = personQueryable.Include("Addresses.Address").Include("Phones");
+                    personQueryable = personQueryable.Include("Addresses.Address").Include("Phones");
 
                     // Always order by person ID so that we can guarantee the order for the persons retrieved from SQL
                     personQueryable = personQueryable.OrderBy(p => p.PersonID);
@@ -46,11 +46,11 @@ namespace FootlooseFSDocumentDBETL
                                                                           FirstName = p.FirstName,
                                                                           LastName = p.LastName,
                                                                           EmailAddress = p.EmailAddress,
-                                                                          PhoneNumber = p.Phones.Any(h => h.PhoneTypeID == 1) ? p.Phones.First(h => h.PhoneTypeID == 1).Number : "",
-                                                                          StreetAddress = p.Addresses.Any(pa => pa.AddressTypeID == 1) ? p.Addresses.First(pa => pa.AddressTypeID == 1).Address.StreetAddress : "",
-                                                                          City = p.Addresses.Any(pa => pa.AddressTypeID == 1) ? p.Addresses.First(pa => pa.AddressTypeID == 1).Address.City : "",
-                                                                          State = p.Addresses.Any(pa => pa.AddressTypeID == 1) ? p.Addresses.First(pa => pa.AddressTypeID == 1).Address.State : "",
-                                                                          Zip = p.Addresses.Any(pa => pa.AddressTypeID == 1) ? p.Addresses.First(pa => pa.AddressTypeID == 1).Address.Zip : ""
+                                                                          PhoneNumber = p.Phones != null && p.Phones.Any(h => h.PhoneTypeID == 1) ? p.Phones.First(h => h.PhoneTypeID == 1).Number : "",
+                                                                          StreetAddress = p.Addresses != null && p.Addresses.Any(pa => pa.AddressTypeID == 1) ? p.Addresses.First(pa => pa.AddressTypeID == 1).Address.StreetAddress : "",
+                                                                          City = p.Addresses != null && p.Addresses.Any(pa => pa.AddressTypeID == 1) ? p.Addresses.First(pa => pa.AddressTypeID == 1).Address.City : "",
+                                                                          State = p.Addresses != null && p.Addresses.Any(pa => pa.AddressTypeID == 1) ? p.Addresses.First(pa => pa.AddressTypeID == 1).Address.State : "",
+                                                                          Zip = p.Addresses != null && p.Addresses.Any(pa => pa.AddressTypeID == 1) ? p.Addresses.First(pa => pa.AddressTypeID == 1).Address.Zip : ""
                                                                       };
 
                         docUnitOfWork.Persons.AddBatch(personDocuments);

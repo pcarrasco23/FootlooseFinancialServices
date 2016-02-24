@@ -167,24 +167,31 @@ namespace FootlooseFS.Service
 
         public OperationStatus Login(string userName, string password)
         {
-            using (var unitOfWork = unitOfWorkFactory.CreateUnitOfWork())
+            try
             {
-                var personLoginQueryable = unitOfWork.PersonLogins.GetQueryable().Where(p => p.LoginID == userName);
-                if (personLoginQueryable.Any())
+                using (var unitOfWork = unitOfWorkFactory.CreateUnitOfWork())
                 {
-                    var personLogin = personLoginQueryable.First();
+                    var personLoginQueryable = unitOfWork.PersonLogins.GetQueryable().Where(p => p.LoginID == userName);
+                    if (personLoginQueryable.Any())
+                    {
+                        var personLogin = personLoginQueryable.First();
 
-                    var generatedHashedPassword = PasswordUtils.GenerateHashedPassword(password, personLogin.Salt);
+                        var generatedHashedPassword = PasswordUtils.GenerateHashedPassword(password, personLogin.Salt);
 
-                    if (generatedHashedPassword == personLogin.HashedPassword)
-                        return new OperationStatus { Success = true, Data = personLoginQueryable.First().PersonID };
+                        if (generatedHashedPassword == personLogin.HashedPassword)
+                            return new OperationStatus { Success = true, Data = personLoginQueryable.First().PersonID };
+                        else
+                            return new OperationStatus { Success = false, Messages = new List<string> { "The password provided is not correct." } };
+                    }
                     else
-                        return new OperationStatus { Success = false, Messages = new List<string> { "The password provided is not correct." } };
-                }
-                else
-                {
-                    return new OperationStatus { Success = false, Messages = new List<string> { "The username provided is not correct." } };
-                }
+                    {
+                        return new OperationStatus { Success = false, Messages = new List<string> { "The username provided is not correct." } };
+                    }
+                }            
+            }
+            catch(Exception ex)
+            {
+                return OperationStatus.CreateFromException("Error with login.", ex);
             }
         }
 
