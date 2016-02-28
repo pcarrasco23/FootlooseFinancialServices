@@ -181,11 +181,11 @@ namespace FootlooseFS.Service
                         if (generatedHashedPassword == personLogin.HashedPassword)
                             return new OperationStatus { Success = true, Data = personLoginQueryable.First().PersonID };
                         else
-                            return new OperationStatus { Success = false, Messages = new List<string> { "The password provided is not correct." } };
+                            return new OperationStatus { Success = false, Messages = new List<string> { "Invalid username/password" } };
                     }
                     else
                     {
-                        return new OperationStatus { Success = false, Messages = new List<string> { "The username provided is not correct." } };
+                        return new OperationStatus { Success = false, Messages = new List<string> { "Invalid username/password" } };
                     }
                 }            
             }
