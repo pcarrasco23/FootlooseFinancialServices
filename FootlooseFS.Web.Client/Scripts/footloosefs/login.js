@@ -50,7 +50,7 @@ module.controller('loginController', ['$scope', '$http', 'dataService', function
                 // error
                 $scope.isBusy = false;
                 $scope.isError = true;
-                $scope.ErrorMessage = "The username and password combination is not correct";
+                $scope.ErrorMessage = "<div id='error_message'>The username and password combination is not correct</div>";
             })
             .then(function () {
                 $scope.isBusy = false;
