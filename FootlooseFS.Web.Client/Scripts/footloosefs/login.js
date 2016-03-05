@@ -17,7 +17,6 @@ module.config(['$routeProvider', function ($routeProvider) {
 module.controller('loginController', ['$scope', '$http', 'dataService', function ($scope, $http, dataService) {
     $scope.isBusy = false;
     $scope.isError = false;
-    $scope.ErrorMessage = "";
 
     $scope.username = "";
     $scope.password = "";
@@ -50,7 +49,9 @@ module.controller('loginController', ['$scope', '$http', 'dataService', function
                 // error
                 $scope.isBusy = false;
                 $scope.isError = true;
-                $scope.ErrorMessage = "<div id='error_message'>The username and password combination is not correct</div>";
+
+
+                $('#errorMessageDiv').html("<div id='error_message'>The username and password combination is not correct</div>");
             })
             .then(function () {
                 $scope.isBusy = false;

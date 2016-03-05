@@ -32,9 +32,7 @@
             <a href="#/register">Don't have a login? Register to use this website</a>
         <br/>
         
-        <div class='alert alert-danger' data-ng-show="isError">
-            {{ ErrorMessage }}          
-        </div>
+        <div id="errorMessageDiv" class='alert alert-danger' data-ng-show="isError" />
 
         <div class="progress" style="margin-top:50px;margin-left:auto;margin-right:auto;width:50%;" data-ng-show="isBusy">
             <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
