@@ -157,8 +157,3 @@ $RECYCLE.BIN/
 *.suo
 /FootlooseFS.Web.AdminUI/App_Data/*.ldf
 /FootlooseFS.Web.AdminUI/App_Data/*.mdf
-
-# Web or App configs
-/FootlooseFS.EnterpriseService/web.config
-/FootlooseFSDocumentDBETL/FootlooseFSDocumentDBETL/app.config
-/FootlooseFS.Web.Service/web.config
