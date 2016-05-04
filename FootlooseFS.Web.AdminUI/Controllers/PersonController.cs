@@ -33,6 +33,7 @@ namespace FootlooseFS.Web.AdminUI.Controllers
         //
         // GET: /Person/Search
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Search(SearchParameters searchParameters)
         {
             // Serialize sort direction to an enum of SortDirection
@@ -80,6 +81,7 @@ namespace FootlooseFS.Web.AdminUI.Controllers
         //
         // GET: /Person/New
         [Authorize(Roles = "Admin,Demographics")]
+        [ValidateAntiForgeryToken]
         public ActionResult New()
         {           
             var person = new Person();
@@ -115,6 +117,7 @@ namespace FootlooseFS.Web.AdminUI.Controllers
         //
         // GET: /Person/Edit
         [Authorize(Roles = "Admin,Demographics,Financial,OnlineAccess")]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int personID)
         {
             // When editing persons from here only include the phones and addresses
@@ -133,6 +136,8 @@ namespace FootlooseFS.Web.AdminUI.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         [Authorize(Roles = "Admin,Demographics")]
+        [ValidateAntiForgeryToken]
+        [HttpPost]
         public ContentResult Save(Person person)
         {            
             if (person.PersonID == 0)
