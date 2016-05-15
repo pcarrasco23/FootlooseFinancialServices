@@ -1,1 +1,1 @@
-﻿var config = { "serviceUrl": "http://peter-pc/FootlooseFSWebService" }
+﻿var config = { "serviceUrl": "http://localhost:81/footloosewebsrvc" }
