@@ -63,11 +63,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="web.config.sample">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\FootlooseFS.DataPersistence\FootlooseFS.DataPersistence.csproj">
       <Project>{83fa9df5-b8df-4ce6-8e71-41236966be47}</Project>
       <Name>FootlooseFS.DataPersistence</Name>
@@ -83,6 +78,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="PersonService.svc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="web.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

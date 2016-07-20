@@ -10,6 +10,10 @@ using FootlooseFS.Models;
 
 namespace FootlooseFS.DataPersistence
 {
+    /// <summary>
+    /// DB context
+    /// The Entoty Framework connection string: FootlooseFSContext must be defined in application configuration
+    /// </summary>
     public class FootlooseFSDBContext : DbContext
     {
         public FootlooseFSDBContext()

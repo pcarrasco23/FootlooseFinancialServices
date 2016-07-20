@@ -213,7 +213,6 @@
   <ItemGroup>
     <None Include="Properties\PublishProfiles\FootlooseFSWebServiceZip.pubxml" />
     <Content Include="web.config" />
-    <None Include="web.config.sample" />
     <None Include="Web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

@@ -11,7 +11,7 @@ namespace FootlooseFS.DataPersistence
 {
     public class FootlooseFSSqlUnitOfWork : IFootlooseFSUnitOfWork, IDisposable
     {
-        protected FootlooseFSDBContext _dbContext;
+        protected FootlooseFSSQLLocalDBContext _dbContext;
         protected SqlRepository<Member> _members;
         protected SqlRepository<MemberProfile> _memberProfiles;
         protected PersonRepository _persons;
@@ -25,7 +25,7 @@ namespace FootlooseFS.DataPersistence
 
         public FootlooseFSSqlUnitOfWork()
         {
-            _dbContext = new FootlooseFSDBContext();
+            _dbContext = new FootlooseFSSQLLocalDBContext();
         }
 
         public IRepository<Member> Members
