@@ -1,6 +1,6 @@
 # Footloose Financial Services
 
-Sample online banking system using C#, .NET, SQL Server, Entity Framework, MongoDB, WCF, WebAPI, AngularJS, and ASP.NET MVC
+Simple banking and management system built on the .NET Framework using C#, SQL Server, Entity Framework, MongoDB, WCF, WebAPI, AngularJS, and ASP.NET MVC
 
 User facing web sites:
  - FootlooseFS.Web.Client: Client facing web site built with AngularJS 2
