@@ -75,3 +75,31 @@ These 3 steps only have to be run once before running the portal
 	
 The Management portal web site uses the WCF web service for the data service. By default it communicates to the service on port 9096 but that can be modified
 in system.serviceModel client endpoint URL in the file C:\Users\Peter\Source\Repos\FootlooseFinancialServices\FootlooseFS.Web.AdminUI\web.config
+
+## Why are there 2 web sites?
+
+The Management portal is for employees of the Footloose Financial services who are in charge of updating or adding new account holders (clients).
+The Client-facing web site is for the client or account holder of the financial institution to view or update his/her information.
+
+## Why does each web site consist of 2 separate web sites - front-end and back-end?
+
+Scalability and security. The back-end web service can be scaled separately from the web site to meet demand. Also the back-end service can be hosted behind
+the company's firewall for better protection since it has direct access to the company's critical consumer data.
+
+## Why are we using the Express versions of SQL Server and IIS?
+
+To get the web sites up and running easier for developers. We can focus more on the code and less on the server administration. However using
+the enterprise versions of SQL Server and IIS against these web sites would be trivial and not require any code changes.
+
+## Why are we using MongoDB for the WCF service
+
+MongoDB is a NoSQL document database that provides optimal performance for querying large datasets. It is used in the Management Portal for querying customer data.
+If Footloose were to grow and have 10 million customers, querying highly normalized customer data in a relational SQL database could be very slow. Storing the
+customer data in MongoDB provides sub-second query performance against millions of records which could be used for developing analytic interfaces in the portal.
+
+The main challenge however is syncing any updates in the SQL master database with data in the MongoDB database.
+
+
+
+
+
