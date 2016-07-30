@@ -18,8 +18,10 @@ The client facing system requires SQL Server Express LocaleDB 2016 and IIS Expre
 - Download and install [IIS 10.0 Express] (https://www.microsoft.com/en-us/download/details.aspx?id=48264)
 - To start the WebAPI service open a command window and enter 
 		"C:\Program Files\IIS Express\iisexpress" /path:C:\Users\Peter\Source\Repos\FootlooseFinancialServices\FootlooseFS.Web.Service /port:9095
+	- Replace "C:\Users\Peter\Source\Repos" with your specific location of the Visual Studio project
 - To start the AngularJS web site open a command window and enter
 		"C:\Program Files\IIS Express\iisexpress" /path:C:\Users\Peter\Source\Repos\FootlooseFinancialServices\FootlooseFS.Web.Client /port:9092
+	- Replace "C:\Users\Peter\Source\Repos" with your specific location of the Visual Studio project
 - Open a web browser and go to http://localhost:9092
 - Enter "avenere" for the user name and "avenere1" for the password" and click the Submit button.
 
