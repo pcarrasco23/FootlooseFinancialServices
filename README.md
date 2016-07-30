@@ -2,12 +2,26 @@
 
 Sample online banking system using C#, .NET, SQL Server, Entity Framework, MongoDB, WCF, WebAPI, AngularJS, and ASP.NET MVC
 
+User facing web sites:
+ - FootlooseFS.Web.Client: Client facing web site built with AngularJS 2
+ - FootlooseFS.Web.AdminUI: Financial analyst admin site built with ASP.NET MVC 5 application
+ 
+Back-end web services:
+ - FootlooseFS.Web.Service: WebAPI RESTful back-end service for client facing site
+ - FootlooseFS.EnterpriseService: WCF back-end service for admin site
+
+DLL projects for back-end web services
+ - FootlooseFS.Service: interface to service layer for database and business logic
+ - FootlooseFS.DataPersistence: data access layer for SQL using Entity Framework 6
+
+ - \Data\FootlooseFS.mdf - SQL Server data file
+ 
 ## How to Build
 
 - To build from Visual Studio, open the solution FootlooseFS.sln file in Visual Studio 2015 or higher and build. 
 This solution uses NuGet packages so your installation of Visual Studio must have the NuGet Package manager installed.
 
-## How to Run
+## How to Run Client facing web site
 
 The client facing system requires SQL Server Express LocaleDB 2016 and IIS Express 10.0
 
