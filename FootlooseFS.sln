@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootlooseFS.Service", "Foot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootlooseFS.Web.AdminUI", "FootlooseFS.Web.AdminUI\FootlooseFS.Web.AdminUI.csproj", "{545B1888-B319-475B-AFD1-4E42F103963F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootlooseFSDocumentDBETL", "FootlooseFSDocumentDBETL\FootlooseFSDocumentDBETL\FootlooseFSDocumentDBETL.csproj", "{BC18C9EC-4CFD-4F90-8BB4-610068E3D1A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootlooseFSDocumentDBETL", "FootlooseFSDocumentDBETL\FootlooseFSDocumentDBETL.csproj", "{BC18C9EC-4CFD-4F90-8BB4-610068E3D1A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootlooseFS.Web.AdminUI.Tests", "FootlooseFS.Web.AdminUI.Tests\FootlooseFS.Web.AdminUI.Tests.csproj", "{7DE27578-E21E-498C-B3EE-B53EE23A1641}"
 EndProject
