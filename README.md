@@ -62,7 +62,7 @@ These 3 steps only have to be run once before running the portal
 - Open the file FootlooseFSDocumentDBETL/app.config
 	- Change the app setting "DataDirectory" to your specific location of the "FootlooseFinancialServices\Data" folder with the MDF file.
 - From Visual Studio set the startup project to FootlooseFSDocumentDBETL and run the program. 
-    - This will create the MongoDB database footloosefs and load it will data from the SQL MDF file
+    - This will create the MongoDB database footloosefs and load it with data from the SQL MDF file
 	
 - To start the WCF service open a command window and enter 
 		"C:\Program Files\IIS Express\iisexpress" /path:C:\Users\Peter\Source\Repos\FootlooseFinancialServices\FootlooseFS.EnterpriseService /port:9096
@@ -91,7 +91,7 @@ the company's firewall for better protection since it has direct access to the c
 To get the web sites up and running easier for developers. We can focus more on the code and less on the server administration. However using
 the enterprise versions of SQL Server and IIS against these web sites would be trivial and not require any code changes.
 
-## Why are we using MongoDB for the WCF service
+## Why are we using MongoDB for the WCF service?
 
 MongoDB is a NoSQL document database that provides optimal performance for querying large datasets. It is used in the Management Portal for querying customer data.
 If Footloose were to grow and have 10 million customers, querying highly normalized customer data in a relational SQL database could be very slow. Storing the
