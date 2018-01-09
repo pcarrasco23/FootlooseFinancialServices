@@ -22,11 +22,18 @@ DLL projects for back-end web services
 - To build from Visual Studio, open the solution FootlooseFS.sln file in Visual Studio 2015 or higher and build. 
 This solution uses NuGet packages so your installation of Visual Studio must have the NuGet Package manager installed.
 
+- To run the unit and integration tests from within Visual Studio you will need to install the NUnit3 Test Adapter and restart Visual Studio
+
 ## Download and install runtime dependencies
 
-Running the client facing web site requires SQL Server Express LocaleDB 2016 and IIS Express 10.0
+Running the client facing web site requires SQL Server Express LocaleDB 2014 or higher and IIS Express 10.0
 
-- Download and install SqlLocalDB.msi from the download for [SQL Server Express LocalDB 2016] (https://www.microsoft.com/en-us/download/details.aspx?id=42299)
+- Download and install SqlLocalDB.msi from the download for [SQL Server Express LocalDB 2014] (https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+
+- Create a LocalDB instance called FootlooseDb:
+    - Open a command prompt and go to "C:\Program Files\Microsoft SQL Server\120\LocalDB\Binn"
+	- Enter the command: sqllocaldb create FootlooseDb
+	
 - Download and install [IIS 10.0 Express] (https://www.microsoft.com/en-us/download/details.aspx?id=48264)
 
 In addition to run the Management portal you will need MongoDB 3 for Windows
