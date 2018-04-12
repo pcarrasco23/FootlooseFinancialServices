@@ -1,5 +1,7 @@
 # Footloose Financial Services
 
+Check out the .NetCore 2.0 version of the client web site at https://github.com/pcarrasco23/FootlooseFinancialServicesNetCore
+
 Simple banking and management system built on the .NET Framework using C#, SQL Server, Entity Framework, MongoDB, WCF, WebAPI, AngularJS, and ASP.NET MVC
 
 User facing web sites:
